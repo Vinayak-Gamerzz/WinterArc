@@ -1,4 +1,14 @@
-.caacupe-one-regular {
+:root {
+
+    --midgrey: #565656;
+    --grey: #848484;
+    --lightgrey: #B3B3B3;
+    --darkwhite: #E0E0E0;
+    --darkgrey: #2B2B2B;
+
+}
+
+.caacupe-regular {
   font-family: "Caacupe One", sans-serif;
   font-weight: 400;
   font-style: normal;
