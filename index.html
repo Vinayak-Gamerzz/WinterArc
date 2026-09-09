@@ -172,17 +172,17 @@
 
             </div>
 
-            <div class="desktop-icon inline-005" id="spotifyicon" title="Listen to your fav songs">
+            <div class="desktop-icon inline-005" id="musicicon" title="Listen to your fav songs">
 
-                <img alt="ArcMusic" src="icons/Spotify.">
+                <img alt="ArcMusic" src="icons/music.">
 
                 <p class="icon-label">ArcMusic</p>
 
             </div>
 
-            <div class="desktop-icon inline-005" id="youtubeicon" title="Watch Youtube Videos">
+            <div class="desktop-icon inline-005" id="vidicon" title="Watch vid Videos">
 
-                <img alt="ArcYoutube" src="icons/Youtube.">
+                <img alt="Arcvid" src="icons/vid.">
 
                 <p class="icon-label">ArcVid</p>
 
@@ -328,9 +328,9 @@
 
                     <button class="launchpad-app" data-open-app="clock"><span><!-- logo for here ----></span><b>ArcClock</b></button>
 
-                    <button class="launchpad-app" data-open-app="spotify"><span><!-- logo for here ----></span><b>ArcMusic</b></button>
+                    <button class="launchpad-app" data-open-app="music"><span><!-- logo for here ----></span><b>ArcMusic</b></button>
 
-                    <button class="launchpad-app" data-open-app="youtube"><span><!-- logo for here ----></span><b>ArcYoutube</b></button>
+                    <button class="launchpad-app" data-open-app="vid"><span><!-- logo for here ----></span><b>Arcvid</b></button>
 
                     <button class="launchpad-app" data-open-app="paint"><span><!-- logo for here ----></span><b>ArcPaint</b></button>
 
@@ -538,21 +538,21 @@
 
             </div>
 
-            <div class="welome inline-015" id="spotify">
+            <div class="welome inline-015" id="music">
 
-                <div class="welcomeheader" id="spotifyheader">
+                <div class="welcomeheader" id="musicheader">
 
                     <p>ArcMusic</p>
 
                 </div>
 
-                <div class="closebutton" id="spotifyclose">
+                <div class="closebutton" id="musicclose">
 
                     <p class="closetext">X</p>
 
                 </div>
 
-                <div class="minimizebutton" id="spotifyminimize">
+                <div class="minimizebutton" id="musicminimize">
 
                     <p class="minimizetext">-</p>
 
@@ -582,7 +582,7 @@
 
                         </div>
 
-                        <div class="name" id="track-title">ArcMusic - Arcify</div>
+                        <div class="name" id="track-title">ArcMusic</div>
 
                         <div class="volume-container">
 
@@ -612,41 +612,41 @@
 
             </div>
 
-            <div class="welcome inline-016" id="youtube">
+            <div class="welcome inline-016" id="vid">
 
-                <div class="welcomeheader" id="youtubeheader">
+                <div class="welcomeheader" id="vidheader">
 
-                    <p>ArcYoutube</p>
+                    <p>Arcvid</p>
 
                 </div>
 
-                <div class="closebutton" id="youtubeclose">
+                <div class="closebutton" id="vidclose">
 
                     <p class="closetext">X</p>
 
                 </div>
 
-                <div class="minimizebutton" id="youtubeminimize">
+                <div class="minimizebutton" id="vidminimize">
 
                     <p class="minimizetext">-</p>
 
                 </div>
 
-                <h1 class="ubuntu-regular inline-017">ArcYoutube</h1>
+                <h1 class="ubuntu-regular inline-017">Arcvid</h1>
 
                 <div class="vidcontainer">
 
                     <div class="search-box">
 
-                        <input id="searchinput" placeholder="Search from Youtube...." type="text"/>
+                        <input id="searchinput" placeholder="Search from vid...." type="text"/>
 
-                        <button class="vidbutton" onclick="searchYoutube()">Search</button>
+                        <button class="vidbutton" onclick="searchvid()">Search</button>
 
                     </div>
 
                     <div id="player-container">
 
-                        <div id="youtube-player"></div>
+                        <div id="vid-player"></div>
 
                     </div>
 
@@ -1015,6 +1015,379 @@
                         <button class="filterbutton" onclick="applyFilter('saturate');">Saturate 500%</button>
 
                         <button class="filterbutton" onclick="applyFilter('sepia');">Sepia 100%</button>
+
+                </div>
+
+            </div>
+
+            <div class="welcome inline-036" id="ghost">
+
+                <div class="welcomeheader" id="ghostheader">
+
+                    <p>ArcGhost</p>
+
+                </div>
+
+                <div class="closebutton" id="ghostclose">
+
+                    <p class="closetext">X</p>
+
+                </div>
+
+                <div class="minimizebutton" id="ghostminimize">
+
+                    <p class="minimizetext">-</p>
+
+                </div>
+
+                    <h1 class="ubuntu-regular inline-030">ArcGhost</h1>
+
+                    <iframe allow="encrypted-media; fullscreen" class="inline-037" id="ghostg" src=""></iframe>
+
+            </div>
+
+            <div class="welcome inline-038" id="gallery">
+
+                <div class="welcomeheader" id="galleryheader">
+
+                    <p>ArcGallery</p>
+
+                </div>
+
+                <div class="closebutton" id="galleryclose">
+
+                    <p class="closetext">X</p>
+
+                </div>
+
+                <div class="minimizebutton" id="galleryminimize">
+
+                    <p class="minimizetext">-</p>
+
+                </div>
+
+                    <h1 class="ubuntu-regular inline-012">ArcGallery</h1>
+
+                    <button class="gallerybutton" id="galleryarc" onclick="showarcPhotos()">Winter Arc</button>
+
+                <div class="Winterarcphotosdiv" id="arcphotos">
+
+                    <p class="gallerytitletext">Winter Arc</p>
+
+                    <br/>
+
+                    <p class="gallerytext">Image 1</p>
+
+                    <img alt="Img 1" class="Winterarcphotos" src=""/> <!-- IMAGES! -->
+                    <!-- copy this p and img for each image rn it's one here-->
+
+                </div>
+
+                    <br/>
+
+                        <!-- so after this br if i will need to add more albums to gallery just copy the code from button to /div for each album :DDD-->
+
+                </div>
+
+            </div>
+
+            <div class="welcome inline-039" id="recorder">
+
+                <div class="welcomeheader" id="recorderheader">
+
+                    <p>ArcRecorder</p>
+
+                </div>
+
+                <div class="closebutton" id="recorderclose">
+
+                    <p class="closetext">X</p>
+
+                </div>
+
+                <div class="minimizebutton" id="recorderminimize">
+
+                    <p class="minimizetext">-</p>
+
+                </div>
+
+                    <h1 class="ubuntu-regular inline-030">ArcRecorder</h1>
+
+                <div class="recordercontainer">
+
+                        <button id="startbtn">Start Recording</button>
+
+                        <button disabled="" id="stopbtn">Stop Recording</button>
+
+                    <div class="timer" id="timer">00:00</div>
+
+                    <div class="download-link">
+
+                        <a id="rdownload-link">Downlaod Audio</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="welcome inline-036" id="apps">
+
+                <div class="welcomeheader" id="appsheader">
+
+                    <p>ArcStore</p>
+
+                </div>
+
+                <div class="closebutton" id="appsclose">
+
+                    <p class="closetext">X</p>
+
+                </div>
+
+                <div class="minimizebutton" id="appsminimize">
+
+                    <p class="minimizetext">-</p>
+
+                </div>
+
+                    <h1 class="ubuntu-regular inline-012">ArcStore</h1>
+
+                <div class="appstoreitem" id="installpad">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcPad</h3>
+
+                        <button class="appstorebutton" id="padbutton" onclick="installApp('textpad')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Create Quick Notes</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installarclog">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcLog</h3>
+
+                        <button class="appstorebutton" id="arclogbutton" onclick="installApp('arclog')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Write down everything waht you've ate cause you need to do that!</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installweather">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcWeather</h3>
+
+                        <button class="appstorebutton" id="weatherbutton" onclick="installApp('weather')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">See weather around you!</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installclock">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcClock</h3>
+
+                        <button class="appstorebutton" id="clockbutton" onclick="installApp('clock')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Be punctual!</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installarcmusic">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcMusic</h3>
+
+                        <button class="appstorebutton" id="musicbutton" onclick="installApp('music')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Listen to my fav songs!</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installarcvid">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcVid</h3>
+
+                        <button class="appstorebutton" id="vidbutton" onclick="installApp('vid')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Watch youtube</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installcmd">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcCMD</h3>
+
+                        <button class="appstorebutton" id="cterminalbutton" onclick="installApp('cterminal')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">A stimulated hacker-style command panel</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installpaint">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcPaint</h3>
+
+                        <button class="appstorebutton" id="paintbutton" onclick="installApp('paint')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Create what you want to!</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installarcbrowser">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcBrowser</h3>
+
+                        <button class="appstorebutton" id="browserbutton" onclick="installApp('browser')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Explore the internet from your own search engine</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installcalculator">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcCalc</h3>
+
+                        <button class="appstorebutton" id="calculatorbutton" onclick="installApp('calculator')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Calculate your progress</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installpong">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcPong</h3>
+
+                        <button class="appstorebutton" id="pongbutton" onclick="installApp('pong')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Play pong V/S your PC</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installcamera">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcCamera</h3>
+
+                        <button class="appstorebutton" id="camerabutton" onclick="installApp('camera')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Capture your self every single day!</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installghostgame">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcGhost</h3>
+
+                        <button class="appstorebutton" id="ghostbutton" onclick="installApp('ghost')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Play an easy ghost killer game</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installrecorder">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcRecorder</h3>
+
+                        <button class="appstorebutton" id="recorderbutton" onclick="installApp('recorder')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Record one VN every day</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installgallery">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcGallery</h3>
+
+                        <button class="appstorebutton" id="gallerybutton" onclick="installApp('gallery')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Things you want to see mostly</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installarcade">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">ArcArcade</h3>
+
+                        <button class="appstorebutton" id="arcadebutton" onclick="installApp('arcade')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">Collection of a few games rn</p>
+
+                </div>
+
+                <div class="appstoreitem" id="installabout">
+
+                    <div class="appstoretop">
+
+                        <h3 class="appstoretitle">About Arc</h3>
+
+                        <button class="appstorebutton" id="installaboutbutton" onclick="installApp('info')">Install</button>
+
+                    </div>
+
+                        <p class="appstoredescription">All about ArcOS :DD</p>
 
                 </div>
 
