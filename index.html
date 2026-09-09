@@ -1393,6 +1393,272 @@
 
             </div>
 
+            <div class="welcome inline-040" id="info">
+
+                <div class="welcomeheader" id="infoheader">
+
+                    <p>About Arc</p>
+
+                </div>
+
+                <div class="closebutton" id="infoclose">
+
+                    <p class="closetext">X</p>
+
+                </div>
+
+                <div class="minimizebutton" id="infominimize">
+
+                    <p class="minimizetext">-</p>
+
+                </div>
+
+                    <h1 class="ubuntu-regular inline-012">About Arc</h1>
+
+                    <p>Everything about Arc OS: -</p> <!-- will write in the end-->
+
+            </div>
+
+            <div class="welcome arclog-window inline-041" id="arclog">
+
+                <div class="welcomeheader" id="arclogheader">
+                    
+                    <p>ArcLog</p>
+                
+                </div>
+
+                <div class="closebutton" id="arclogclose">
+
+                    <p class="closetext">X</p>
+
+                </div>
+
+                <div class="minimizebutton" id="arclogminimize">
+
+                    <p class="minimizetext">-</p>
+
+                </div>
+
+                <div class="arclog-shell">
+
+                    <div class="arclog-head">
+
+                        <div>
+                            
+                            <h1>ArcLog</h1>
+                            
+                                <p>Food Journal &amp; nutrition dashboard - stored locally</p>
+                        
+                        </div>
+
+                        <div class="arclog-daycard">
+                            
+                            <span>Today</span><b id="arclog-today">-</b>
+                        
+                        </div>
+
+                    </div>
+
+                    <div class="arclog-tabs">
+
+                        <button class="arclog-tab arclog-tab-active" data-log-tab="add">+ Add meal</button>
+
+                        <button class="arclog-tab" data-log-tab="today">Today</button>
+
+                        <button class="arclog-tab" data-log-tab="history">History</button>
+
+                    </div>
+
+                    <section class="arclog-panel" id="arclog-add">
+
+                        <div class="arclog-formgrid">
+
+                            <label>Meal <input type="text" autocomplete="off" id="log-food" placeholder="e.g. Paneer Tikka"/></label>
+
+                            <label>Date <input type="date" id="log-date"/></label>
+
+                            <label>Time <input type="time" id="log-time"/></label>
+
+                            <label>Calories (kcal) <input type="number" id="log-kcal" min="1" placeholder="0" step="1"/></label>
+
+                            <label>Protein (g) <input type="number" id="log-protein" min="1" placeholder="0" step="0.1"/></label>
+
+                            <label>Carbs (g) <input type="number" id="log-carbs" min="1" placeholder="0" step="0.1"/></label>
+
+                            <label>Fats (g) <input type="number" id="log-Fats" min="1" placeholder="0" step="0.1"/></label>
+
+                            <label>Meal Type <select id="log-meal"><option>Breakfast</option><option>Lunch</option><option>Snack</option><option>Dinner</option><option>Other</option></select></label>
+
+                        </div>
+
+                            <label class="arclog-wide">Notes <textarea id="log-notes" placeholder="Mention Ingredients"></textarea></label>
+
+                        <div class="arclog-form-actions">
+
+                            <button id="log-save">Save Meal</button>
+
+                            <button class="secondary" id="log-clear">Clear</button>
+
+                        </div>
+
+                            <p class="arclog-editing" hidden="" id="log-editing">Editing an existing entry</p>
+
+                    </section>
+
+                    <section class="arclog-panel" hidden="" id="arclog-today-panel">
+
+                        <div class="arclog-metrics">
+                            
+                            <div><span>Calories</span><b id="total-kcal">0</b><small>kcal</small></div>
+                        
+                            <div><span>Protein</span><b id="total-protein">0</b><small>g</small></div>
+                        
+                            <div><span>Carbs</span><b id="total-carbs">0</b><small>g</small></div>
+
+                            <div><span>Fats</span><b id="total-fats">0</b><small>g</small></div>
+
+                        </div>
+
+                        <div class="arclog-list" id="arclog-history-list"></div>
+
+                    </section>
+
+                    <section class="arclog-panel" hidden="" id="arclog-history">
+
+                        <div class="arclog-history-head">
+
+                            <h2>Food History</h2>
+
+                            <button class="secondary" id="log-export">Export JSON</button>
+
+                        </div>
+
+                        <div class="arclog-list" id="arclog-history-list"></div>
+
+                    </section>
+
+                    <div class="arclog-footer">
+                        
+                        <span id="log-count">0 meals logged</span>
+                        
+                        <button class="danger" id="log-clearall">Clear all local logs</button>
+                    
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="welcome settings-panel inline-042" id="settings">
+
+                <div class="app-header-fallback">
+
+                    <p>System Settings</p>
+
+                    <div class="window-controls-fallback">
+
+                        <button aria-label="Close Settings" id="settingsclose" type="button">X</button>
+
+                        <button aria-label="Minimize Settings" id="settingsminimize" type="button">-</button>
+
+                    </div>
+
+                </div>
+
+                    <h1 class="inline-003">ArcSettings</h1>
+
+                        <label class="inline-043">Custom grayscale wallpaper</label><br/>
+
+                        <input accept="image/*" id="bgfile" type="file"/><br/>
+
+                        <label class="inline-043">App blur: <span id="blurvalue">0px</span></label><br/>
+
+                        <input type="range" value="0" min="0" max="30" id="blurinput"/><br/>
+
+                        <label class="inline-043">App transparency: <span id="transparentvalue">100%</span></label><br/>
+
+                        <input type="range" value="100" min="0" max="100" id="transparentinput"/><br/>
+
+                        <label class="inline-043">Window Shade: <span id="bgcolorvalue">120</span></label><br/>
+
+                        <input type="range" max="360" min="0" value="50" id="bgcolorinput"/><br/>
+
+                        <button class="inline-044" id="applystylebtn">Save Settings</button>
+
+                        <button class="inline-044" id="resetwallpaperbtn">Reset Workspace</button>
+
+            </div>
+
+            <div class="welcome inline-045" id="calender">
+
+                <div class="calender inline-046">
+
+                    <div class="calender-header">
+
+                        <span class="month-picker" id="month-picker"> September </span>
+
+                            <div class="year-picker" id="year-picker">
+
+                                <span class="year-change" id="pre-year">
+
+                                    <pre>&lt;</pre>
+
+                                </span>
+
+                                <span id="year">2026</span>
+
+                                <span class="year-change" id="next-year">
+
+                                    <pre>&gt;</pre>
+
+                                </span>
+
+                            </div>
+
+                    </div>
+
+                    <div class="calender-body">
+
+                        <div class="calender-week-days">
+
+                            <div>Sun</div>
+
+                            <div>Mon</div>
+
+                            <div>Tue</div>
+
+                            <div>Wed</div>
+
+                            <div>Thu</div>
+
+                            <div>Fri</div>
+
+                            <div>Sat</div>
+
+                        </div>
+
+                        <div class="calender-days"></div>
+
+                    </div>
+
+                    <div class="month-list inline-047"></div>
+
+                    <div class="calender-footer"></div>
+
+                    <div class="date-time-formate">
+
+                        <div class="day-text-formate"></div>
+
+                        <div class="date-time-value"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+
         </div>
 
     </body>
