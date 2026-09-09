@@ -58,7 +58,297 @@
 
                 <button class="apple-menu" id="launchpadbutton">Apple Logo</button>
 
-                <button clas="menu-brand" id="menu-brand"></button>
+                <button clas="menu-brand" id="menu-brand">ArcOS</button>
+
+                <button class="menu-item">File</button>
+
+                <button class="menu-item">Edit</button>
+
+                <button class="menu-item" data-menu="View">View</button>
+
+                <button class="menu-tem" data-menu="History">History</button>
+
+                <button class="menu-item" data-menu="Go">Go</button>
+
+                <button class="menu-item">Window</button>
+
+                <button class="menu-item">Help</button>
+
+            </div>
+
+            <div class="openapps-menubar" id="openapps"></div>
+
+                <div class="menu-right">
+
+                    <button aria-label="Add Widgets" class="menubar-icon" id="widgetbutton" title="Add Widgets">+</button>
+
+                    <button class="menubar-icon" id="settingsbutton" title="Open Fider">~</button>
+
+                    <button id="timebarelement" title="Open Calender">--:--</button>
+
+                    <button class="menubar-icon" id="battery-indicator" title="Battery Status"><span class="battery-icon"><!-- lkie i need to find something to put here too----></span><span class="battery-percent" id="battery-percent">--%</span></button>
+
+                </div>
+
+        </div>
+
+        <div aria-label="ArcOS Dock" class="dock" id="dock">
+
+            <button class="dock-item" data-open-app="finder" title="Finder"><span class="dock-logo"><!-- need to find an logo for here too ---></span><span class="dock-label">Finder</span></button>
+
+            <button class="dock-item" data-open-app="Launchpad" title="Launchpad"><span class="dock-logo"><!-- logo ---></span><span class="dock-label">Launchpad</span></button>
+
+            <span class="dock-separator"></span>
+
+            <button class="dock-item" data-open-app="apps" title="ArcStore"><span class="dock-logo">A</span><span class="dock-label">ArcStore</span></button>
+
+            <button class="dock-item" data-open-app="arcade" title="ArcArcade"><span class="dock-logo"></span><!-- logo---></span><span class="dock-label">ArcArcade</span></button>
+
+            <button class="dock-item" data-open-app="arclog" title="ArcLog"><span class="dock-logo"></span><!-- logo---></span><span class="dock-label">ArcLog</span></button>
+
+            <button class="dock-item" data-open-app="browser" title="ArcBrowser"><span class="dock-logo"></span><!-- logo---></span><span class="dock-label">Browser</span></button>
+
+            <button class="dock-item" data-open-app="terminal" title="ArcTerminal"><span class="dock-logo"></span><!-- logo---></span><span class="dock-label">Terminal</span></button>
+
+            <span class="dock-separator"></span>
+
+            <button class="dock-item" data-open-app="settings" title="System Settings"><span class="dock-glyph"></span><!-- logo---></span><span class="dock-label">Settings</span></button>
+
+        </div>
+
+        <div aria-label="Desktop widgets" id="widget-layer"></div>
+
+        <div aria-hidden="true" class="widget-picker" id="widget-picker">
+
+            <div class="widget-picker-card">
+
+                <h2>Add Widgets</h2>
+
+                <p>Choose a widget to place on your ArcOS desktop</p>
+
+                <div class="widget-options">
+
+                    <button class="widget-option" data-widget-add="clock"><b>Clock</b><br/><small>Live time and date</small></button>
+
+                    <button class="widget-option" data-widget-add="battery"><b>Battery</b><br/><small>Real time device battery percentage</small></button>
+
+                    <button class="widget-option" data-widget-add="note"><b>Quick Note</b><br/><small>Quick Notes</small></button>
+
+                    <button class="widget-option" data-widget-add="focus"><b>Focus</b><br/><small>Focus timer</small></button>
+
+                    <button class="widget-option" data-widget-add="day"><b>Day Progress</b><br/><small>See how much of the day has passed</small></button>
+
+                    <button class="widget-option" data-widget-add="system"><b>System</b><br/><small>ArcOS desktop status</small></button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="desktop-apps" id="desktopapps">
+
+            <div class="desktop-icon inline-005" id="padicon" title="Create and save quick notes on ArcOS">
+
+                <img alt="ArcPad" src="icons/Pad.">
+
+                <p class="icon-label">ArcPad</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="weathericon" title="Check your local Weather">
+
+                <img alt="ArcWeather" src="icons/Weather.">
+
+                <p class="icon-label">ArcWeather</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="clockicon" title="Current Time">
+
+                <img alt="ArcClock" src="icons/Clock.">
+
+                <p class="icon-label">ArcClock</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="spotifyicon" title="Listen to your fav songs">
+
+                <img alt="ArcMusic" src="icons/Spotify.">
+
+                <p class="icon-label">ArcMusic</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="youtubeicon" title="Watch Youtube Videos">
+
+                <img alt="ArcYoutube" src="icons/Youtube.">
+
+                <p class="icon-label">ArcVid</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="cterminalicon" title="Your own terminal">
+
+                <img alt="ArcCMD" src="icons/Terminal.">
+
+                <p class="icon-label">ArcCMD</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="painticon" title="Draw and sketch directly inside ArcOS">
+
+                <img alt="ArcPaint" src="icons/Paint.">
+
+                <p class="icon-label">ArcPaint</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="browsericon" title="Your browser within Arc">
+
+                <img alt="ArcBrowser" src="icons/Browser.">
+
+                <p class="icon-label">ArcBrowser</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="calculatoricon" title="Calculate things within Arc">
+
+                <img alt="ArcCalculator" src="icons/Calculator.">
+
+                <p class="icon-label">ArcCalculator</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="pongicon" title="Play a classic pong match with your computer">
+
+                <img alt="ArcPong" src="icons/Pong.">
+
+                <p class="icon-label">ArcPong</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="cameraicon" title="Take photos using your Arc">
+
+                <img alt="ArcCamera" src="icons/Camera.">
+
+                <p class="icon-label">ArcCamera</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="ghosticon" title="arcade-style ghost game">
+
+                <img alt="ArcGhost" src="icons/Ghost.">
+
+                <p class="icon-label">ArcGhost</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="recordericon" title="Record audio from your Arc">
+
+                <img alt="ArcRecorder" src="icons/recorder.">
+
+                <p class="icon-label">ArcRecorder</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="galleryicon" title="Your progress Photos in Arc of Winter Arc">
+
+                <img alt="ArcGallery" src="icons/Gallery.">
+
+                <p class="icon-label">ArcGallery</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="infoicon" title="Info about ArcOS">
+
+                <img alt="About" src="icons/About.">
+
+                <p class="icon-label">About Arc</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="terminalicon" title="Run stimulated commands in ArcTerminal">
+
+                <img alt="ArcTerminal" src="icons/Terminal.">
+
+                <p class="icon-label">ArcTerminal</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="arclogicon" title="Log your food, meals">
+
+                <img alt="ArcLog" src="icons/Log.">
+
+                <p class="icon-label">ArcLog</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="arcadeicon" title="">
+
+                <img alt="ArcArcade" src="icons/Arcade.">
+
+                <p class="icon-label">ArcArcade</p>
+
+            </div>
+
+            <div class="desktop-icon inline-005" id="appsicon" title="Create and save quick notes on ArcOS">
+
+                <img alt="ArcStore" src="icons/Store.">
+
+                <p class="icon-label">ArcStore</p>
+
+            </div>
+
+            <div id="selection-box"></div>
+
+            <div aria-hidden="true" class="launchpad" id="launchpad">
+
+                <div class="launchpad-header">
+
+                    <button class="launchpad-close" id="launchpad-close">X</button>
+
+                    <input autocomplete="off" class="launchpad-search" id="launchpad-search" placeholder="Search apps"/>
+
+                </div>
+
+                <div class="launchpad-grid" id="launchpad-grid">
+
+                    <button class="launchpad-app" data-open-app="finder"><span><!-- logo for here ----></span><b>Finder</b></button>
+                    
+                    <button class="launchpad-app" data-open-app="apps"><span><!-- logo for here ----></span><b>ArcStore</b></button>
+
+                    <button class="launchpad-app" data-open-app="arcade"><span><!-- logo for here ----></span><b>ArcArcade</b></button>
+
+                    <button class="launchpad-app" data-open-app="pad"><span><!-- logo for here ----></span><b>ArcPad</b></button>
+
+                    <button class="launchpad-app" data-open-app="arclog"><span><!-- logo for here ----></span><b>ArcLog</b></button>
+
+                    <button class="launchpad-app" data-open-app="weather"><span><!-- logo for here ----></span><b>ArcWeather</b></button>
+
+                    <button class="launchpad-app" data-open-app="clock"><span><!-- logo for here ----></span><b>ArcClock</b></button>
+
+                    <button class="launchpad-app" data-open-app="spotify"><span><!-- logo for here ----></span><b>ArcMusic</b></button>
+
+                    <button class="launchpad-app" data-open-app="youtube"><span><!-- logo for here ----></span><b>ArcYoutube</b></button>
+
+                    <button class="launchpad-app" data-open-app="paint"><span><!-- logo for here ----></span><b>ArcPaint</b></button>
+
+                    <button class="launchpad-app" data-open-app="browser"><span><!-- logo for here ----></span><b>ArcBrowser</b></button>
+
+                    <button class="launchpad-app" data-open-app="calculator"><span><!-- logo for here ----></span><b>ArcCalc</b></button>
+
+                    <button class="launchpad-app" data-open-app="camera"><span><!-- logo for here ----></span><b>ArcCamera</b></button>
+
+                    <button class="launchpad-app" data-open-app="recorder"><span><!-- logo for here ----></span><b>ArcRecorder</b></button>
+
+                    <button class="launchpad-app" data-open-app="gallery"><span><!-- logo for here ----></span><b>ArcGallery</b></button>
+
+                    <button class="launchpad-app" data-open-app="info"><span><!-- logo for here ----></span><b>ArcAbout</b></button>
+
+                    <button class="launchpad-app" data-open-app="terminal"><span><!-- logo for here ----></span><b>ArcTermimnal</b></button>
+
+                </div>
 
             </div>
 
