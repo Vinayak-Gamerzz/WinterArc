@@ -1100,3 +1100,472 @@ body {
 
 }
 
+@keyframes to-top {
+
+  0% {
+
+  transform: translateY(0);
+  opacity: 0;
+
+  }
+
+  100% {
+
+  transform: translateY(100%);
+  opacity: 1;
+
+  }
+
+}
+
+@keyframes to-left {
+
+  0% {
+
+  transform: translatex(230%);
+  opacity: 1;
+
+  }
+
+  100% {
+
+  transform: translatex(0);
+  opacity: 1;
+
+  }
+
+}
+
+@keyframes to-right {
+
+  10% {
+
+  transform: translatex(0);
+  opacity: 1;
+
+  }
+
+  100% {
+
+  transform: translatex(-150%);
+  opacity: 1;
+
+  }
+
+}
+
+@keyframes showtime {
+
+  0% {
+
+  transform: translatex(250%);
+  opacity: 1;
+
+  }
+
+  100% {
+
+  transform: translatex(0%);
+  opacity: 1;
+
+  }
+
+}
+
+@keyframes hidetime {
+
+  0% {
+
+  transform: translatex(0%);
+  opacity: 1;
+
+  }
+
+  100% {
+
+  transform: translatex(-370%);
+  opacity: 1;
+
+  }
+
+}
+
+.welcome.opening {
+
+  animation: windowOpen 0.35s ease forwards;
+
+}
+
+.welcome.closing {
+
+  animation: windowClose 0.35s ease forwards;
+
+}
+
+@keyframes windowOpen {
+
+  from {
+
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.50) translateY(10px);
+
+  }
+
+  to {
+
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) translateY(0);
+
+  }
+
+}
+
+@keyframes windowClose {
+
+  from {
+
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) translateY(0);
+
+  }
+
+  to {
+
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.40) translateY(10px);
+
+  }
+
+}
+
+#settings.opening {
+
+  animation-name: windowOpenSettings;
+}
+
+#settings.closing {
+
+  animation-name: windowCloseSettings;
+}
+
+@keyframes windowOpenSettings {
+
+  from {
+
+  opacity: 0;
+  transform: translateX(-50%) scale(0.50) translateY(10px);
+
+  }
+
+  to {
+
+  opacity: 1;
+  transform: translateX(-50%) scale(1) translateY(0);
+
+  }
+
+}
+@keyframes windowCloseSettings {
+
+  from {
+
+  opacity: 1;
+  transform: translateX(-50%) scale(1) translateY(0);
+
+  }
+
+  to {
+
+  opacity: 0;
+  transform: translateX(-50%) scale(0.40) translateY(10px);
+
+  }
+
+}
+
+#calendar.opening {
+
+  animation-name: windowOpenCalendar;
+
+}
+
+#calendar.closing {
+
+  animation-name: windowCloseCalendar;
+
+}
+
+@keyframes windowOpenCalendar {
+
+  from {
+
+  opacity: 0;
+  transform: scale(0.50) translateY(10px);
+
+  }
+
+  to {
+
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  }
+
+}
+
+@keyframes windowCloseCalendar {
+
+  from {
+
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  }
+
+  to {
+
+  opacity: 0;
+  transform: scale(0.40) translateY(10px);
+
+  }
+
+}
+
+#openapps {
+
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  position: absolute;
+  left: 8%;
+  top: 10%;
+
+}
+
+.openapp {
+
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: rgba(43,43,43,0.485);
+  color: rgb(224, 224, 224);
+  font-size: 13px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+      background 0.18s ease,
+      transform 0.18s ease;
+
+}
+
+.openapp:hover {
+
+  background: var(--darkwhite, 0.16);
+  transform: translateY(-1px);
+
+}
+
+.openapp:active {
+
+  transform: scale(0.96);
+  box-shadow: inset 0 1px 0 var(--grey, 0.15);
+
+}
+
+#selection-box {
+
+  position: absolute;
+  background-color: rgba(86,86,86,0.25);
+  border: 1px solid rgba(86,86,86,0.8);
+  border-radius: 6px;
+  pointer-events: none;
+  display: none;
+  z-index: 0;
+
+}
+
+#terminal {
+
+  width: 600px;
+  min-width: 450px;
+  height: 400px;
+
+}
+
+.cmdcontent {
+
+  height: calc(100% -46px);
+  box-sizing: border-box;
+  padding: 15px;
+  overflow-y: auto;
+  font-family: Consolas, 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: var(--darkwhite);
+  background: var(--darkgrey);
+  border-radius: 16px;
+
+}
+
+#cmdoutput {
+
+  white-space: pre-wrap;
+  word-break: break-word;
+
+}
+
+.cmdinputline {
+
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+
+}
+
+.cmdprompt {
+
+  color: var(--darkwhite);
+  margin-right: 8px;
+  white-space: nowrap;
+
+}
+
+#cmdinput {
+
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--darkwhite);
+  font-family: 'Courier New', Courier, monospace, Consolas;
+  font-size: 14px;
+
+}
+
+#camera-container {
+
+  font: 1rem "Lucida Grande", "Arial", sans-serif;
+  padding: 0.8rem;
+
+}
+
+#start-button {
+
+  position: relative;
+  margin: auto;
+  bottom: 32px;
+  background-color: rgba(224,224,224,0.5);
+  border: 1px solid rgba(224,224,224,0.7);
+  box-shadow: 0px 0px 1px 2px rgb(0 0 0 / 20%);
+  font-size: 14px;
+  color: rgb(224, 224, 224);
+  display: block;
+  border-radius: 80%;
+  cursor: pointer;
+
+}
+
+#start-button:hover {
+
+  background-color: rgba(43,43,43,0.5);
+
+}
+
+#start-button:active {
+
+  background-color: rgba(179,179,179,0.8);
+
+}
+
+#video,
+#photo {
+
+  border: 1px solid rgb(43,43,43);
+  box-shadow: 2px 2px 3px rgb(43,43,43);
+  width: 100%;
+  height: auto;
+  display: block;
+
+}
+
+#cameracanvas {
+
+  display: none;
+
+}
+
+.camera {
+
+  position: relative;
+  width: 100%;
+  height: auto;
+
+}
+
+.output {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+
+}
+
+.output.visible {
+
+  opacity: 1;
+
+}
+
+.output #photo {
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.vidcontainer {
+
+  background-color: var(--darkgrey);
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
+  width: 90%;
+  align-self: center;
+
+}
+
+.search-box {
+
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+}
+
+#searchinput {
+
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+
+}
+
+.vidbutton {
+
+  padding: 10px 15px;
+  background-color: var(--darkgrey);
+  color: var(--darkwhite);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+
+}
