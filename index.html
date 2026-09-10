@@ -746,7 +746,7 @@
 
                 </div>
 
-                <div class="minimixebutton" id="paintminimize">
+                <div class="minimizebutton" id="paintminimize">
 
                     <p class="minimizetext">-</p>
 
@@ -804,11 +804,9 @@
 
                     <div class="browser-header">
 
-                        <input type="text" id="url-input" placeholder="Enter URL (e.g., wikipedia.org)">
+                        <input type="text" id="url-input" placeholder="Enter URL (e.g., wikipedia.org)"/>
 
                             <button class="inline-024" id="load-btn">Load</button>
-
-                        </input>
 
                     </div>
 
@@ -848,7 +846,7 @@
 
                         <td colspan="3"><input id="result" type="text"/></td>
 
-                        <td><input class="calcbutton" id="calcact" onclick="clr()" type="button" value="Clear"> </input></td>
+                        <td><input class="calcbutton" id="calcact" onclick="clr()" type="button" value="Clear"/></td>
 
                     </tr>
 
@@ -860,7 +858,7 @@
 
                         <td><input class="calcbutton" onclick="dis('3')" onkeydown="myFunction(event)" type="button" value="3"/> </td>
 
-                        <td><input class="calcbutton" id="actiong" onclick="dis('/')" onkeydown="myFunction(event)" type="button" value="/"/> </td>
+                        <td><input class="calcbutton calc-action" onclick="dis('/')" onkeydown="myFunction(event)" type="button" value="/"/> </td>
 
                     </tr>
 
@@ -872,7 +870,7 @@
 
                         <td><input class="calcbutton" onclick="dis('6')" onkeydown="myFunction(event)" type="button" value="6"/> </td>
 
-                        <td><input class="calcbutton" id="actiong" onclick="dis('*')" onkeydown="myFunction(event)" type="button" value="X"/> </td>
+                        <td><input class="calcbutton calc-action" onclick="dis('*')" onkeydown="myFunction(event)" type="button" value="X"/> </td>
 
                     </tr>
 
@@ -884,7 +882,7 @@
 
                         <td><input class="calcbutton" onclick="dis('9')" onkeydown="myFunction(event)" type="button" value="9"/> </td>
 
-                        <td><input class="calcbutton" id="actiong" onclick="dis('-')" onkeydown="myFunction(event)" type="button" value="-"/> </td>
+                        <td><input class="calcbutton calc-action" onclick="dis('-')" onkeydown="myFunction(event)" type="button" value="-"/> </td>
 
                     </tr>
 
@@ -892,11 +890,11 @@
 
                         <td><input class="calcbutton" onclick="dis('0')" onkeydown="myFunction(event)" type="button" value="0"/> </td>
 
-                        <td><input class="calcbutton" id="actiong" onclick="dis('.')" onkeydown="myFunction(event)" type="button" value="."/> </td>
+                        <td><input class="calcbutton calc-action" onclick="dis('.')" onkeydown="myFunction(event)" type="button" value="."/> </td>
 
                         <td><input class="calcbutton" id="calcact" onclick="solve()" type="button" value="="/> </td>
 
-                        <td><input class="calcbutton" id="actiong" onclick="dis('+')" onkeydown="myFunction(event)" type="button" value="+"/> </td>
+                        <td><input class="calcbutton calc-action" onclick="dis('+')" onkeydown="myFunction(event)" type="button" value="+"/> </td>
 
                     </tr>
 
@@ -944,7 +942,7 @@
 
                 </div>
 
-                <div class="minimizebutton" id="cameraclose">
+                <div class="minimizebutton" id="cameraminimize">
 
                     <p class="minimizetext">-</p>
 
@@ -1657,9 +1655,169 @@
 
             </div>
 
-            
+            <div class="welcome arcade-window inline-048" id="arcade">
+
+                <div class="welcomeheader" id="arcadeheader">
+                    
+                    <p>ArcArcade</p>
+                
+                </div>
+
+                <div class="closebutton" id="arcadeclose">
+                    
+                    <p class="closetext">X</p>
+                
+                </div>
+
+                <div class="minimizebutton" id="arcademinimize">
+                    
+                    <p class="minimizetext">-</p>
+                
+                </div>
+
+                    <h1 class="ubuntu-regular section-title">ArcArcade</h1>
+
+                    <p class="arcade-subtitle">Six tiny offline games. No accounts. Local high scores</p>
+
+                <div class="game-tabs">
+
+                    <button class="game-tab game-tab-active" data-game="snake">Snake</button>
+
+                    <button class="game-tab" data-game="ttt">Tic-Tac-Toe</button>
+
+                    <button class="game-tab" data-game="2048">2048</button>
+
+                    <button class="game-tab" data-game="memory">Memory</button>
+
+                    <button class="game-tab" data-game="mines">Mines</button>
+
+                    <button class="game-tab" data-game="breakout">Breakout</button>
+
+                </div>
+
+                <div class="game-panel" id="game-snake">
+
+                    <div class="game-head">
+                        
+                        <b>ArcSnake</b>
+                        
+                        <span id="snake-score">Score: 0</span>
+                        
+                        <span id="snake-best">Best:0</span>
+                    
+                    </div>
+
+                        <canvas height="360" id="snake-canvas" width="360"></canvas>
+
+                        <p class="game-help">Arrow Keys / WASD | Space = Pause | R = Restart</p>
+
+                        <button class="game-action" id="snake-start">Start / Restart</button>
+
+                </div>
+
+                <div class="game-panel" id="game-ttt" hidden="">
+
+                    <div class="game-head">
+                        
+                        <b>ArcTicTacToe</b>
+                        
+                        <span id="ttt-status">Your Turn</span>
+                    
+                    </div>
+
+                    <div class="ttt-board" id="ttt-board"></div>
+
+                        <button class="game-action" id="ttt-reset">New Match</button>
+
+                </div>
+
+                <div class="game-panel" id="game-2048" hidden="">
+
+                    <div class="game-head">
+                        
+                        <b>Arc2048</b>
+                        
+                        <span id="2048-score">Score: 0</span>
+
+                        <span id="2048-best">Best: 0</span>
+                    
+                    </div>
+
+                    <div class="2048-board" id="2048-board"></div>
+
+                        <p class="game-help">Arrow Keys / WASD | Join the numbers to reach 2048</p>
+
+                        <button class="game-action" id="2048-reset">New Game</button>
+
+                </div>
+
+                <div class="game-panel" id="game-memory" hidden="">
+
+                    <div class="game-head">
+                        
+                        <b>ArcMemory</b>
+                        
+                        <span id="memory-status">Moves: 0</span>
+                    
+                    </div>
+
+                    <div class="memory-board" id="memory-board"></div>
+
+                        <button class="game-action" id="memory-reset">New Game</button>
+
+                </div>
+
+                <div class="game-panel" id="game-mines" hidden="">
+
+                    <div class="game-head">
+                        
+                        <b>ArcMines</b>
+                        
+                        <span id="mines-status">Safe Tiles: 71</span>
+
+                    </div>
+
+                    <div class="mines-board" id="mines-board"></div>
+
+                        <p class="game-help">Click tiles to reveal them | Flag with right-click</p>
+
+                        <button class="game-action" id="mines-reset">New Field</button>
+
+                </div>
+
+                <div class="game-panel" id="game-breakout" hidden="">
+
+                    <div class="game-head">
+                        
+                        <b>ArcBreakout</b>
+                        
+                        <span id="breakout-score">Score: 0</span>
+
+                        <span id="breakout-lives">Lives: 3</span>
+                    
+                    </div>
+
+                        <canvas height="360" width="360" id="breakout-canvas"></canvas>
+
+                        <p class="game-help">Move with mouse or Arrow Keys | Space = Launch | R = Restart</p>
+
+                        <button class="game-action" id="breakout-start">Start / Restart</button>
+
+                </div>
+
+            </div>
 
         </div>
+
+        <p class="inline-049" id="trackminimize"></p>
+
+        <script src="script.js"></script>
+
+        <script crossorigin="anonymous" integrity="sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"></script>
+        
+        <script crossorigin="anonymous" integrity="sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA==" referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"></script>
+
+        <script src="https://www.vid.com/iframe_api"></script>
 
     </body>
 
