@@ -1679,5 +1679,14 @@ body {
 
 }
 
-.audio-player .controls > * {}
+.audio-player .controls > * {
+
+display: flex;
+align-items: center;
+justify-content: center;
+align-self: center;
+
+}
+
+
 
