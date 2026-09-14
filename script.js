@@ -126,3 +126,19 @@ function dragElement(element) {
 
 }
 
+var STORAGE_BG = "arcos-bg-image";
+var STORAGE_BLUR = "arcos-blur";
+var STORAGE_TRANSPARENT = "arcos-transparent";
+var STORAGE_BGCOLOR = "arcos-bgcolor";
+
+function saveSettings(bgImage, blur, transparent, bgcolor) {
+    if (bgImage) {
+        localStorage.setItem(STORAGE_BG, bgImage);
+
+    }
+
+    localStorage.setItem(STORAGE_BLUR, String(blur));
+    localStorage.setItem(STORAGE_TRANSPARENT, String(transparent));
+    localStorage.setItem(STORAGE_BGCOLOR, String(bgcolor));
+
+}
