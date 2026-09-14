@@ -16,3 +16,8 @@ Restarting
 Sheesshhhh I need to submit it before 8am tomorrow cause horizons will end tmrw no ways i need to do everything asap and i am gonna add less features lets see what ill do acc to time 
 
 It got very confused and now im not understanding the code after 3 days no way!
+
+
+** 1:03 AM IST **
+
+So i am starting working and ig i can use the old html file by modifying it less see letme take it from previous to previous commit hehehe :))

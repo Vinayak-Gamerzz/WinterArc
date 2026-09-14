@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>ArcOS</title>
+
+    <link rel="icon" type="image/x-icon" href="./favicon.png">
+
+    <link href='https://fonts.googleapis.com/css?family=ADLaM Display|Afacad Flux|Press+Start+2P|Ubuntu|Outfit' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
+
+  </head>
+  
+  <body id="desktop">
+
+    <div class="loader loader-active">
+
+      <h1 style="display: flex; position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%);">Logging in to ArcOS...</h1>
+
+    </div>
+
+
+    <div class="welcome" id="welcome" style="top: 50%; left: 50%;">
+
+    <div class="welcomeheader" id="welcomeheader"> 
+
+      <p>
+
+        Welcome to ArcOS!
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="welcomeclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+        <div class="minimizebutton" id="welcomeminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+
+    <h1 class="ubuntu-regular" style="margin: 4px; color: #E0E0E0;">Welcome to ArcOS!</h1>
+
+    <img style="width: 256px; height: 256px; border-radius: 16px; object-fit: cover;" src="./Arcos.png"/>
+
+    
+    <p>Hello <strong>user</strong>! This is my webOS for Winter Arc.</p>
+
+    <p>Use the <strong>App Store</strong> to install apps!</p>
+
+    </div>
+
+    <div id="top">
+
+        <p style="color:antiquewhite; margin-left: 8px;">
+
+            ArcOS
+
+        </p>
+
+       <div id="openApps"></div>
+
+        <button id="settingsButton">
+
+            Settings
+
+        </button>
+
+
+        <button id="timebarElement">
+
+            Clock not intialized yet...
+
+        </button>
+
+ 
+    </div>
+
+      <div id="desktopApps" class="desktop-apps">
+
+        <div id="notepadicon" class="desktop-icon" title="Write one note in ArcOS!" style="display: none;">
+
+          <img src="./icons/notepad.png" alt="notepad">
+
+          <p class="icon-label">notepad</p>
+
+        </div>
+
+
+        <div id="weathericon" class="desktop-icon" title="What's the weather today? (in ArcOS!)" style="display: none;">
+
+          <img src="./icons/weather-icon-set-free-vector.png" alt="Weather">
+
+          <p class="icon-label">Weather</p>
+
+        </div>
+
+        <div id="clockicon" class="desktop-icon" title="What time is it? (in ArcOS!)" style="display: none;">
+
+          <img src="./icons/stock-of-clock-free-vector.png" alt="Clock">
+
+          <p class="icon-label">Clock</p>
+
+        </div>
+
+        <div id="spotifyicon" class="desktop-icon" title="Listen to music in ArcOS!" style="display: none;">
+
+          <img src="./icons/Arcmusic-radio.png" alt="ArcMusic">
+
+          <p class="icon-label" style="font-size: 13px;">ArcMusic</p>
+
+        </div>
+
+
+        <div id="youtubeicon" class="desktop-icon" title="Watch any YouTube video in ArcOS!" style="display: none;">
+
+          <img src="./icons/Arcvid.png" alt="ArcVid">
+
+          <p class="icon-label">ArcVid</p>
+
+        </div>
+
+        <div id="cterminalicon" class="desktop-icon" title="Hack anyone in ArcOS! (not actually)" style="display: none;">
+
+          <img src="./icons/hackcmd.png" alt="HackCMD">
+
+          <p class="icon-label">HackCMD</p>
+
+        </div>
+
+        <div id="painticon" class="desktop-icon" title="Paint anything in ArcOS!" style="display: none;">
+
+          <img src="./icons/Arcpaint.png" alt="Paint">
+
+          <p class="icon-label">Paint</p>
+
+        </div>
+
+         <div id="browsericon" class="desktop-icon" title="Browse websites that allow iframes! (in ArcOS)" style="display: none;">
+
+          <img src="./icons/Arcbrowser.png" alt="Browser">
+
+          <p class="icon-label" style="font-size: 12px;">ArcBrowser</p>
+
+        </div>
+        
+         <div id="calculatoricon" class="desktop-icon" title="Do your math homework in ArcOS!" style="display: none;">
+
+          <img src="./icons/calculator.png" alt="Calculator">
+
+          <p class="icon-label">Calculator</p>
+
+        </div>
+
+         <div id="pongicon" class="desktop-icon" title="Play pong in ArcOS!" style="display: none;">
+
+          <img src="./icons/pong.png" alt="Pong">
+
+          <p class="icon-label">Pong</p>
+
+        </div>
+
+        <div id="cameraicon" class="desktop-icon" title="Take photos in ArcOS!" style="display: none;">
+
+          <img src="./icons/camera.png" alt="Camera">
+
+          <p class="icon-label">Camera</p>
+
+        </div>
+
+        <div id="ghosticon" class="desktop-icon" title="Pacman like game in ArcOS!" style="display: none;">
+
+          <img src="./icons/ghost.png" alt="Ghost game">
+
+          <p class="icon-label">Ghost game</p>
+
+        </div>
+
+        <div id="recordericon" class="desktop-icon" title="Record audio from your mic in ArcOS!" style="display: none;">
+
+          <img src="./icons/recorder.png" alt="Recorder">
+
+          <p class="icon-label">Recorder</p>
+
+        </div>
+
+        <div id="progressicon" class="desktop-icon" title="Progress Photots in ArcOS!" style="display: none;">
+
+          <img src="./icons/progress.png" alt="Progress Gallery">
+
+          <p class="icon-label">Progress Gallery</p>
+
+        </div>
+
+        <div id="infoicon" class="desktop-icon" title="Info about the apps in ArcOS!" style="display: none;">
+
+          <img src="./icons/info.png" alt="About">
+
+          <p class="icon-label">About</p>
+
+        </div>
+  
+        <div id="terminalicon" class="desktop-icon" title="scary commands... in ArcOS!">
+
+          <img src="./icons/terminal.png" alt="Terminal">
+
+          <p class="icon-label">Terminal</p>
+
+        </div>
+
+        <div id="appsicon" class="desktop-icon" title="Get all the apps you need for ArcOS in ArcOS!">
+
+          <img src="./icons/appstore.png" alt="App Store">
+
+          <p class="icon-label">App Store</p>
+
+        </div>
+
+        <div id="selection-box"></div>
+
+
+
+  <div class="welcome" style="top:55%; left: 30%; display: none; width: fit-content;" id="notepad">
+
+    <div class="welcomeheader" id="notepadheader"> 
+        
+      <p>
+
+
+        Notepad
+
+      </p>
+
+    </div>
+
+    
+    <div class="closebutton" id="notepadclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="notepadminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+
+
+   <div id="notepadContent" style="display: flex; flex-direction: column; gap: 12px;"></div>
+
+   <div id="bottomBar" style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+
+      </div>
+
+    </div>
+
+    </div>
+
+
+
+<div class="welcome" id="weather" style="top:60%; left: 70%; display: none;">
+
+    <div class="welcomeheader" id="weatherheader">
+
+      <p>
+
+        Weather
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="weatherclose">
+
+          
+          <p class="closetext"mm>X</p>
+
+        </div>
+
+
+
+        <div class="minimizebutton" id="weatherminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Weather</h1>
+
+    <div id="weather-icon" aria-label="Weather icon" style="font-size: 64px; line-height: 1; margin: 8px 0;">🌤️</div>
+    
+    
+    <div id="weathercontent">Loading weather...</div>
+
+    <p>Make sure you have given location permission to see your local weather!</p>
+
+    </div>
+
+
+
+    <div class="welcome" id="clock" style="top:55%; left: 40%; width:325px; height: 350px; display: none;">
+
+    <div class="welcomeheader" id="clockheader"> 
+
+      <p>
+
+        Clock
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="clockclose">
+          
+          <p class="closetext">X</p>
+
+        </div>
+
+        <div class="minimizebutton" id="clockminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+        <div class="container">
+
+ <div class="clock-outer"></div>
+
+ <div class="clock">
+
+ <div class="number number1">1</div>
+
+ <div class="number number2">2</div>
+
+ <div class="number number3">3</div>
+
+ <div class="number number4">4</div>
+
+ <div class="number number5">5</div>
+
+ <div class="number number6">6</div>
+
+ <div class="number number7">7</div>
+
+ <div class="number number8">8</div>
+
+ <div class="number number9">9</div>
+
+ <div class="number number10">10</div>
+
+ <div class="number number11">11</div>
+
+ <div class="number number12">12</div>
+
+
+ <div class="container-2">
+
+ <div id="date">7</div>
+
+ <div id="month">22</div> 
+
+ </div>
+
+ <div id="hour-hand" class="hand hour"></div>
+
+ <div id="minute-hand" class="hand minute"></div> 
+
+ <div id="second-hand" class="hand second"></div>
+
+ 
+ <div id="small-circle"></div> 
+
+ </div>
+
+ </div>
+
+    </div>
+
+
+    <div class="welcome" id="spotify" style="top:60%; left: 70%; display: none; width: 400px;">
+
+    <div class="welcomeheader" id="spotifyheader">
+
+      <p>
+
+        ArcMusic
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="spotifyclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+        <div class="minimizebutton" id="spotifyminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">ArcMusic</h1>
+
+<div class="audio-player">
+
+    <div class="timeline"></div>
+
+  <div class="controls">
+
+    <div class="play-container">
+
+      <div class="toggle-play play">
+
+    </div>
+
+    </div>
+
+    <div class="time">
+
+      <div class="current">0:00</div>
+
+    </div>
+
+    <div class="name" id="track-title">Live from my Spotify</div>
+
+    <div class="volume-container">
+
+      <div class="volume-button">
+
+        <div class="volume icono-volumeMedium"></div>
+
+      </div>
+      
+      <div class="volume-slider">
+
+        <div class="volume-percentage"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+    <div id="radioimgdiv">
+
+ <img src="./icons/radio.png" id="radioimg">
+
+ </div>
+
+    </div>
+
+
+     <div class="welcome" id="youtube" style="top:60%; left: 20%; display: none; width: 700px;">
+
+    <div class="welcomeheader" id="youtubeheader">
+
+      <p>
+
+        ArcVid
+
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="youtubeclose">
+          
+          <p class="closetext">X</p>
+
+        </div>
+
+        <div class="minimizebutton" id="youtubeminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">ArcVid</h1>
+
+    <div class="vidcontainer">
+
+        <div class="search-box">
+
+            <input type="text" id="searchInput" placeholder="Search from YouTube...">
+
+            <button class="vidbutton" onclick="searchYouTube()">Search</button>
+
+        </div>
+
+
+        <div id="player-container">
+
+            <div id="youtube-player"></div>
+
+        </div>
+
+        <div id="results"></div>
+
+    </div>
+
+</div>
+
+
+     <div class="welcome" id="cterminal" style="top:50%; left: 30%; display: none; width:500px; height: 500px;">
+
+    <div class="welcomeheader" id="cterminalheader">
+
+      <p>
+
+
+        HackCMD
+
+      </p>
+
+    </div>
+
+    
+
+    <div class="closebutton" id="cterminalclose">
+          
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="cterminalminimize">
+
+
+        <p class="minimizetext">-</p>
+
+    </div>
+
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">HackCMD</h1>
+
+        <div class="terminal-container">
+
+    <textarea class="textnagen" id="codeOutput" readonly></textarea>
+  </div>
+
+</div>
+
+
+     <div class="welcome" id="terminal" style="top:60%; left: 20%; display: none; width:500px;">
+
+    <div class="welcomeheader" id="terminalheader">
+
+      <p>
+
+        Terminal
+      </p>
+
+    </div>
+
+    
+    <div class="closebutton" id="terminalclose">
+
+          
+          <p class="closetext">X</p>
+
+
+        </div>
+
+     <div class="minimizebutton" id="terminalminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Terminal</h1>
+
+    <div class="cmdContent">
+
+        <div id="cmdOutput">
+
+            <div>ArcOS Terminal</div>
+
+            <div>Type <span style="color: #7cff8a;">help</span> for a list of commands.</div>
+
+            <br>
+        </div>
+        <div class="cmdInputLine">
+
+            <span class="cmdPrompt">Arc@ArcOS:~$</span>
+
+
+            <input
+                id="cmdInput"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+     <div class="welcome" id="paint" style="top:70%; left: 90%; display: none; width: 500px; height: 500px;">
+
+    <div class="welcomeheader" id="paintheader">
+
+      <p>
+        Paint
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="paintclose">
+          
+        <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="paintminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Paint</h1>
+
+    	<div class="paint-container">
+
+		<canvas id="pcanvas"></canvas>
+
+		<div class="paint-tools">
+
+			<input type="range"
+				id="brush-size" min="1"
+				max="50" value="5">
+
+			<input type="color"
+				id="color-picker">
+
+			<button id="pen">
+
+				Pen
+			</button>
+
+			<button id="eraser">
+
+				Eraser
+			</button>
+
+			<button id="clear-canvas">
+
+				Clear
+			</button>
+
+			<a id="downloadLink" download="Arcos_painting.png" class="download">Download</a>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+     <div class="welcome" id="browser" style="top:40%; left: 50%; display: none; width: 500px;">
+
+    <div class="welcomeheader" id="browserheader">
+
+      <p>
+        ArcBrowser
+      </p>
+
+    </div>
+
+    
+    <div class="closebutton" id="browserclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="browserminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">ArcBrowser</h1>
+
+  <div id="Arcbrowser-container">
+
+    <div class="browser-header">
+
+      <input type="text" id="url-input" placeholder="Enter URL (e.g., wikipedia.org)" />
+
+      <button id="load-btn" style="background-color: antiquewhite; cursor: pointer; font-family: Afacad Flux">Load</button>
+
+    </div>
+
+    <iframe id="browser-window" src="about:blank" style="width: 100%; height: 85%;" allow="encrypted-media; fullscreen"></iframe>
+
+    <p>This browser can only load websites that are accessible from iframes. <br> So google.com won't work, but wikipedia.org will.</p>
+
+  </div>
+
+  </div>
+
+</div>
+
+ 
+
+     <div class="welcome" id="calculator" style="top:40%; left: 50%; display: none; width:fit-content;">
+
+    <div class="welcomeheader" id="calculatorheader">
+
+      <p>
+
+        Calculator
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="calculatorclose">
+          
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="calculatorminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Calculator</h1>
+
+  <table id="calcu">
+		<tr>
+
+			<td colspan="3"><input type="text" id="result"></td>
+
+			<td><input class="calcbutton" type="button" value="Clear" id="calcact" onclick="clr()"/> </td>
+
+
+		</tr>
+
+		<tr>
+
+			<td><input class="calcbutton" type="button" value="1" onclick="dis('1')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="2" onclick="dis('2')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="3" onclick="dis('3')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="÷" id="actiong" onclick="dis('/')"
+						onkeydown="myFunction(event)"> </td>
+
+		</tr>
+
+		<tr>
+
+			<td><input class="calcbutton" type="button" value="4" onclick="dis('4')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="5" onclick="dis('5')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="6" onclick="dis('6')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" id="actiong" type="button" value="x" onclick="dis('*')"
+						onkeydown="myFunction(event)"> </td>
+
+		</tr>
+
+		<tr>
+
+			<td><input class="calcbutton" type="button" value="7" onclick="dis('7')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="8" onclick="dis('8')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" value="9" onclick="dis('9')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" id="actiong" value="-" onclick="dis('-')"
+						onkeydown="myFunction(event)"> </td>
+
+		</tr>
+
+		<tr>
+
+			<td><input class="calcbutton" type="button" value="0" onclick="dis('0')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" id="actiong" value="." onclick="dis('.')"
+						onkeydown="myFunction(event)"> </td>
+
+			<td><input class="calcbutton" type="button" id="calcact" value="=" onclick="solve()"> </td>
+
+			<td><input class="calcbutton" type="button" id="actiong" value="+" onclick="dis('+')"
+        onkeydown="myFunction(event)"> </td>
+
+		</tr>
+
+	</table>
+
+  </div>
+
+</div>
+	
+     <div class="welcome" id="pong" style="top:30%; left: 30%; display: none; width:fit-content;">
+
+    <div class="welcomeheader" id="pongheader">
+
+      <p>
+
+        Pong
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="pongclose">
+          
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="pongminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Pong</h1>
+
+    <canvas id="pongcanvas" width="500" height="500" style="background-color: black"></canvas> 
+
+</div>
+
+
+     <div class="welcome" id="camera" style="top:40%; left: 30%; display: none; width: 500px;">
+
+    <div class="welcomeheader" id="cameraheader">
+
+      <p>
+
+        Camera
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="cameraclose">
+
+          <p class="closetext">X</p>
+
+    </div>
+
+     <div class="minimizebutton" id="cameraminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style="margin: 4px; color: #E0E0E0;">Camera</h1>
+
+    <p style="margin: 0px; font-family: AdLaM Display;" id="cameraResolution"></p>
+
+    <div id="camera-container">
+
+      <div id="camera-error" style="display:none; color: #ff5555; font-weight: bold; margin-bottom: 8px;"></div>
+
+<div class="camera">
+
+
+  <video id="video">Video stream not available.</video>
+
+  <div class="output">
+
+    <img id="photo" src="" alt="The screen capture will appear in this box." />
+
+  </div>
+
+  <button id="start-button">O</button>
+
+</div>
+
+<canvas id="cameracanvas"></canvas>
+
+    </div>
+    
+    <div style="margin: 8px 0;">
+
+  <label for="camera-select" style="font-family: AdLaM Display;">Camera:</label>
+
+  <select id="camera-select" style="margin-left: 8px;">
+
+    <option value="">Loading cameras...</option>
+
+  </select>
+
+</div>
+
+    <div class="filterbuttons">
+
+    <p style="margin: 0px; font-family: AdLaM Display;">Filters:</p>
+
+    <button class="filterbutton active" onclick="applyFilter('normal');">Normal</button>
+
+    <button class="filterbutton" onclick="applyFilter('grayscale');">Grayscale 100%</button>
+
+    <button class="filterbutton" onclick="applyFilter('contrast');">Contrast 200%</button>
+
+    <button class="filterbutton" onclick="applyFilter('blur');">Blur 3px</button>
+
+    <button class="filterbutton" onclick="applyFilter('huerotate90');">Hue Rotate 90deg</button>
+
+    <button class="filterbutton" onclick="applyFilter('huerotate180');">Hue Rotate 180deg</button>
+
+    <button class="filterbutton" onclick="applyFilter('huerotate270');">Hue Rotate 270deg</button>
+
+    <button class="filterbutton" onclick="applyFilter('invert');">Invert 100%</button>
+
+    <button class="filterbutton" onclick="applyFilter('brightness');">Brightness 0.2</button>
+
+    <button class="filterbutton" onclick="applyFilter('opacity');">Opacity 50%</button>
+
+    <button class="filterbutton" onclick="applyFilter('saturate');">Saturate 500%</button>
+
+    <button class="filterbutton" onclick="applyFilter('sepia');">Sepia 100%</button>
+
+  </div>
+
+</div>
+
+
+     <div class="welcome" id="ghost" style="top:40%; left: 70%; display: none; width:fit-content;">
+
+    <div class="welcomeheader" id="ghostheader">
+
+      <p>
+
+        Ghost game
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="ghostclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="ghostminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Ghost game</h1>
+
+     <iframe id="ghostG" src="" style="background-color: black; width: 600px; height: 600px;" allow="encrypted-media; fullscreen"></iframe>
+
+</div>
+
+     <div class="welcome" id="prog" style="top:40%; left: 70%; display: none; width: 430px;">
+
+    <div class="welcomeheader" id="progheader">
+
+      <p>
+
+        Progress Gallery
+
+      </p>
+
+    </div>
+
+    
+    <div class="closebutton" id="progclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="progminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Progress gallery</h1>
+
+    <button id="progprogress" class="progbutton" onclick="showprogressPhotos()">Progress photos</button>
+
+    <div id="progressPhotos" class="progressphotosdiv">
+
+      <p class="progTitleText">progress photos</p>
+
+      <br>
+
+      <p class="progText">progress</p>
+
+      <img src="" alt="progress" class="progressphotos">
+
+    </div>
+
+     <div class="welcome" id="recorder" style="top:65%; left: 27%; display: none; width: 400px;">
+
+    <div class="welcomeheader" id="recorderheader">
+
+      <p>
+
+        Recorder
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="recorderclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="recorderminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">Recorder</h1>
+
+    <div class="recordercontainer">
+
+    <label for="microphone-select" id="microphone-label">Microphone:</label>
+
+
+    <select id="microphone-select">
+
+      <option value="">Loading microphones...</option>
+
+</select>
+
+  <br><br>
+  
+    <button id="startBtn">Start Recording</button>
+
+    <button id="stopBtn" disabled>Stop Recording</button>
+
+    <div class="timer" id="timer">00:00</div>
+
+    <div class="download-link">
+
+      <a id="rdownloadLink">Download Audio</a>
+
+    </div>
+
+  </div>
+
+  </div>
+
+
+       <div class="welcome" id="apps" style="top:40%; left: 70%; display: none; width:fit-content;">
+
+    <div class="welcomeheader" id="appsheader">
+
+      <p>
+
+        App Store
+
+      </p>
+
+    </div>
+    
+    <div class="closebutton" id="appsclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="appsminimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style= "margin: 4px; color: #E0E0E0;">App Store</h1>
+
+    <button id="saveAppsBTN" class="filterbuttone" onclick="saveVisibleApps()">Save installed</button>
+
+    <div id="installnotepad" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">notepad</h3>
+
+    <button class="appstorebutton" onclick="installApp('notepad')" id="notepadButton">Install</button>
+
+  </div>
+
+  <img src="./icons/notepad.png" class="appstoreicon">
+
+  <p class="appstoredescription">Save simple notes to your local storage.</p>
+
+</div>
+
+<div id="installWeather" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Weather</h3>
+
+    <button class="appstorebutton" onclick="installApp('weather')" id="weatherButton">Install</button>
+
+  </div>
+
+  <img src="./icons/weather-icon-set-free-vector.png" class="appstoreicon">
+
+  <p class="appstoredescription">What's the weather today?</p>
+
+</div>
+
+<div id="installClock" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Clock</h3>
+
+    <button class="appstorebutton" onclick="installApp('clock')" id="clockButton">Install</button>
+
+  </div>
+
+  <img src="./icons/stock-of-clock-free-vector.png" class="appstoreicon">
+
+  <p class="appstoredescription">Just a simple analog clock.</p>
+
+</div>
+
+<div id="installArcMusic" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">ArcMusic</h3>
+
+    <button class="appstorebutton" onclick="installApp('spotify')" id="spotifyButton">Install</button>
+
+  </div>
+  <img src="./icons/Arcmusic-radio.png" class="appstoreicon">
+
+  <p class="appstoredescription">Listen to spotify</p>
+
+</div>
+
+<div id="installArcVid" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">ArcVid</h3>
+
+    <button class="appstorebutton" onclick="installApp('youtube')" id="youtubeButton">Install</button>
+
+  </div>
+
+  <img src="./icons/Arcvid.png" class="appstoreicon">
+
+  <p class="appstoredescription">Watch any YouTube video with ArcVid!</p>
+
+</div>
+
+<div id="installHackCMD" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">HackCMD</h3>
+
+    <button class="appstorebutton" onclick="installApp('cterminal')" id="cterminalButton">Install</button>
+
+  </div>
+
+  <img src="./icons/hackcmd.png" class="appstoreicon">
+
+  <p class="appstoredescription">Pretend like you're hacking with this app!</p>
+
+</div>
+
+<div id="installPaint" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Paint</h3>
+
+    <button class="appstorebutton" onclick="installApp('paint')" id="paintButton">Install</button>
+
+  </div>
+
+  <img src="./icons/Arcpaint.png" class="appstoreicon">
+
+  <p class="appstoredescription">Draw anything with this!</p>
+
+</div>
+
+<div id="installArcBrowser" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">ArcBrowser</h3>
+
+    <button class="appstorebutton" onclick="installApp('browser')" id="browserButton">Install</button>
+
+  </div>
+
+  <img src="./icons/Arcbrowser.png" class="appstoreicon">
+
+  <p class="appstoredescription">Browse all websites (that allow being in an iframe)!</p>
+
+</div>
+
+<div id="installCalculator" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Calculator</h3>
+
+    <button class="appstorebutton" onclick="installApp('calculator')" id="calculatorButton">Install</button>
+
+  </div>
+
+  <img src="./icons/calculator.png" class="appstoreicon">
+
+  <p class="appstoredescription">Calculate simple calculations like your math homework :)</p>
+
+</div>
+
+<div id="installPong" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Pong</h3>
+
+    <button class="appstorebutton" onclick="installApp('pong')" id="pongButton">Install</button>
+
+  </div>
+
+  <img src="./icons/pong.png" class="appstoreicon">
+
+  <p class="appstoredescription">Play pong against AI.</p>
+
+</div>
+
+<div id="installCamera" class="appstoreitem">
+
+
+  <div class="appstoretop">
+
+
+    <h3 class="appstoretitle">Camera</h3>
+
+    <button class="appstorebutton" onclick="installApp('camera')" id="cameraButton">Install</button>
+
+  </div>
+
+  <img src="./icons/camera.png" class="appstoreicon">
+
+  <p class="appstoredescription">Take photos and use funny filters!</p>
+
+</div>
+
+<div id="installGhostGame" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Ghost game</h3>
+
+    <button class="appstorebutton" onclick="installApp('ghost')" id="ghostButton">Install</button>
+
+  </div>
+
+  <img src="./icons/ghost.png" class="appstoreicon">
+
+  <p class="appstoredescription">Play a pac-man like ghost hunting game!</p>
+
+</div>
+
+<div id="installRecorder" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">Recorder</h3>
+
+    <button class="appstorebutton" onclick="installApp('recorder')" id="recorderButton">Install</button>
+
+  </div>
+
+  <img src="./icons/recorder.png" class="appstoreicon">
+
+  <p class="appstoredescription">Record audio from your mic.</p>
+
+</div>
+
+<div id="installprogallery" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">progress gallery</h3>
+
+    <button class="appstorebutton" onclick="installApp('prog')" id="progButton">Install</button>
+
+  </div>
+
+  <img src="./icons/progress.png" class="appstoreicon">
+
+  <p class="appstoredescription">View photos of my progresss!</p>
+
+</div>
+
+<div id="installAbout" class="appstoreitem">
+
+  <div class="appstoretop">
+
+    <h3 class="appstoretitle">About</h3>
+
+    <button class="appstorebutton" onclick="installApp('info')" id="infoButton">Install</button>
+
+  </div>
+  <img src="./icons/info.png" class="appstoreicon">
+
+  <p class="appstoredescription">Info about all the apps in ArcOS! (recommended)</p>
+
+</div>
+
+</div>
+
+  </div>   
+
+  </div>
+
+
+<div class="welcome" id="info" style="top:70%; left: 10%; display: none; width: 350px;">
+
+    <div class="welcomeheader" id="infoheader">
+
+      <p>
+
+        About
+
+      </p>
+
+    </div>
+
+    
+    <div class="closebutton" id="infoclose">
+
+          <p class="closetext">X</p>
+
+        </div>
+
+     <div class="minimizebutton" id="infominimize">
+
+        <p class="minimizetext">-</p>
+
+    </div>
+    
+    <h1 class="ubuntu-regular" style="margin: 4px; color: rgb(91, 45, 207);">About</h1>
+
+    <p>This app has info about the apps in ArcOS!</p>
+
+    <button id="notepadButton" onclick="showAppInfo('notepad');" class="infoButton">About notepad</button>
+
+    <p id="notepadInfoTitle" class="infoTitle">About notepad</p>
+
+    <p id="notepadInfo" class="infoInfo" style="display: none;">You can save info to notepad, but it only has one textbox. <br>You can use it for small thoughts that you don't want to forget yet. (it saves locally to your browser!) <br>It's basically like notepad, but with only one note.</p>
+     
+    <button id="weatherButton" onclick="showAppInfo('weather');" class="infoButton">About Weather</button>
+
+     <p id="weatherInfoTitle" class="infoTitle">About Weather</p>
+
+    <p id="weatherInfo" class="infoInfo" style="display: none;">This app shows you your local weather! <br>It shows temperature, condition (with text and an emoji) and your location. <br>Make sure you have enabled location services for this to work.</p>
+
+    <button id="clockButton" onclick="showAppInfo('clock');" class="infoButton">About Clock</button>
+
+     <p id="clockInfoTitle" class="infoTitle">About Clock</p>
+
+    <p id="clockInfo" class="infoInfo" style="display: none;">This app tells you the time. <br>There is nothing special about this, it's just an analog clock.</p>
+
+  <button id="ArcmusicButton" onclick="showAppInfo('Arcmusic');" class="infoButton">About ArcMusic</button>
+
+     <p id="ArcmusicInfoTitle" class="infoTitle">About ArcMusic</p>
+
+    <p id="ArcmusicInfo" class="infoInfo" style="display: none;">Listen to XFM radio stream :D <br>Song title updates every minute. <br>When you minimize this app when music is playing, the song title shows in the taskbar.</p>
+
+  <button id="ArcvidButton" onclick="showAppInfo('Arcvid');" class="infoButton">About ArcVid</button>
+
+     <p id="ArcvidInfoTitle" class="infoTitle">About ArcVid</p>
+
+    <p id="ArcvidInfo" class="infoInfo" style="display: none;">You can watch any YouTube video with this! <br>Just type in the video's title!</p>
+
+  <button id="hackcmdButton" onclick="showAppInfo('hackcmd');" class="infoButton">About HackCMD</button>
+
+     <p id="hackcmdInfoTitle" class="infoTitle">About HackCMD</p>
+
+    <p id="hackcmdInfo" class="infoInfo" style="display: none;">With this app you can seem like you are hacking! <br>Just type anything in the terminal window!</p>
+
+    <button id="terminalButton" onclick="showAppInfo('terminal');" class="infoButton">About Terminal</button>
+
+     <p id="terminalInfoTitle" class="infoTitle">About Terminal</p>
+
+    <p id="terminalInfo" class="infoInfo" style="display: none;">This is just a basic terminal. <br>Type 'help' to see all available commands.</p>
+
+    <button id="paintButton" onclick="showAppInfo('paint');" class="infoButton">About Paint</button>
+
+
+     <p id="paintInfoTitle" class="infoTitle">About Paint</p>
+
+    <p id="paintInfo" class="infoInfo" style="display: none;">You can paint anything you want! <br>You can change color and size, and also use the eraser or clear the whole canvas. <br>After you're done, just press the Download button!</p>
+
+    <button id="ArcbrowserButton" onclick="showAppInfo('Arcbrowser');" class="infoButton">About ArcBrowser</button>
+
+     <p id="ArcbrowserInfoTitle" class="infoTitle">About ArcBrowser</p>
+
+    <p id="ArcbrowserInfo" class="infoInfo" style="display: none;">You can browse all websites that allow being in an iframe. <br>Just type in the URL (like 'wikipedia.org') and press load! <br>You can even have ArcOS in ArcOS!</p>
+
+
+    <button id="calculatorButton" onclick="showAppInfo('calculator');" class="infoButton">About Calculator</button>
+
+     <p id="calculatorInfoTitle" class="infoTitle">About Calculator</p>
+
+    <p id="calculatorInfo" class="infoInfo" style="display: none;">This is just a basic calculator. <br>Use the buttons or just type your numbers in the textarea and press solve!</p>
+
+    <button id="pongButton" onclick="showAppInfo('pong');" class="infoButton">About Pong</button>
+
+     <p id="pongInfoTitle" class="infoTitle">About Pong</p>
+
+    <p id="pongInfo" class="infoInfo" style="display: none;">You can play pong. <br>Use your mouse to move. It's that simple! <br>You can pause by minimizing the app. Reset by closing it.</p>
+
+    <button id="cameraButton" onclick="showAppInfo('camera');" class="infoButton">About Camera</button>
+
+     <p id="cameraInfoTitle" class="infoTitle">About Camera</p>
+
+    <p id="cameraInfo" class="infoInfo" style="display: none;">Take pictures inside ArcOS. <br>Press the Take Photo button or apply filters. <br>Then you will see the photo for a few seconds and then your download will start.</p>
+
+    <button id="ghostgameButton" onclick="showAppInfo('ghostgame');" class="infoButton">About Ghost game</button>
+
+     <p id="ghostgameInfoTitle" class="infoTitle">About Ghost game</p>
+
+    <p id="ghostgameInfo" class="infoInfo" style="display: none;">Pacman like game where you try to eat all the ghosts. <br>Also everyone can see the best score if you get it! <br>I made this a while back in a coding class.</p>
+
+    <button id="recorderButton" onclick="showAppInfo('recorder');" class="infoButton">About Recorder</button>
+
+     <p id="recorderInfoTitle" class="infoTitle">About Recorder</p>
+
+    <p id="recorderInfo" class="infoInfo" style="display: none;">Record audio in ArcOS. <br> After recording, press 'Download Audio' to download it.</p>
+
+    <button id="progalleryButton" onclick="showAppInfo('progallery');" class="infoButton">About progress Gallery</button>
+
+     <p id="progalleryInfoTitle" class="infoTitle">About progress Gallery</p>
+
+    <p id="progalleryInfo" class="infoInfo" style="display: none;">View pictures of my progresss. <br>Select the progress you want to see photos of.</p>
+
+    <button id="aboutButton" onclick="showAppInfo('about');" class="infoButton">About About</button>
+
+     <p id="aboutInfoTitle" class="infoTitle">About About</p>
+
+
+    <p id="aboutInfo" class="infoInfo" style="display: none;">You can see info about the apps in ArcOS!</p>
+
+    <button id="welcomeButton" onclick="showAppInfo('welcome');" class="infoButton">About Welcome</button>
+
+     <p id="welcomeInfoTitle" class="infoTitle">About Welcome</p>
+
+    <p id="welcomeInfo" class="infoInfo" style="display: none;">This is just the welcome screen with some links.</p>
+
+  </div>
+
+
+
+ <div class="welcome" id="settings" style="position: fixed; bottom: 40px; left: 47%; transform: translateX(-50%); resize: none; display: none; width: fit-content; background-color: rgba(135, 133, 133, 0.5); backdrop-filter: blur(10px); border-radius: 16px 16px 0 0; z-index: 9998;">
+  <h1 style="margin: 4px; color: #E0E0E0;">ArcSettings</h1>
+
+    
+  <label style="font-family: ADLaM Display; text-shadow: 3px 3px 3px #ababab;">Custom wallpaper</label><br>
+
+  <input id="bgFile" type="file" accept="image/*"><br>
+
+  <label style="font-family: ADLaM Display; text-shadow: 3px 3px 3px #ababab;">App blur: <span id="blurValue">0px</span></label><br>
+
+  <input id="blurInput" type="range" min="0" max="30" value="0"><br>
+
+  <label style="font-family: ADLaM Display; text-shadow: 3px 3px 3px #ababab;">App transparency: <span id="transparentValue">100%</span></label><br>
+
+  <input id="transparentInput" type="range" min="0" max="100" value="100"><br>
+
+  <label style="font-family: ADLaM Display; text-shadow: 3px 3px 3px #ababab;">App BG color: <span id="bgcolorValue">120</span></label><br>
+
+  <input id="bgcolorInput" type="range" min="0" max="360" value="120"><br>
+
+  <button id="applyStyleBtn" style="margin-top:8px; margin-left:4px; background-color: #5add5ecf; cursor: pointer; font-family: ADLaM Display">Save to local storage</button>
+
+  <button id="resetWallpaperBtn" style="margin-top:8px; margin-left:4px; background-color: #5add5ecf; cursor: pointer; font-family: ADLaM Display">Reset to defaults</button>
+
+  </div>
+
+</div>
+
+ <div class="welcome" id="calendar" style="position: fixed; right: 16px; bottom: 45px; left: auto; transform: none; resize: none; display: none; width: min(500px, calc(100vw - 24px)); max-width: calc(100vw - 24px); height: min(450px, calc(100vh - 90px)); max-height: calc(100vh - 90px); padding: 0px; border-radius: 25px; z-index: 9998; box-sizing: border-box; overflow: auto; background-color: rgba(135, 133, 133, 0.5); backdrop-filter: blur(10px);">
+    
+        <div class="calendar" style="width: 100%; max-width: 100%; height: 100%; box-sizing: border-box;">
+
+      <div class="calendar-header">
+
+        <span class="month-picker" id="month-picker"> May </span>
+
+        <div class="year-picker" id="year-picker">
+
+          <span class="year-change" id="pre-year">
+
+            <pre><</pre>
+
+          </span>
+
+          <span id="year">2026 </span>
+
+          <span class="year-change" id="next-year">
+
+            <pre>></pre>
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="calendar-body">
+
+        <div class="calendar-week-days">
+
+          <div>Sun</div>
+
+          <div>Mon</div>
+
+          <div>Tue</div>
+
+          <div>Wed</div>
+
+          <div>Thu</div>
+
+          <div>Fri</div>
+
+          <div>Sat</div>
+
+        </div>
+
+        <div class="calendar-days">
+
+        </div>
+
+      </div>
+
+            <div class="month-list" style="background-color: rgba(135, 133, 133, 0.5); backdrop-filter: blur(10px);"></div>
+
+      <div class="calendar-footer">
+
+      </div>
+
+      <div class="date-time-formate">
+
+        <div class="day-text-formate"></div>
+
+        <div class="date-time-value">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+    </div>
+
+
+
+    <p style="display: none; font-size: 0px;" id="trackminimize"></p>
+
+    <script src="script.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
+		integrity=
+"sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"></script>
+
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+		integrity=
+"sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"></script>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+  </body>
+
+</html>
