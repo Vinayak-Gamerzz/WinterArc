@@ -31,3 +31,65 @@ var CurrentTime="";
 
     }
     setInterval(timeUpdate, 1000);
+
+const buttons = document.querySelectorAll('.filterbutton');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+    });
+
+});
+
+dragElement(document.getElementById("welcome"));
+
+function dragElement(element) {
+    if (!element) return;
+
+    var initialX = 0;
+    var initialY = 0;
+    var currentX = 0;
+    var currentY = 0;
+
+    if (document.getElementById(element.id + "header")) {
+        document.getElementById(element.id + "header").onmousedown = startDragging;
+
+    } else {
+        element.onmousedown = startDragging;
+
+    }
+
+    function startDragging(e) {
+        e = e || window.event;
+        e.preventDefault();
+        currentX = initialX - e.clientX;
+        currentY = initialY - e.clientY;
+        initialX = e.clientX;
+        initialY = e.clientY;
+
+        var nextTop = element.offsetTop = - currentY;
+        var nextLeft = element.offsetLeft = - currentX;
+        var minTop = element.offsetHeight / 2;
+        var minLeft = element.offsetWidth / 2;
+        var maxTop = window.innerHeight - element.offsetHeight / 2;
+        var maxLeft = window.innerWidth - element.offsetWidth / 2;
+
+        element.style.top = Math.max(minTop, Math.min(nextTop, maxTop)) + "px";
+        element.style.left = Math.max(minLeft, Math.min(nextLeft, maxLeft)) + "px";
+    }
+
+    function stopDragging() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+
+    }
+
+    if (window.ResizeObserver) {
+        var isFirstResizeObservation = true;
+        var resize Observer(function (windowId) {})
+
+    }
+
+}
