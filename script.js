@@ -142,3 +142,106 @@ function saveSettings(bgImage, blur, transparent, bgcolor) {
     localStorage.setItem(STORAGE_BGCOLOR, String(bgcolor));
 
 }
+
+function loadSettings() {
+    var savedBg = localStorage.getItem(STORAGE_BG);
+    var savedBlur = localStorage.getItem(STORAGE_BLUR);
+    var savedTransparent = localStorage.getItem(STORAGE_TRANSPARENT);
+    var savedBgcolor = localStorage.getItem(STORAGE_BGCOLOR);
+
+    if (savedBg) {
+        applyWallpaper(savedBg);
+
+    }
+
+    if (blurInput && savedBlur !== null) {
+        blurInput.value = savedBlur;
+        updateBlurDisplay(Number(savedBlur));
+
+    }
+
+    if (transparentInput && savedTransparent !== null) {
+        transparentInput.value = savedTransparent;
+        updateTransparentDisplay(Number(savedTransport));
+
+    }
+
+    if (bgcolorInput && savedBgcolor !== null) {
+        bgcolorInput.value = savedBgcolor;
+        updateBgcolorDisplay(Number(savedBgcolor));
+
+    }
+
+}
+
+function clearSavedWallpaper() {
+    localStorage.removeItem(STORAGE_BG);    
+
+}
+
+var welcomeScreen = document.querySelector("#welcome")
+var body = document.body;
+var defaultBackgroundImage = body.style.backgroundImage || "";
+var defaultBackgroundColor = body.style.backgroundColor || "antiquewhite";
+var defaultBackgroundSize = body.style.backgroundSize || "cover";
+var defaultBackgroundPosition = body.style.backgroundPosition || "";
+var fileInput = document.getElementById("bgFile");
+var applyStyleBtn = document.getElementById("applyStyleBtn");
+var resetWallpaperBtn = document.getElementById("resetWallpaperBtn");
+var blurInput = document.getElementById("blurInput");
+var blurValue = document.getElementById("blurValue");
+var transparentInput = document.getElementById("transparentInput");
+var transparentValue = document.getElementById("transparentValue");
+var bgcolorInput = document.getElementById("bgcolorInput");
+var bgcolorValue = document.getElementById("bgcolorValue");
+
+function applyWallpaper(imageDataUrl) {
+  if (!body) {
+    return;
+    
+  }
+
+  if (imageDataUrl) {
+    body.style.backgroundImage = `url(${imageDataUrl})`;
+
+  } else {
+    body.style.backgroundImage = defaultBackgroundImage;
+
+  }
+
+  body.style.backgroundColor = defaultBackgroundColor;
+  body.style.backgroundSize = "cover";
+  body.style.backgroundPosition = "center";
+
+}
+
+function resetWallpaper() {
+  if (!body) {
+    return;
+
+  }
+
+  body.style.backgroundImage = defaultBackgroundImage;
+  body.style.backgroundColor = defaultBackgroundColor;
+  body.style.backgroundSize = defaultBackgroundSize;
+  body.style.backgroundPosition = defaultBackgroundPosition;
+
+}
+
+function resetToDefaults() {
+  document.documentElement.style.setProperty("--desktop-window-alpha", 100);
+  document.documentElement.style.setProperty("--desktop-blur", `0px`);
+  document.documentElement.style.setProperty("--welcome-hue", `120`);
+
+}
+
+function updateBlurDisplay(value) {
+  const blurAmount = Number.isFinite(value) ? value : 0;
+  document.documentElement.style.setProperty("--desktop-blur", `${blurAmount}px`);
+
+  if (blurValue) {
+    blurValue.textContent = `${blurAmount}px`;
+
+  }
+
+}

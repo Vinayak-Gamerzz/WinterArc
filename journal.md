@@ -25,3 +25,7 @@ So i am starting working and ig i can use the old html file by modifying it less
 ** 2:23 AM IST **
 
 HTML EDITING DONE!
+
+** 4:00 AM IST **
+
+so, if i'll write whole code ahgain from scratch it will take 2 days but horizon shipping time is at 8 am so 4 hours and i have to type 5k lines of code so im not gonna write them i will just edit my previous ones on which i spent so much time cuase it is effiecent and it will be good ig cause it'll complete my work asap so yeah goin to work again cya! 
