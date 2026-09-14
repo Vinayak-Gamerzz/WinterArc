@@ -18,6 +18,10 @@ Sheesshhhh I need to submit it before 8am tomorrow cause horizons will end tmrw 
 It got very confused and now im not understanding the code after 3 days no way!
 
 
-** 1:03 AM IST **
+** 1:03 AM **
 
 So i am starting working and ig i can use the old html file by modifying it less see letme take it from previous to previous commit hehehe :))
+
+** 2:23 AM IST **
+
+HTML EDITING DONE!

@@ -64,6 +64,16 @@ function dragElement(element) {
     function startDragging(e) {
         e = e || window.event;
         e.preventDefault();
+        initialX = e.clientX;
+        initialY = e.clientY;
+        document.onmouseup = stopDragging;
+        document.onmousemove = dragElement;
+
+    }
+
+    function dragElement(e) {
+        e = e || window.event;
+        e.preventDefault();
         currentX = initialX - e.clientX;
         currentY = initialY - e.clientY;
         initialX = e.clientX;
@@ -78,6 +88,7 @@ function dragElement(element) {
 
         element.style.top = Math.max(minTop, Math.min(nextTop, maxTop)) + "px";
         element.style.left = Math.max(minLeft, Math.min(nextLeft, maxLeft)) + "px";
+
     }
 
     function stopDragging() {
@@ -88,8 +99,30 @@ function dragElement(element) {
 
     if (window.ResizeObserver) {
         var isFirstResizeObservation = true;
-        var resize Observer(function (windowId) {})
+        var resizeObserver = new ResizeObserver(function (windowId) {
+            if (isFirstResizeObservation) {
+                isFirstResizeObservation = false;
+                return;
+
+            }
+            if (element.style.display === "none") return;
+            if (element.id === "youtube") {
+                resizeYoutubePlayer();
+
+            }
+
+            var minTop = element.offsetHeight / 2;
+            var minTop = element.offsetHeight / 2;
+            var minLeft = element.offsetWidth / 2;
+            var maxTop = window.innerHeight - element.offsetHeight / 2;
+            var maxLeft = window.innerWidth - element.offsetWidth / 2;
+            element.style.top = Math.max(minTop, Math.min(element.offsetTop, maxTop)) + "px";
+            element.style.left = Math.max(minLeft, Math.min(element.offsetLeft, maxLeft)) + "px";
+
+        });
+        resizeObserver.observe(element);
 
     }
 
 }
+
