@@ -1640,3 +1640,25 @@ function resetPong() {
     ctx.clearRect(0, 0, 500, 500);
 }
 
+
+const API_URL = 'https://xfm.ee/wp-json/xfm/v1/nowplaying?';
+const trackTitleEl = document.getElementById('track-title');
+const trackminimize = document.getElementById('trackminimize');
+ 
+async function fetchNowPlaying() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Network error');
+        
+        const data = await response.json();
+        const titleText = data.title || 'Unknown song';
+ 
+        trackTitleEl.textContent = titleText + " - XFM";
+        trackminimize.textContent = titleText;
+      } catch (err) {
+        console.error('Song search failed:', err);
+      }
+    }
+ 
+    fetchNowPlaying();
+    setInterval(fetchNowPlaying, 60000);
