@@ -2922,3 +2922,17 @@ stopBtn.addEventListener("click", () => {
     stopBtn.disabled = true;
   }
 });
+
+function showprogressPhotos() {
+  const progressPhotos = document.getElementById("progressPhotos");
+ 
+  if (!progressPhotos) {
+    return;
+  }
+ 
+  if (progressPhotos.style.display === "flex") {
+    progressPhotos.style.display = "none";
+  } else {
+    progressPhotos.style.display = "flex";
+  }
+}
