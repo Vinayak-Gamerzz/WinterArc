@@ -2785,3 +2785,26 @@ function getTimeCodeFromNum(num) {
     seconds % 60
   ).padStart(2, 0)}`;
 }
+
+
+var appInfoName = 'null'
+ 
+
+function showAppInfo(windowNamed){
+  appInfoName = windowNamed;
+  var appInfo = document.getElementById(appInfoName + 'Info')
+  var appInfoTitle = document.getElementById(appInfoName + 'InfoTitle')
+ 
+  if (!appInfo || !appInfoTitle) {
+    return;
+  }
+ 
+    if(appInfo.style.display === 'none'){
+    appInfo.style.display = 'flex';
+    appInfoTitle.style.display = 'flex';
+  }else{
+    appInfo.style.display = 'none';
+    appInfoTitle.style.display = 'none';
+  }
+ 
+}
