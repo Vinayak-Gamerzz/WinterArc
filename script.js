@@ -2471,5 +2471,239 @@ addCommand("");
         addCommand(
             "Type 'help' for available commands."
         );
+
+
+const width = 3840;
+let height = 0;
+ 
+let streaming = false;
+let cameraStream = null;
+ 
+const video = document.getElementById("video");
+const cameracanvas = document.getElementById("cameracanvas");
+const photo = document.getElementById("photo");
+const startButton = document.getElementById("start-button");
+const allowButton = document.getElementById("permissions-button");
+const cameraError = document.getElementById("camera-error");
+const cameraSelect = document.getElementById("camera-select");
+let selectedCameraId = null;
+ 
+function applyFilter(filterName){
+  if (filterName === 'grayscale'){
+  video.style.filter = "grayscale(100%)";
+  } else if (filterName === "contrast"){
+  video.style.filter = "contrast(200%)";
+  } else if (filterName === "normal"){
+  video.style.filter = "none";
+  } else if (filterName === "blur"){
+  video.style.filter = "blur(3px)";
+  } else if (filterName === "huerotate90"){
+  video.style.filter = "hue-rotate(90deg)";
+  } else if (filterName === "huerotate180"){
+  video.style.filter = "hue-rotate(180deg)";
+  } else if (filterName === "huerotate270"){
+  video.style.filter = "hue-rotate(270deg)";
+  } else if (filterName === "invert"){
+  video.style.filter = "invert(100%)";
+  } else if (filterName === "brightness"){
+  video.style.filter = "brightness(0.2)";
+  } else if (filterName === "opacity"){
+  video.style.filter = "opacity(50%)";
+  } else if (filterName === "saturate"){
+  video.style.filter = "saturate(500%)";
+  } else if (filterName === "sepia"){
+  video.style.filter = "sepia(100%)";
+  }
+}
+ 
+async function refreshCameraList() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
+ 
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoInputs = devices.filter(device => device.kind === "videoinput");
+ 
+  if (!cameraSelect) return;
+ 
+  cameraSelect.innerHTML = "";
+ 
+  if (!videoInputs.length) {
+    cameraSelect.innerHTML = '<option value="">No camera found</option>';
+    return;
+  }
+ 
+  videoInputs.forEach((device, index) => {
+    const option = document.createElement("option");
+    option.value = device.deviceId;
+    option.textContent = device.label || `Camera ${index + 1}`;
+    cameraSelect.appendChild(option);
+  });
+ 
+  if (selectedCameraId) {
+    cameraSelect.value = selectedCameraId;
+  } else {
+    selectedCameraId = videoInputs[0].deviceId;
+    cameraSelect.value = selectedCameraId;
+  }
+}
+ 
+function startCamera() {
+  if (cameraStream) return;
+ 
+  const constraints = {
+    video: {
+      width: { ideal: 3840 },
+      height: { ideal: 2160 }
+    },
+    audio: false
+  };
+ 
+  if (selectedCameraId) {
+    constraints.video.deviceId = { exact: selectedCameraId };
+  }
+ 
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then((stream) => {
+      cameraStream = stream;
+      video.srcObject = stream;
+      video.play();
+ 
+      const track = stream.getVideoTracks()[0];
+      if (track) {
+        const settings = track.getSettings();
+        const resText = document.getElementById("cameraResolution");
+        if (resText) {
+          resText.textContent = `Resolution: ${settings.width} x ${settings.height}`;
+        }
+      }
+ 
+      if (cameraError) {
+        cameraError.textContent = "";
+        cameraError.style.display = "none";
+      }
+    })
+    .catch((err) => {
+      const message = `Camera error: ${err.message || err}`;
+      if (cameraError) {
+        if (message === "Camera error: Requested device not found") {
+        cameraError.textContent = "No camera found!";
+        cameraError.style.display = "block";
+        } else{
+        cameraError.textContent = message;
+        cameraError.style.display = "block";
+        console.log(message);
+        }
+        
+      } else {
+        alert(message);
+      }
+      console.error(message);
+    });
+}
+ 
+if (cameraSelect) {
+  cameraSelect.addEventListener("change", () => {
+    selectedCameraId = cameraSelect.value;
+ 
+    if (cameraStream) {
+      stopCamera();
+      startCamera();
     }
+  });
+}
+ 
+if (cameraSelect) {
+  refreshCameraList();
+}
+ 
+function stopCamera() {
+  if (cameraStream) {
+    cameraStream.getTracks().forEach((track) => track.stop());
+    cameraStream = null;
+  }
+  video.srcObject = null;
+  streaming = false;
+}
+ 
+if (allowButton) {
+  allowButton.addEventListener("click", startCamera);
+}
+video.addEventListener("canplay", (ev) => {
+  if (!streaming) {
+    height = video.videoHeight / (video.videoWidth / width);
+ 
+    video.setAttribute("width", width);
+    video.setAttribute("height", height);
+    cameracanvas.setAttribute("width", width);
+    cameracanvas.setAttribute("height", height);
+    streaming = true;
+  }
+});
+startButton.addEventListener("click", (ev) => {
+  takePicture();
+  ev.preventDefault();
+});
+function clearPhoto() {
+  const context = cameracanvas.getContext("2d");
+  context.fillStyle = "#aaaaaa";
+  context.fillRect(0, 0, cameracanvas.width, cameracanvas.height);
+ 
+  const data = cameracanvas.toDataURL("image/png");
+  photo.setAttribute("src", data);
+}
+ 
+const outputOverlay = document.querySelector(".output");
+let photoRevealTimeout = null;  
+
+clearPhoto();
+function takePicture() {
+  const context = cameracanvas.getContext("2d");
+  if (width && height) {
+    cameracanvas.width = width;
+    cameracanvas.height = height;
+ 
+    const videoStyles = window.getComputedStyle(video);
+    const filterValue = videoStyles.getPropertyValue("filter");
+ 
+    context.filter = filterValue !== "none" ? filterValue : "none";
+    context.drawImage(video, 0, 0, width, height);
+ 
+    const data = cameracanvas.toDataURL('image/png');
+    photo.setAttribute("src", data);
+ 
+    if (photoRevealTimeout) {
+      clearTimeout(photoRevealTimeout);
+    }
+ 
+    if (outputOverlay) {
+      outputOverlay.classList.add("visible");
+    }
+ 
+    photoRevealTimeout = setTimeout(() => {
+      if (outputOverlay) {
+        outputOverlay.classList.remove("visible");
+      }
+      downloadPhoto(data);
+      photoRevealTimeout = null;
+    }, 2000);
+  } else {
+    clearPhoto();
+  }
+}
+ 
+function getPhotoFilename() {
+  const now = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const datePart = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  const timePart = `${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+  return `arcos_photo_${datePart}_${timePart}.png`;
+}
+ 
+function downloadPhoto(dataUrl) {
+  const link = document.createElement("a");
+  link.href = dataUrl;
+  link.download = getPhotoFilename();
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
