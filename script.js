@@ -342,6 +342,7 @@ if (calendarScreenOpen) {
   });
 }
 
+
 var selectedIcon = undefined
 
 function selectIcon(element) {
@@ -523,9 +524,10 @@ notepadScreenClose.addEventListener("click", () => closeWindow(notepadScreen));
 
 if (notepadIcon) {
   notepadIcon.addEventListener("click", () => {
-    handleIconTap(notepadIcon, notepadScreen, "NotePad");
+    handleIconTap(notepadIcon, notepadScreen, "TeXtpad");
   });
 }
+
 
 dragElement(document.querySelector("#weather"))
 
@@ -712,19 +714,20 @@ if (appsIcon) {
   dragElement(document.querySelector("#pacman"))
 
 var pacmanScreen = document.querySelector("#pacman")
-var pacmanIcon = document.querySelector("#pacmanIcon")
+var pacmanIcon = document.querySelector("#pacmanicon")
 const pacmanWindow = document.getElementById('pacmanG');
 var pacmanScreenClose = document.querySelector("#pacmanclose")
 
-pacmanScreenClose.addEventListener("click", () => {
-  closeWindow(pacmanScreen);
-  pacmanWindow.src = 'about:blank';
-});
-  
+if (pacmanScreenClose) {
+  pacmanScreenClose.addEventListener("click", () => {
+    closeWindow(pacmanScreen);
+    pacmanWindow.src = 'about:blank';
+  });
+}
 
 if (pacmanIcon) {
   pacmanIcon.addEventListener("click", () => {
-    pacmanWindow.src = 'https://pac-man-jet-six.vercel.app/Pacman.html';
+    pacmanWindow.src = 'https://funhtml5games.com/?play=pacman';
     handleIconTap(pacmanIcon, pacmanScreen, "Pacman");
   });
 }
@@ -765,6 +768,7 @@ if (progScreenClose) {
 if (progIcon) {
   progIcon.addEventListener("click", () => {
     handleIconTap(progIcon, progScreen, "progress Gallery");
+    console.log("Also try LuckyOS! https://makkonenhugo.github.io/LuckyOS/")
   });
 }
 
@@ -815,6 +819,8 @@ if (pongIcon) {
   });
 }
 
+
+
 var settingsScreen = document.querySelector("#settings")
 var settingsIcon = document.querySelector("#settingsicon")
 
@@ -824,6 +830,9 @@ if (settingsIcon) {
     handleIconTap(settingsIcon, settingsScreen);
   });
 }
+
+
+
 
 var biggestIndex = 1;
 var topBar = document.querySelector("#top")
@@ -845,6 +854,9 @@ function addWindowTapHandling(element) {
     element.addEventListener("mousedown", () => handleWindowTap(element));
   }
 }
+
+
+
 
 addWindowTapHandling(welcomeScreen);
 addWindowTapHandling(notepadScreen);
@@ -869,10 +881,10 @@ addWindowTapHandling(appsScreen);
 
 var content = [
   {
-    title: "Notepad is so good!",
+    title: "TeXtpad is so good!",
     date: "- nobody",
     content: `
-        <h1 class="ubuntu-regular" style="margin: 2px; color: rgb(243, 219, 5)">NotePad</h1>
+        <h1 class="ubuntu-regular" style="margin: 2px; color: rgb(243, 219, 5)">TeXtpad</h1>
         <textarea style="width: 256px; height: 128px; resize: auto;" id="textarea" autofocus spellcheck="true"></textarea>
         <p style="margin: 0px;">Note saves to your browser's local storage.</p>
       `
@@ -880,8 +892,7 @@ var content = [
 
 ];
 
-
-function attachNotePadEditor() {
+function attachTextpadEditor() {
   const textarea = document.getElementById('textarea');
   if (!textarea) {
     return;
@@ -897,14 +908,14 @@ function attachNotePadEditor() {
   };
 }
 
-function setNotePadContent(index) {
+function setTextpadContent(index) {
   var notepadContent = document.querySelector("#notepadContent");
   if (!notepadContent || !content[index]) {
     return;
   }
 
   notepadContent.innerHTML = content[index].content;
-  attachNotePadEditor();
+  attachTextpadEditor();
 }
 
 function addToBottomBar(index) {
@@ -921,13 +932,13 @@ function addToBottomBar(index) {
     <p style="font-size: 12px; margin: 0px;">${note.date}</p>
   `;
   newDiv.addEventListener("click", function() {
-    setNotePadContent(index);
+    setTextpadContent(index);
   });
 
   bottomBar.appendChild(newDiv);
 }
 
-setNotePadContent(0);
+setTextpadContent(0);
 
 for (let i = 0; i < content.length; i++) {
   addToBottomBar(i);
@@ -1060,6 +1071,9 @@ function getUserWeather() {
 
 getUserWeather();
 
+
+
+
 const hourHand = document.querySelector("#hour-hand");
 const minuteHand = document.querySelector("#minute-hand");
 const secondHand = document.querySelector("#second-hand");
@@ -1087,6 +1101,10 @@ setInterval(setClock, 10);
 setInterval(getUserWeather, 10 * 60 * 1000);
 
 
+
+
+
+
 const codeOutput = document.getElementById('codeOutput');
 const chunkSize = 5;
 let currentSnippet = '';
@@ -1106,8 +1124,8 @@ const codeSnippets = {
     'struct task_struct *task = get_current();',
     'sudo ./neural_overwrite --target=internal --protocol=raw --stealth=99',
     'echo "injecting_payload" | nc -u 192.168.0.1 -p 443 --brute-force --silent',
-    './bin/pacman_scan --port=8080 --detect-vulnerabilities --exfiltrate-data --no-log',
-    'ssh root@pacman_net --key-exchange=curve25519 --cipher=aes-256-gcm --bypass-firewall',
+    './bin/ghost_scan --port=8080 --detect-vulnerabilities --exfiltrate-data --no-log',
+    'ssh root@ghost_net --key-exchange=curve25519 --cipher=aes-256-gcm --bypass-firewall',
     'curl -X POST -H "Content-Type: application/json" -d \'{"command":"overwrite"}\' http://localhost:3000/api/execute',
     'python3 exploit.py --target=internal --payload=stealth --protocol=raw --silent',
     'nc -lvp 4444 -e /bin/bash',
@@ -1644,7 +1662,7 @@ function resetPong() {
 const API_URL = 'https://xfm.ee/wp-json/xfm/v1/nowplaying?';
 const trackTitleEl = document.getElementById('track-title');
 const trackminimize = document.getElementById('trackminimize');
- 
+
 async function fetchNowPlaying() {
       try {
         const response = await fetch(API_URL);
@@ -1652,18 +1670,17 @@ async function fetchNowPlaying() {
         
         const data = await response.json();
         const titleText = data.title || 'Unknown song';
- 
+
         trackTitleEl.textContent = titleText + " - XFM";
         trackminimize.textContent = titleText;
       } catch (err) {
         console.error('Song search failed:', err);
       }
     }
- 
+
     fetchNowPlaying();
     setInterval(fetchNowPlaying, 60000);
 
-    
 setupMinimize("#notepad", "#notepadminimize", "TeXtpad");
 setupMinimize("#clock", "#clockminimize", "Clock");
 setupMinimize("#weather", "#weatherminimize", "Weather");
@@ -1676,13 +1693,13 @@ setupMinimize("#browser", "#browserminimize", "arcBrowser");
 setupMinimize("#calculator", "#calculatorminimize", "Calculator");
 setupMinimize("#pong", "#pongminimize", "Pong");
 setupMinimize("#camera", "#cameraminimize", "Camera");
-setupMinimize("#pacman", "#pacmanminimize", "Pacman game");
+setupMinimize("#pacman", "#pacmanminimize", "Pacman");
 setupMinimize("#info", "#infominimize", "Info");
 setupMinimize("#recorder", "#recorderminimize", "Recorder");
 setupMinimize("#prog", "#progminimize", "progress Gallery");
 setupMinimize("#apps", "#appsminimize", "App Store");
 setupMinimize("#welcome", "#welcomeminimize", "Welcome");
- 
+
 function minimizeWindow(windowElement) {
     if (!windowElement) return;
     void windowElement.offsetWidth;
@@ -1692,7 +1709,7 @@ function minimizeWindow(windowElement) {
         windowElement.classList.remove("closing");
     }, 250);
 }
- 
+
 function changeTrackMinimize() {
   const taskbarButton = document.querySelector("#task-spotify");
   if (!taskbarButton || !trackminimize) {
@@ -1703,7 +1720,7 @@ function changeTrackMinimize() {
     taskbarButton.textContent = title;
   }
 }
- 
+
 var openApps = document.querySelector("#openApps");
 function addTaskbarApp(windowElement, name) {
     if (windowElement.id === "settings") {
@@ -1711,24 +1728,24 @@ function addTaskbarApp(windowElement, name) {
     } else if (windowElement.id === "calendar"){
       return;
     }
- 
+
       else if(document.querySelector("#task-" + windowElement.id)) {
         return;
     }
- 
+
     var button = document.createElement("button");
- 
+
     button.id = "task-" + windowElement.id;
     button.className = "openApp";
     button.innerHTML = name;
     button.addEventListener("click", function () {
         if (windowElement.style.display === "none") {
             openWindow(windowElement);
- 
+
             if(windowElement.id === "pong"){
               startPong();
             }
- 
+
             handleWindowTap(windowElement);
         } else {
             minimizeWindow(windowElement);
@@ -1742,25 +1759,25 @@ function addTaskbarApp(windowElement, name) {
     });
     openApps.appendChild(button);
 }
- 
- 
+
+
 addTaskbarApp(welcomeScreen, "Welcome");
- 
+
 function removeTaskbarApp(windowElement) {
     var button = document.querySelector("#task-" + windowElement.id);
     if (button) {
         button.remove();
     }
 }
- 
+
 function setupMinimize(windowId, buttonId, appName) {
     var windowElement = document.querySelector(windowId);
     var minimizeButton = document.querySelector(buttonId);
- 
+
     if (!windowElement || !minimizeButton) {
         return;
     }
- 
+
     minimizeButton.addEventListener("click", function () {
         minimizeWindow(windowElement);
         if(windowElement.id === "pong"){
@@ -1778,7 +1795,7 @@ function setupMinimize(windowId, buttonId, appName) {
             }
 }});
 }
- 
+
 function openWindow(element, appName) {
   if (element) {
     element.style.display = "flex";
@@ -1789,34 +1806,32 @@ function openWindow(element, appName) {
     void element.offsetWidth;
     element.classList.add("opening");
     addTaskbarApp(element, appName);
- 
+
     var minTop = element.offsetHeight / 2;
     var minLeft = element.offsetWidth / 2;
     var maxTop = window.innerHeight - element.offsetHeight / 2;
     var maxLeft = window.innerWidth - element.offsetWidth / 2;
     element.style.top = Math.max(minTop, Math.min(element.offsetTop, maxTop)) + "px";
     element.style.left = Math.max(minLeft, Math.min(element.offsetLeft, maxLeft)) + "px";
- 
+
     if (element.id === "camera") {
       startCamera();
     }
     if (element.id === "spotify"){
       removeTaskbarApp(spotifyScreen);
       addTaskbarApp(spotifyScreen, "arcMusic");
-
     }
   }
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const desktop = document.getElementById("desktop");
   const selectionBox = document.getElementById("selection-box");
- 
+
   let isSelecting = false;
   let startX = 0;
   let startY = 0;
- 
+
   desktop.addEventListener("mousedown", (e) => {
    if (
   e.target.closest(".desktop-icon") ||
@@ -1825,55 +1840,55 @@ document.addEventListener("DOMContentLoaded", () => {
 ) {
   return;
 }
- 
+
     const desktopRect = desktop.getBoundingClientRect();
     
     startX = e.clientX - desktopRect.left;
     startY = e.clientY - desktopRect.top;
- 
+
     isSelecting = true;
- 
+
     selectionBox.style.left = `${startX}px`;
     selectionBox.style.top = `${startY}px`;
     selectionBox.style.width = '0px';
     selectionBox.style.height = '0px';
     selectionBox.style.display = 'block';
- 
+
     document.querySelectorAll(".desktop-icon").forEach(icon => {
       icon.classList.remove("selected");
     });
   });
- 
+
   document.addEventListener("mousemove", (e) => {
     if (!isSelecting) return;
- 
+
     const desktopRect = desktop.getBoundingClientRect();
     const currentX = Math.max(0, Math.min(e.clientX - desktopRect.left, desktopRect.width));
     const currentY = Math.max(0, Math.min(e.clientY - desktopRect.top, desktopRect.height));
- 
+
     const left = Math.min(startX, currentX);
     const top = Math.min(startY, currentY);
     const width = Math.abs(currentX - startX);
     const height = Math.abs(currentY - startY);
- 
+
     selectionBox.style.left = `${left}px`;
     selectionBox.style.top = `${top}px`;
     selectionBox.style.width = `${width}px`;
     selectionBox.style.height = `${height}px`;
- 
+
     const boxRect = selectionBox.getBoundingClientRect();
     const icons = document.querySelectorAll(".desktop-icon");
- 
+
     icons.forEach(icon => {
       const iconRect = icon.getBoundingClientRect();
- 
+
       const isOverlapping = !(
         boxRect.right < iconRect.left ||
         boxRect.left > iconRect.right ||
         boxRect.bottom < iconRect.top ||
         boxRect.top > iconRect.bottom
       );
- 
+
       if (isOverlapping) {
         icon.classList.add("selected");
       } else {
@@ -1881,8 +1896,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
- 
- 
+
+
   document.addEventListener("mouseup", () => {
     if (isSelecting) {
       isSelecting = false;
@@ -1892,11 +1907,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
 var cmdInput = document.querySelector("#cmdInput");
 var cmdOutput = document.querySelector("#cmdOutput");
 var cmdContent = cmdOutput.closest(".cmdContent");
 var cmdPrompt = document.querySelector(".cmdPrompt");
- 
+
 function addCommand(text, color) {
     var line = document.createElement("div");
     line.textContent = text;
@@ -1906,7 +1923,7 @@ function addCommand(text, color) {
     cmdOutput.appendChild(line);
     cmdContent.scrollTop = cmdContent.scrollHeight;
 }
- 
+
 const cmdColors = {
     "0": "#000000",
     "1": "#000080",
@@ -1925,45 +1942,45 @@ const cmdColors = {
     "E": "#ffff00",
     "F": "#ffffff"
 };
- 
+
 let cmdBackgroundColor = "#08080c";
 let cmdTextColor = "#eeeeee";
- 
+
 var commandHistory = [];
 var historyIndex = -1;
- 
+
 cmdInput.addEventListener("keydown", function (e) {
- 
+
     if (e.key === "Enter") {
- 
+
         var command = cmdInput.value.trim();
- 
+
         if (command === "") {
             return;
         }
- 
+
         commandHistory.push(command);
         historyIndex = commandHistory.length;
- 
+
         addCommand("arc@arcOS:~$ " + command , "#7cff8a");
- 
+
         runCommand(command);
 
         cmdInput.value = "";
     }
- 
+
     if (e.key === "ArrowUp") {
- 
+
         if (historyIndex > 0) {
             historyIndex--;
             cmdInput.value = commandHistory[historyIndex];
         }
- 
+
         e.preventDefault();
     }
- 
+
     if (e.key === "ArrowDown") {
- 
+
         if (historyIndex < commandHistory.length - 1) {
             historyIndex++;
             cmdInput.value = commandHistory[historyIndex];
@@ -1971,21 +1988,19 @@ cmdInput.addEventListener("keydown", function (e) {
             historyIndex = commandHistory.length;
             cmdInput.value = "";
         }
- 
+
         e.preventDefault();
     }
- 
+
 });
 
-
-
 function runCommand(command) {
- 
+
     var parts = command.split(" ");
     var mainCommand = parts[0].toLowerCase();
- 
+
     if (mainCommand === "help") {
- 
+
         addCommand("");
         addCommand("arcOS commands:", "#7cff8a");
         addCommand("");
@@ -2002,11 +2017,11 @@ function runCommand(command) {
         addCommand("shutdown   Shuts down your arcOS system");
         addCommand("reboot     Reboots your arcOS system");
         addCommand("");
- 
+
     }
- 
+
         else if (mainCommand === "color") {
- 
+
         if (parts.length === 1 || parts[1] === "") {
             addCommand(
                 "Current color: " +
@@ -2017,47 +2032,47 @@ function runCommand(command) {
             );
             return;
         }
- 
+
         var colorCode = parts[1].toUpperCase();
- 
+
         if (!/^[0-9A-F]{2}$/.test(colorCode)) {
             addCommand("Invalid color attribute.", "#ff0000");
             addCommand("Usage: color [background][text]", "#7cff8a");
             addCommand("Example: color 0A", "#7cff8a");
             return;
         }
- 
+
         var bgCode = colorCode[0];
         var textCode = colorCode[1];
- 
+
         cmdBackgroundColor = cmdColors[bgCode];
         cmdTextColor = cmdColors[textCode];
- 
+
         cmdContent.style.backgroundColor = cmdBackgroundColor;
         cmdOutput.style.color = cmdTextColor;
         cmdInput.style.color = cmdTextColor;
         cmdPrompt.style.color = cmdTextColor;
- 
+
         addCommand(
             "Color changed to " + colorCode,
             cmdTextColor
         );
     }
- 
+
     else if (mainCommand === "clear") {
         cmdOutput.innerHTML = "";
     }
- 
- 
+
+
     else if (mainCommand === "time") {
         var time = new Date().toLocaleTimeString();
         var date = new Date().toLocaleDateString();
         addCommand(time);
         addCommand(date);
- 
+
     }
- 
- 
+
+
     else if (mainCommand === "apps") {
     const ainstalledApps = getInstalledApps();
         addCommand("");
@@ -2098,7 +2113,7 @@ function runCommand(command) {
             addCommand("Camera");
         }
       if  (ainstalledApps.includes("pacman")) {
-            addCommand("Pacman game");
+            addCommand("Pacman");
         }
       if  (ainstalledApps.includes("info")) {
             addCommand("About");
@@ -2112,21 +2127,21 @@ function runCommand(command) {
         addCommand("Terminal");
         addCommand("App Store");
     }
- 
- 
- 
+
+
+
     else if (mainCommand === "print") {
- 
+
         var printMatch = command.match(/^print\s+"(.*)"\s*$/i);
- 
+
         if (printMatch) {
             addCommand(printMatch[1]);
         } else {
             addCommand("Usage: print \"text here\"", "#ff0000");
         }
- 
+
     }
- 
+
     else if (mainCommand === "shutdown") {
       const sleep = ms => new Promise(res => setTimeout(res, ms));
       async function nagennn() {
@@ -2136,9 +2151,9 @@ function runCommand(command) {
       }
       
       nagennn();
- 
+
     }
- 
+
     else if (mainCommand === "reboot") {
       const sleep = ms => new Promise(res => setTimeout(res, ms));
       async function nagenn() {
@@ -2148,9 +2163,9 @@ function runCommand(command) {
       }
       
       nagenn();
- 
+
     }
- 
+
     else if (mainCommand === "delete" && parts.length > 1) {
       var deleteTarget = parts.slice(1).join(" ").toLowerCase();
       function sleep(ms) {
@@ -2183,16 +2198,16 @@ function runCommand(command) {
         addCommand("Usage 'delete'", "#7cff8a");
         addCommand("'delete system32'")
       }}
- 
+
       else if (mainCommand === "delete") {
         addCommand("Usage 'delete'", "#7cff8a");
         addCommand("'delete system32'")
       }
- 
+
    
     else if (mainCommand === "about" && parts.length > 1) {
       var aboutTarget = parts.slice(1).join(" ").toLowerCase();
- 
+
       if (aboutTarget === "notepad") {
         addCommand("About TeXtpad", "#7cff8a");
         addCommand("You can save info to TeXtpad, but it only has one textbox.")
@@ -2265,11 +2280,10 @@ function runCommand(command) {
         addCommand("Press the Take Photo button or apply filters.")
         addCommand("Then you will see the photo for a few seconds and then your download will start.")
       }
-      else if (aboutTarget === "pacman") {
-        addCommand("About Pacman game", "#7cff8a");
-        addCommand("Pacman like game where you try to eat all the pacmans.")
-        addCommand("Also everyone can see the best score if you get it!")
-        addCommand("I made this a while back in a coding class.")
+      else if (aboutTarget === "pacmangame") {
+        addCommand("About Pacman", "#7cff8a");
+        addCommand("Play the classic Pacman game, embedded right inside arcOS.")
+        addCommand("Use your arrow keys to move and eat all the dots while avoiding the ghosts.")
       }
       else if (aboutTarget === "recorder") {
         addCommand("About Recorder", "#7cff8a");
@@ -2290,10 +2304,10 @@ function runCommand(command) {
         addCommand("Type 'about' for general info, or 'help' for available commands.");
       }
     }
- 
+
      else if (mainCommand === "install" && parts.length > 1) {
       var installTarget = parts.slice(1).join(" ").toLowerCase();
- 
+
       if (installTarget === "notepad") {
         installApp('notepad', true);
       }
@@ -2327,7 +2341,7 @@ function runCommand(command) {
       else if (installTarget === "camera") {
         installApp('camera', true);
       }
-      else if (installTarget === "pacman") {
+      else if (installTarget === "pacmangame") {
         installApp('pacman', true);
       }
       else if (installTarget === "recorder") {
@@ -2336,7 +2350,7 @@ function runCommand(command) {
       else if (installTarget === "proggallery") {
         installApp('prog', true);
       }
- 
+
       else if (installTarget === "about") {
         installApp('info', true);
       }
@@ -2349,10 +2363,10 @@ function runCommand(command) {
         addCommand("Usage 'install'", "#7cff8a");
         addCommand("'install appname' (all lowercase, no spaces)")
       }
- 
+
     else if (mainCommand === "usage" && parts.length > 1) {
       var usageTarget = parts.slice(1).join(" ").toLowerCase();
- 
+
       if (usageTarget === "about") {
         addCommand("Usage 'about'", "#7cff8a");
         addCommand("'about' for arcOS info, 'about appname' for app info (no spaces, all lowercase).")
@@ -2408,14 +2422,14 @@ function runCommand(command) {
         addCommand("'usage command'")
       }
     }
- 
+
     else if (mainCommand === "usage"){
       addCommand("Usage 'usage'", "#7cff8a");
       addCommand("'usage command'")
     }
- 
+
   else if (mainCommand === "about") {
- 
+
         var blura = localStorage.getItem(STORAGE_BLUR);
         var wallpa = localStorage.getItem(STORAGE_BG);
         var transa = localStorage.getItem(STORAGE_TRANSPARENT);
@@ -2423,22 +2437,22 @@ function runCommand(command) {
         if (blura === null) {
             blura = "0";
         }
- 
+
         if (transa === null) {
             transa = "0";
         }
- 
+
         if (bgcolora === null) {
             bgcolora = "120";
         }
- 
+
         if (wallpa === null) {
             wallpa = "Default";
         } else {
             wallpa = "Custom";
         }
- 
- 
+
+
 addCommand("================================", "#7cff8a");
 addCommand("          arcOS", "#7cff8a");
 addCommand("================================", "#7cff8a");
@@ -2461,24 +2475,25 @@ addCommand("");
         addCommand("arc");
       }
     }
- 
+
     else {
- 
+
         addCommand(
             "Command not found: " + mainCommand
         );
- 
+
         addCommand(
             "Type 'help' for available commands."
         );
-
+    }
+}
 
 const width = 3840;
 let height = 0;
- 
+
 let streaming = false;
 let cameraStream = null;
- 
+
 const video = document.getElementById("video");
 const cameracanvas = document.getElementById("cameracanvas");
 const photo = document.getElementById("photo");
@@ -2487,7 +2502,7 @@ const allowButton = document.getElementById("permissions-button");
 const cameraError = document.getElementById("camera-error");
 const cameraSelect = document.getElementById("camera-select");
 let selectedCameraId = null;
- 
+
 function applyFilter(filterName){
   if (filterName === 'grayscale'){
   video.style.filter = "grayscale(100%)";
@@ -2515,29 +2530,29 @@ function applyFilter(filterName){
   video.style.filter = "sepia(100%)";
   }
 }
- 
+
 async function refreshCameraList() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
- 
+
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoInputs = devices.filter(device => device.kind === "videoinput");
- 
+
   if (!cameraSelect) return;
- 
+
   cameraSelect.innerHTML = "";
- 
+
   if (!videoInputs.length) {
     cameraSelect.innerHTML = '<option value="">No camera found</option>';
     return;
   }
- 
+
   videoInputs.forEach((device, index) => {
     const option = document.createElement("option");
     option.value = device.deviceId;
     option.textContent = device.label || `Camera ${index + 1}`;
     cameraSelect.appendChild(option);
   });
- 
+
   if (selectedCameraId) {
     cameraSelect.value = selectedCameraId;
   } else {
@@ -2545,10 +2560,10 @@ async function refreshCameraList() {
     cameraSelect.value = selectedCameraId;
   }
 }
- 
+
 function startCamera() {
   if (cameraStream) return;
- 
+
   const constraints = {
     video: {
       width: { ideal: 3840 },
@@ -2556,18 +2571,18 @@ function startCamera() {
     },
     audio: false
   };
- 
+
   if (selectedCameraId) {
     constraints.video.deviceId = { exact: selectedCameraId };
   }
- 
+
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
       cameraStream = stream;
       video.srcObject = stream;
       video.play();
- 
+
       const track = stream.getVideoTracks()[0];
       if (track) {
         const settings = track.getSettings();
@@ -2576,7 +2591,7 @@ function startCamera() {
           resText.textContent = `Resolution: ${settings.width} x ${settings.height}`;
         }
       }
- 
+
       if (cameraError) {
         cameraError.textContent = "";
         cameraError.style.display = "none";
@@ -2600,22 +2615,22 @@ function startCamera() {
       console.error(message);
     });
 }
- 
+
 if (cameraSelect) {
   cameraSelect.addEventListener("change", () => {
     selectedCameraId = cameraSelect.value;
- 
+
     if (cameraStream) {
       stopCamera();
       startCamera();
     }
   });
 }
- 
+
 if (cameraSelect) {
   refreshCameraList();
 }
- 
+
 function stopCamera() {
   if (cameraStream) {
     cameraStream.getTracks().forEach((track) => track.stop());
@@ -2624,14 +2639,14 @@ function stopCamera() {
   video.srcObject = null;
   streaming = false;
 }
- 
+
 if (allowButton) {
   allowButton.addEventListener("click", startCamera);
 }
 video.addEventListener("canplay", (ev) => {
   if (!streaming) {
     height = video.videoHeight / (video.videoWidth / width);
- 
+
     video.setAttribute("width", width);
     video.setAttribute("height", height);
     cameracanvas.setAttribute("width", width);
@@ -2647,13 +2662,13 @@ function clearPhoto() {
   const context = cameracanvas.getContext("2d");
   context.fillStyle = "#aaaaaa";
   context.fillRect(0, 0, cameracanvas.width, cameracanvas.height);
- 
+
   const data = cameracanvas.toDataURL("image/png");
   photo.setAttribute("src", data);
 }
- 
+
 const outputOverlay = document.querySelector(".output");
-let photoRevealTimeout = null;  
+let photoRevealTimeout = null;
 
 clearPhoto();
 function takePicture() {
@@ -2661,24 +2676,24 @@ function takePicture() {
   if (width && height) {
     cameracanvas.width = width;
     cameracanvas.height = height;
- 
+
     const videoStyles = window.getComputedStyle(video);
     const filterValue = videoStyles.getPropertyValue("filter");
- 
+
     context.filter = filterValue !== "none" ? filterValue : "none";
     context.drawImage(video, 0, 0, width, height);
- 
+
     const data = cameracanvas.toDataURL('image/png');
     photo.setAttribute("src", data);
- 
+
     if (photoRevealTimeout) {
       clearTimeout(photoRevealTimeout);
     }
- 
+
     if (outputOverlay) {
       outputOverlay.classList.add("visible");
     }
- 
+
     photoRevealTimeout = setTimeout(() => {
       if (outputOverlay) {
         outputOverlay.classList.remove("visible");
@@ -2690,7 +2705,7 @@ function takePicture() {
     clearPhoto();
   }
 }
- 
+
 function getPhotoFilename() {
   const now = new Date();
   const pad = (n) => String(n).padStart(2, "0");
@@ -2698,7 +2713,7 @@ function getPhotoFilename() {
   const timePart = `${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
   return `arcos_photo_${datePart}_${timePart}.png`;
 }
- 
+
 function downloadPhoto(dataUrl) {
   const link = document.createElement("a");
   link.href = dataUrl;
@@ -2712,9 +2727,9 @@ const audioPlayer = document.querySelector(".audio-player");
 const audio = new Audio(
   "https://stream1.rcast.net/73328"
 );
- 
+
 console.dir(audio);
- 
+
 audio.addEventListener(
   "loadeddata",
   () => {
@@ -2722,9 +2737,9 @@ audio.addEventListener(
   },
   false
 );
- 
- 
- 
+
+
+
 const volumeSlider = audioPlayer.querySelector(".controls .volume-slider");
 volumeSlider.addEventListener('click', e => {
   const sliderWidth = window.getComputedStyle(volumeSlider).width;
@@ -2732,13 +2747,13 @@ volumeSlider.addEventListener('click', e => {
   audio.volume = newVolume;
   audioPlayer.querySelector(".controls .volume-percentage").style.width = newVolume * 100 + '%';
 }, false)
- 
+
 setInterval(() => {
   audioPlayer.querySelector(".time .current").textContent = getTimeCodeFromNum(
     audio.currentTime
   );
 }, 500);
- 
+
 const playBtn = audioPlayer.querySelector(".controls .toggle-play");
 const radioimg = document.getElementById('radioimg');
 playBtn.addEventListener(
@@ -2760,7 +2775,7 @@ playBtn.addEventListener(
   },
   false
 );
- 
+
 audioPlayer.querySelector(".volume-button").addEventListener("click", () => {
   const volumeEl = audioPlayer.querySelector(".volume-container .volume");
   audio.muted = !audio.muted;
@@ -2772,33 +2787,31 @@ audioPlayer.querySelector(".volume-button").addEventListener("click", () => {
     volumeEl.classList.remove("icono-volumeMute");
   }
 });
- 
+
 function getTimeCodeFromNum(num) {
   let seconds = parseInt(num);
   let minutes = parseInt(seconds / 60);
   seconds -= minutes * 60;
   const hours = parseInt(minutes / 60);
   minutes -= hours * 60;
- 
+
   if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
   return `${String(hours).padStart(2, 0)}:${minutes}:${String(
     seconds % 60
   ).padStart(2, 0)}`;
 }
 
-
 var appInfoName = 'null'
- 
 
 function showAppInfo(windowNamed){
   appInfoName = windowNamed;
   var appInfo = document.getElementById(appInfoName + 'Info')
   var appInfoTitle = document.getElementById(appInfoName + 'InfoTitle')
- 
+
   if (!appInfo || !appInfoTitle) {
     return;
   }
- 
+
     if(appInfo.style.display === 'none'){
     appInfo.style.display = 'flex';
     appInfoTitle.style.display = 'flex';
@@ -2806,42 +2819,43 @@ function showAppInfo(windowNamed){
     appInfo.style.display = 'none';
     appInfoTitle.style.display = 'none';
   }
- 
+
 }
+
 
 
 let mediaRecorder;
 let audioChunks = [];
 let timerInterval;
 let secondsElapsed = 0;
- 
+
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const rdownloadLink = document.getElementById("rdownloadLink");
 const timerElement = document.getElementById("timer");
- 
+
 let audioStream = null;
 let selectedMicrophoneId = null;
- 
+
 const microphoneSelect = document.getElementById("microphone-select");
- 
+
 async function refreshMicrophoneList() {
   if (!navigator.mediaDevices?.enumerateDevices) return;
- 
+
   const devices = await navigator.mediaDevices.enumerateDevices();
   const microphones = devices.filter(
     device => device.kind === "audioinput"
   );
- 
+
   microphoneSelect.innerHTML = "";
- 
+
   microphones.forEach((device, index) => {
     const option = document.createElement("option");
     option.value = device.deviceId;
     option.textContent = device.label || `Microphone ${index + 1}`;
     microphoneSelect.appendChild(option);
   });
- 
+
   if (selectedMicrophoneId) {
     microphoneSelect.value = selectedMicrophoneId;
   } else if (microphones.length) {
@@ -2849,13 +2863,13 @@ async function refreshMicrophoneList() {
     microphoneSelect.value = selectedMicrophoneId;
   }
 }
- 
+
 microphoneSelect.addEventListener("change", () => {
   selectedMicrophoneId = microphoneSelect.value;
 });
- 
+
 refreshMicrophoneList();
- 
+
 function startTimer() {
   secondsElapsed = 0;
   timerElement.textContent = "00:00";
@@ -2864,11 +2878,11 @@ function startTimer() {
     timerElement.textContent = new Date(secondsElapsed * 1000).toISOString().substr(14, 5);
   }, 1000);
 }
- 
+
 function stopTimer() {
   clearInterval(timerInterval);
 }
- 
+
 function getAudioFilename() {
   const now = new Date();
   const pad = (n) => String(n).padStart(2, "0");
@@ -2876,23 +2890,23 @@ function getAudioFilename() {
   const timePart = `${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
   return `arcos_recording_${datePart}_${timePart}.webm`;
 }
- 
+
 startBtn.addEventListener("click", async () => {
   rdownloadLink.style.display = "none";
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: selectedMicrophoneId ? { deviceId: { exact: selectedMicrophoneId } } : true 
     });
- 
+
 audioStream = stream;
 await refreshMicrophoneList();
     mediaRecorder = new MediaRecorder(stream);
     audioStream = stream;
     audioChunks = [];
- 
+
     mediaRecorder.ondataavailable = (event) => {
       audioChunks.push(event.data);
     };
- 
+
     mediaRecorder.onstop = () => {
       const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
       const audioUrl = URL.createObjectURL(audioBlob);
@@ -2905,7 +2919,7 @@ await refreshMicrophoneList();
       audioStream = null;
     });
     };
- 
+
     mediaRecorder.start();
     startBtn.disabled = true;
     stopBtn.disabled = false;
@@ -2925,11 +2939,11 @@ stopBtn.addEventListener("click", () => {
 
 function showprogressPhotos() {
   const progressPhotos = document.getElementById("progressPhotos");
- 
+
   if (!progressPhotos) {
     return;
   }
- 
+
   if (progressPhotos.style.display === "flex") {
     progressPhotos.style.display = "none";
   } else {
