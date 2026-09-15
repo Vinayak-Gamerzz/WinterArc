@@ -244,3 +244,285 @@ if (fileInput) {
   });
 }
 
+if (applyStyleBtn) {
+  applyStyleBtn.addEventListener("click", () => {
+    const file = fileInput && fileInput.files ? fileInput.files[0] : null;
+
+    if (!file) {
+      saveSettings(null, Number(blurInput.value), Number(transparentInput.value), Number(bgcolorInput.value));
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      applyWallpaper(reader.result);
+      saveSettings(reader.result, Number(blurInput.value), Number(transparentInput.value), Number(bgcolorInput.value));
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+if (resetWallpaperBtn) {
+  resetWallpaperBtn.addEventListener("click", () => {
+    resetWallpaper();
+    clearSavedWallpaper();
+    resetToDefaults()
+    saveSettings(null, Number(0), Number(100), Number(120));
+  });
+}
+
+if (blurInput) {
+  blurInput.addEventListener("input", (event) => {
+    var value = parseInt(event.target.value, 10);
+    updateBlurDisplay(value);
+    localStorage.setItem(STORAGE_BLUR, String(value));
+  });
+}
+
+if (transparentInput) {
+  transparentInput.addEventListener("input", (event) => {
+    var value = parseInt(event.target.value, 10);
+    updateTransparentDisplay(value);
+    localStorage.setItem(STORAGE_TRANSPARENT, String(value));
+  });
+}
+
+if (bgcolorInput) {
+  bgcolorInput.addEventListener("input", (event) => {
+    var value = parseInt(event.target.value, 10);
+    updateBgcolorDisplay(value);
+    localStorage.setItem(STORAGE_BGCOLOR, String(value));
+  });
+}
+
+loadSettings();
+updateBlurDisplay(Number(blurInput && blurInput.value ? blurInput.value : 0));
+updateBgcolorDisplay(Number(bgcolorInput && bgcolorInput.value ? bgcolorInput.value : 0));
+updateTransparentDisplay(Number(transparentInput && transparentInput.value ? transparentInput.value : 0));
+
+function closeWindow(element) {
+  if (!element) return;
+
+    element.classList.remove("opening");
+    void element.offsetWidth;
+    element.classList.add("closing");
+    setTimeout(function () {
+        element.style.display = "none";
+        element.classList.remove("closing");
+        removeTaskbarApp(element);
+    }, 350);
+    
+}
+
+var welcomeScreenClose = document.querySelector("#welcomeclose")
+
+var welcomeScreenOpen = document.querySelector("#settingsButton")
+var calendarScreen = document.querySelector("#calendar")
+var calendarScreenOpen = document.querySelector("#timebarElement")
+
+welcomeScreenClose.addEventListener("click", function() {
+  closeWindow(welcomeScreen);
+});
+
+welcomeScreenOpen.addEventListener("click", function() {
+  if (settingsScreen.style.display === "flex") {
+    closeWindow(settingsScreen);
+  } else {
+    openWindow(settingsScreen);
+  }
+});
+
+if (calendarScreenOpen) {
+  calendarScreenOpen.addEventListener("click", function() {
+    if (calendarScreen && calendarScreen.style.display === "flex") {
+      closeWindow(calendarScreen);
+    } else if (calendarScreen) {
+      openWindow(calendarScreen);
+    }
+  });
+}
+
+var selectedIcon = undefined
+
+function selectIcon(element) {
+  if (element) {
+    element.classList.add("selected");
+    selectedIcon = element
+  }
+} 
+
+function deselectIcon(element) {
+  if (element) {
+    element.classList.remove("selected");
+  }
+  selectedIcon = undefined
+} 
+
+function handleIconTap(element, windowElement, appName) {
+  if (!element || !windowElement) {
+    return;
+  }
+
+  if (element.classList.contains("selected")) {
+    deselectIcon(element);
+  } else {
+    selectIcon(element);
+    openWindow(windowElement, appName);
+  }
+}
+
+const INSTALLED_APPS_STORAGE_KEY = "installedApps";
+
+const APP_ICON_IDS = {
+  prog: "progressicon"
+};
+
+const APP_DISPLAY_NAMES = {
+  spotify: "arcmusic",
+  youtube: "arcvid",
+  browser: "arcbrowser",
+  cterminal: "hackcmd",
+  info: "about",
+  prog: "proggallery"
+};
+
+function getAppIcon(appName) {
+  return document.getElementById(APP_ICON_IDS[appName] || appName + "icon");
+}
+
+function getAppButton(appName) {
+  return document.getElementById(appName + "Button");
+}
+
+function getAppDisplayName(appName) {
+  return APP_DISPLAY_NAMES[appName] || appName;
+}
+
+function getInstalledApps() {
+  try {
+    return JSON.parse(
+      localStorage.getItem(INSTALLED_APPS_STORAGE_KEY)
+    ) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveInstalledApps(installedApps) {
+  localStorage.setItem(
+    INSTALLED_APPS_STORAGE_KEY,
+    JSON.stringify(installedApps)
+  );
+}
+
+function saveVisibleApps() {
+  const visibleApps = [...document.querySelectorAll(".appstorebutton")]
+    .map((button) => button.id.replace("Button", ""))
+    .filter((appName) => {
+      const icon = getAppIcon(appName);
+
+      return icon && getComputedStyle(icon).display === "flex";
+    });
+
+  saveInstalledApps([...new Set(visibleApps)]);
+  document.getElementById("saveAppsBTN").textContent = "Saved!";
+  setTimeout(() => document.getElementById("saveAppsBTN").textContent = "Save installed", 2000);
+}
+
+function installApp(appName, isTerminal) {
+  const icon = getAppIcon(appName);
+  const button = getAppButton(appName);
+
+  if (!icon || !button) {
+    return;
+  }
+
+  const displayName = getAppDisplayName(appName);
+  const installedApps = getInstalledApps();
+  const appIsInstalled = installedApps.includes(appName);
+  const actionText = appIsInstalled ? "Removing" : "Downloading";
+  const duration = 3000;
+  const startTime = Date.now();
+  button.disabled = true;
+  button.textContent = `${actionText} 0%`;
+
+  const progressTimer = setInterval(() => {
+    const elapsedTime = Date.now() - startTime;
+    let progress = Math.min(
+      100,
+      Math.round((elapsedTime / duration) * 100)
+    );
+    button.textContent = `${actionText} ${progress}%`;
+
+    if (isTerminal) {
+      if ((progress === 4 || progress === 3) && appIsInstalled) {
+        addCommand(`${displayName} is already installed. Removing...`, "#1008ee");
+      }
+
+      addCommand(`${actionText} ${displayName}: ${progress}%`, "#08d3ee");
+    }
+
+    if (progress >= 100) {
+      clearInterval(progressTimer);
+      progress = 0;
+
+      if (appIsInstalled) {
+        icon.style.display = "none";
+        saveInstalledApps(installedApps.filter((installedApp) => installedApp !== appName));
+
+        if (isTerminal) {
+          addCommand(`Removed ${displayName} successfully!`, "#ee1408");
+        } else {
+          button.textContent = "Install";
+        }
+      } else {
+        icon.style.display = "flex";
+        saveInstalledApps([...installedApps, appName]);
+
+        if (isTerminal) {
+          addCommand(`Installed ${displayName} successfully!`, "#ee1408");
+        } else {
+          button.textContent = "Remove";
+        }
+      }
+
+      button.disabled = false;
+    }
+  }, 100);
+}
+
+function restoreInstalledApps() {
+  const installedApps = getInstalledApps();
+
+  document.querySelectorAll(".appstorebutton").forEach((button) => {
+    const appName = button.id.replace("Button", "");
+    const icon = getAppIcon(appName);
+
+    if (!icon) {
+      return;
+    }
+
+    const appIsInstalled = installedApps.includes(appName);
+
+    icon.style.display = appIsInstalled ? "flex" : "none";
+    button.textContent = appIsInstalled ? "Remove" : "Install";
+  });
+}
+
+restoreInstalledApps();
+
+
+dragElement(document.querySelector("#notepad"))
+
+var notepadScreen = document.querySelector("#notepad")
+var notepadIcon = document.querySelector("#notepadicon")
+
+var notepadScreenClose = document.querySelector("#notepadclose")
+
+notepadScreenClose.addEventListener("click", () => closeWindow(notepadScreen));
+
+if (notepadIcon) {
+  notepadIcon.addEventListener("click", () => {
+    handleIconTap(notepadIcon, notepadScreen, "TeXtpad");
+  });
+}
