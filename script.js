@@ -526,3 +526,291 @@ if (notepadIcon) {
     handleIconTap(notepadIcon, notepadScreen, "TeXtpad");
   });
 }
+
+dragElement(document.querySelector("#weather"))
+
+var weatherScreen = document.querySelector("#weather")
+var weatherIcon = document.querySelector("#weathericon")
+
+var weatherScreenClose = document.querySelector("#weatherclose")
+
+weatherScreenClose.addEventListener("click", () => closeWindow(weatherScreen));
+
+if (weatherIcon) {
+  weatherIcon.addEventListener("click", () => {
+    handleIconTap(weatherIcon, weatherScreen, "Weather");
+  });
+}
+
+
+dragElement(document.querySelector("#clock"))
+
+var clockScreen = document.querySelector("#clock")
+var clockIcon = document.querySelector("#clockicon")
+
+var clockScreenClose = document.querySelector("#clockclose")
+
+clockScreenClose.addEventListener("click", () => closeWindow(clockScreen));
+
+if (clockIcon) {
+  clockIcon.addEventListener("click", () => {
+    handleIconTap(clockIcon, clockScreen, "Clock");
+  });
+}
+
+dragElement(document.querySelector("#spotify"))
+
+var spotifyScreen = document.querySelector("#spotify") 
+var spotifyIcon = document.querySelector("#spotifyicon")
+var spotifyScreenClose = document.querySelector("#spotifyclose")
+
+spotifyScreenClose.addEventListener("click", () => {
+  closeWindow(spotifyScreen);
+  audio.pause();
+  audio.src = '';
+  playBtn.classList.remove("pause");
+  playBtn.classList.add("play");
+  radioimg.src = "./icons/radio.png"
+});
+
+if (spotifyIcon) {
+  spotifyIcon.addEventListener("click", () => {
+    handleIconTap(spotifyIcon, spotifyScreen, "arcMusic");
+  });
+}
+
+dragElement(document.querySelector("#youtube"))
+
+var youtubeScreen = document.querySelector("#youtube")
+var youtubeIcon = document.querySelector("#youtubeicon")
+var youtubeScreenClose = document.querySelector("#youtubeclose")
+
+youtubeScreenClose.addEventListener("click", () => {
+  closeWindow(youtubeScreen);
+  if (player && typeof player.stopVideo === "function") {
+    player.stopVideo();
+  }
+});
+
+if (youtubeIcon) {
+  youtubeIcon.addEventListener("click", () => {
+    handleIconTap(youtubeIcon, youtubeScreen, "arcVid");
+  });
+}
+
+
+  dragElement(document.querySelector("#cterminal"))
+
+  var cterminalScreen = document.querySelector("#cterminal")
+  var cterminalIcon = document.querySelector("#cterminalicon")
+
+  var cterminalScreenClose = document.querySelector("#cterminalclose")
+
+  cterminalScreenClose.addEventListener("click", () => closeWindow(cterminalScreen));
+
+  if (cterminalIcon) {
+    cterminalIcon.addEventListener("click", () => {
+      handleIconTap(cterminalIcon, cterminalScreen, "HackCMD");
+    });
+  }
+
+  dragElement(document.querySelector("#terminal"))
+
+  var terminalScreen = document.querySelector("#terminal")
+  var terminalIcon = document.querySelector("#terminalicon")
+
+  var terminalScreenClose = document.querySelector("#terminalclose")
+
+  terminalScreenClose.addEventListener("click", () => closeWindow(terminalScreen));
+
+  if (terminalIcon) {
+    terminalIcon.addEventListener("click", () => {
+      handleIconTap(terminalIcon, terminalScreen, "Terminal");
+    });
+  }
+
+
+
+  dragElement(document.querySelector("#paint"))
+
+  var paintScreen = document.querySelector("#paint")
+  var paintIcon = document.querySelector("#painticon")
+
+  var paintScreenClose = document.querySelector("#paintclose")
+
+  paintScreenClose.addEventListener("click", () => closeWindow(paintScreen));
+
+  if (paintIcon) {
+    paintIcon.addEventListener("click", () => {
+      handleIconTap(paintIcon, paintScreen, "Paint");
+    });
+  }
+
+
+  dragElement(document.querySelector("#browser"))
+
+  var browserScreen = document.querySelector("#browser")
+  var browserIcon = document.querySelector("#browsericon")
+
+  var browserScreenClose = document.querySelector("#browserclose")
+
+  browserScreenClose.addEventListener("click", () => closeWindow(browserScreen));
+
+  if (browserIcon) {
+    browserIcon.addEventListener("click", () => {
+      handleIconTap(browserIcon, browserScreen, "arcBrowser");
+    });
+  }
+
+
+  dragElement(document.querySelector("#calculator"))
+
+var calculatorScreen = document.querySelector("#calculator")
+var calculatorIcon = document.querySelector("#calculatoricon")
+
+var calculatorScreenClose = document.querySelector("#calculatorclose")
+
+calculatorScreenClose.addEventListener("click", () => closeWindow(calculatorScreen));
+
+if (calculatorIcon) {
+  calculatorIcon.addEventListener("click", () => {
+    handleIconTap(calculatorIcon, calculatorScreen, "Calculator");
+  });
+}
+
+dragElement(document.querySelector("#info"))
+
+var infoScreen = document.querySelector("#info")
+var infoIcon = document.querySelector("#infoicon")
+
+var infoScreenClose = document.querySelector("#infoclose")
+
+infoScreenClose.addEventListener("click", () => closeWindow(infoScreen));
+
+if (infoIcon) {
+  infoIcon.addEventListener("click", () => {
+    handleIconTap(infoIcon, infoScreen, "Info");
+  });
+}
+
+
+dragElement(document.querySelector("#apps"))
+
+var appsScreen = document.querySelector("#apps")
+var appsIcon = document.querySelector("#appsicon")
+
+var appsScreenClose = document.querySelector("#appsclose")
+
+appsScreenClose.addEventListener("click", () => closeWindow(appsScreen));
+
+if (appsIcon) {
+  appsIcon.addEventListener("click", () => {
+    handleIconTap(appsIcon, appsScreen, "App Store");
+  });
+}
+
+  dragElement(document.querySelector("#ghost"))
+
+var ghostScreen = document.querySelector("#ghost")
+var ghostIcon = document.querySelector("#ghosticon")
+const ghostWindow = document.getElementById('ghostG');
+var ghostScreenClose = document.querySelector("#ghostclose")
+
+ghostScreenClose.addEventListener("click", () => {
+  closeWindow(ghostScreen);
+  ghostWindow.src = 'about:blank';
+});
+  
+
+if (ghostIcon) {
+  ghostIcon.addEventListener("click", () => {
+    ghostWindow.src = 'https://suklaasukkulayt.github.io/ghost-game/';
+    handleIconTap(ghostIcon, ghostScreen, "Ghost game");
+  });
+}
+
+  dragElement(document.querySelector("#recorder"))
+
+var recorderScreen = document.querySelector("#recorder")
+var recorderIcon = document.querySelector("#recordericon")
+var recorderScreenClose = document.querySelector("#recorderclose")
+
+recorderScreenClose.addEventListener("click", () => {
+  closeWindow(recorderScreen);
+  if(typeof audioStream !== 'undefined' && audioStream){
+  audioStream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+}});
+  
+
+if (recorderIcon) {
+  recorderIcon.addEventListener("click", () => {
+    handleIconTap(recorderIcon, recorderScreen, "Recorder");
+  });
+}
+
+  dragElement(document.querySelector("#prog"))
+
+var progScreen = document.querySelector("#prog")
+var progIcon = document.querySelector("#progressicon")
+var progScreenClose = document.querySelector("#progclose")
+
+if (progScreenClose) {
+  progScreenClose.addEventListener("click", () => {
+    closeWindow(progScreen);
+  });
+}
+
+if (progIcon) {
+  progIcon.addEventListener("click", () => {
+    handleIconTap(progIcon, progScreen, "progress Gallery");
+  });
+}
+
+
+dragElement(document.querySelector("#camera"))
+
+var cameraScreen = document.querySelector("#camera")
+var cameraIcon = document.querySelector("#cameraicon")
+
+var cameraScreenClose = document.querySelector("#cameraclose")
+
+cameraScreenClose.addEventListener("click", () => {
+  closeWindow(cameraScreen);
+  stopCamera();
+});
+
+if (cameraIcon) {
+  cameraIcon.addEventListener("click", () => {
+    handleIconTap(cameraIcon, cameraScreen, "Camera");
+  });
+}
+
+
+
+dragElement(document.querySelector("#pong"))
+
+var pongScreen = document.querySelector("#pong")
+var pongIcon = document.querySelector("#pongicon")
+
+var pongScreenClose = document.querySelector("#pongclose")
+var pongScreenMinimize = document.querySelector("#pongminimize")
+
+pongScreenClose.addEventListener("click", () => {
+  closeWindow(pongScreen);
+  stopPong();
+  resetPong();
+});
+
+if (pongIcon) {
+  pongIcon.addEventListener("click", () => {
+    const wasOpen = pongIcon.classList.contains("selected");
+    handleIconTap(pongIcon, pongScreen, "Pong");
+    if (wasOpen) {
+      
+    } else {
+      startPong();
+    }
+  });
+}
