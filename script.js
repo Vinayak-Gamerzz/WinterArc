@@ -1639,3 +1639,4 @@ function resetPong() {
     reactionDistance = -0.5;
     ctx.clearRect(0, 0, 500, 500);
 }
+
