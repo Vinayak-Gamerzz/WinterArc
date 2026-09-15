@@ -29,3 +29,12 @@ HTML EDITING DONE!
 ** 4:00 AM IST **
 
 so, if i'll write whole code ahgain from scratch it will take 2 days but horizon shipping time is at 8 am so 4 hours and i have to type 5k lines of code so im not gonna write them i will just edit my previous ones on which i spent so much time cuase it is effiecent and it will be good ig cause it'll complete my work asap so yeah goin to work again cya! 
+
+    15th September
+
+** 1:23 PM IST **
+
+
+I got extension of 1 day so tmrw i will need to submit but im gonna do it today cause tommrrow is my exam of biology and i wana study
+
+so till now i have edited my old code according to what i wanted rn we have 11 apps, like camera, recorder, notepad, gallery, terminal, hacking terminal, about, ghost game, ping pong game, calculator, browser, spotify, video, clock, weather these are the 11 apps
