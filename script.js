@@ -1976,3 +1976,500 @@ cmdInput.addEventListener("keydown", function (e) {
     }
  
 });
+
+
+
+function runCommand(command) {
+ 
+    var parts = command.split(" ");
+    var mainCommand = parts[0].toLowerCase();
+ 
+    if (mainCommand === "help") {
+ 
+        addCommand("");
+        addCommand("arcOS commands:", "#7cff8a");
+        addCommand("");
+        addCommand("help       Show this list");
+        addCommand("clear      Clear terminal");
+        addCommand("time       Show current time and date");
+        addCommand("apps       Show installed apps");
+        addCommand("about      About arcOS or apps)");
+        addCommand("print      Print text");
+        addCommand("usage      How to use commands");
+        addCommand("color      Change terminal colors");
+        addCommand("delete     delete system32");
+        addCommand("install    Install or remove apps");
+        addCommand("shutdown   Shuts down your arcOS system");
+        addCommand("reboot     Reboots your arcOS system");
+        addCommand("");
+ 
+    }
+ 
+        else if (mainCommand === "color") {
+ 
+        if (parts.length === 1 || parts[1] === "") {
+            addCommand(
+                "Current color: " +
+                cmdBackgroundColor +
+                " background, " +
+                cmdTextColor +
+                " text"
+            );
+            return;
+        }
+ 
+        var colorCode = parts[1].toUpperCase();
+ 
+        if (!/^[0-9A-F]{2}$/.test(colorCode)) {
+            addCommand("Invalid color attribute.", "#ff0000");
+            addCommand("Usage: color [background][text]", "#7cff8a");
+            addCommand("Example: color 0A", "#7cff8a");
+            return;
+        }
+ 
+        var bgCode = colorCode[0];
+        var textCode = colorCode[1];
+ 
+        cmdBackgroundColor = cmdColors[bgCode];
+        cmdTextColor = cmdColors[textCode];
+ 
+        cmdContent.style.backgroundColor = cmdBackgroundColor;
+        cmdOutput.style.color = cmdTextColor;
+        cmdInput.style.color = cmdTextColor;
+        cmdPrompt.style.color = cmdTextColor;
+ 
+        addCommand(
+            "Color changed to " + colorCode,
+            cmdTextColor
+        );
+    }
+ 
+    else if (mainCommand === "clear") {
+        cmdOutput.innerHTML = "";
+    }
+ 
+ 
+    else if (mainCommand === "time") {
+        var time = new Date().toLocaleTimeString();
+        var date = new Date().toLocaleDateString();
+        addCommand(time);
+        addCommand(date);
+ 
+    }
+ 
+ 
+    else if (mainCommand === "apps") {
+    const ainstalledApps = getInstalledApps();
+        addCommand("");
+        addCommand("Installed apps:", "#e9ff7c");
+        addCommand("");
+        addCommand("Welcome");
+       if (ainstalledApps.includes("notepad")) {
+        addCommand("TeXtpad");
+       }
+       if (ainstalledApps.includes("weather")) {
+        addCommand("Weather");
+       }
+       if (ainstalledApps.includes("clock")) {
+        addCommand("Clock");
+       }
+      if (ainstalledApps.includes("spotify")) {
+            addCommand("arcMusic");
+        }
+      if  (ainstalledApps.includes("youtube")) {
+            addCommand("arcVid");
+        }
+      if  (ainstalledApps.includes("cterminal")) {
+            addCommand("HackCMD");
+        }
+      if  (ainstalledApps.includes("paint")) {
+            addCommand("Paint");
+        }
+      if  (ainstalledApps.includes("browser")) {
+            addCommand("arcBrowser");
+        }
+      if  (ainstalledApps.includes("calculator")) {
+            addCommand("Calculator");
+        }
+      if  (ainstalledApps.includes("pong")) {
+            addCommand("Pong");
+        }
+      if  (ainstalledApps.includes("camera")) {
+            addCommand("Camera");
+        }
+      if  (ainstalledApps.includes("pacman")) {
+            addCommand("Pacman game");
+        }
+      if  (ainstalledApps.includes("info")) {
+            addCommand("About");
+        }
+      if  (ainstalledApps.includes("recorder")) {
+            addCommand("Recorder");
+        }
+      if  (ainstalledApps.includes("prog")) {
+            addCommand("progress Gallery");
+        }
+        addCommand("Terminal");
+        addCommand("App Store");
+    }
+ 
+ 
+ 
+    else if (mainCommand === "print") {
+ 
+        var printMatch = command.match(/^print\s+"(.*)"\s*$/i);
+ 
+        if (printMatch) {
+            addCommand(printMatch[1]);
+        } else {
+            addCommand("Usage: print \"text here\"", "#ff0000");
+        }
+ 
+    }
+ 
+    else if (mainCommand === "shutdown") {
+      const sleep = ms => new Promise(res => setTimeout(res, ms));
+      async function nagennn() {
+        addCommand("Shutting down...", "#ff0000");
+        await sleep(2000);
+        document.body.style.display = "none";
+      }
+      
+      nagennn();
+ 
+    }
+ 
+    else if (mainCommand === "reboot") {
+      const sleep = ms => new Promise(res => setTimeout(res, ms));
+      async function nagenn() {
+        addCommand("Rebooting...", "#ff0000");
+        await sleep(2000);
+        location.reload();
+      }
+      
+      nagenn();
+ 
+    }
+ 
+    else if (mainCommand === "delete" && parts.length > 1) {
+      var deleteTarget = parts.slice(1).join(" ").toLowerCase();
+      function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+      if (deleteTarget === "system32") {
+      (async function () {
+        addCommand("Deleting System32...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'kuuppeli.sys'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'style.css'...", "#ff0000");
+        document.querySelectorAll(".welcome").forEach((element) => { element.style.display = "none"; });
+        document.getElementById("terminal").style.display = "flex";
+        await sleep(200); addCommand("Deleted file: 'arcos-driver-wlan.drive'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'settings.sys'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'arcos-driver-camera.drive'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'arcos-driver-location.drive'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'main.c'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'desktop-q.sys'...", "#ff0000");
+        document.getElementById("desktopApps").style.display = "none";
+        await sleep(200); addCommand("Deleted file: 'webos.html'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'arc32.32'...", "#ff0000");
+        document.getElementById("top").style.display = "none";
+        await sleep(200); addCommand("Deleted file: 'gamma.g'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'arc.sgv'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'script.js'...", "#ff0000");
+        await sleep(200); addCommand("Deleted file: 'index.html'...", "#ff0000");
+        await sleep(1000); body.style.display = "none";
+      })();
+    }else {
+        addCommand("Usage 'delete'", "#7cff8a");
+        addCommand("'delete system32'")
+      }}
+ 
+      else if (mainCommand === "delete") {
+        addCommand("Usage 'delete'", "#7cff8a");
+        addCommand("'delete system32'")
+      }
+ 
+   
+    else if (mainCommand === "about" && parts.length > 1) {
+      var aboutTarget = parts.slice(1).join(" ").toLowerCase();
+ 
+      if (aboutTarget === "notepad") {
+        addCommand("About TeXtpad", "#7cff8a");
+        addCommand("You can save info to TeXtpad, but it only has one textbox.")
+        addCommand("You can use it for small thoughts that you don't want to forget yet. (it saves locally to your browser!)")
+        addCommand("It's basically like notepad, but with only one note.")
+      }
+      else if (aboutTarget === "welcome") {
+      addCommand("About Welcome", "#7cff8a");
+      addCommand("This is just the welcome screen with some links.")
+    }
+      else if (aboutTarget === "weather") {
+        addCommand("About Weather", "#7cff8a");
+        addCommand("This app shows you your local weather!")
+        addCommand("It shows temperature, condition (with text and an emoji) and your location.")
+        addCommand("Make sure you have enabled location services for this to work.")
+      }
+      else if (aboutTarget === "clock") {
+        addCommand("About Clock", "#7cff8a");
+        addCommand("This app tells you the time.")
+        addCommand("There is nothing special about this, it's just an analog clock.")
+      }
+      else if (aboutTarget === "arcmusic") {
+        addCommand("About arcMusic", "#7cff8a");
+        addCommand("Listen to XFM radio stream :D")
+        addCommand("Song title updates every minute.")
+        addCommand("When you minimize this app when music is playing, the song title shows in the taskbar.")
+      }
+      else if (aboutTarget === "arcvid") {
+        addCommand("About arcVid", "#7cff8a");
+        addCommand("You can watch any YouTube video with this!")
+        addCommand("Just type in the video's title!")
+      }
+      else if (aboutTarget === "hackcmd") {
+        addCommand("About HackCMD", "#7cff8a");
+        addCommand("With this app you can seem like you are hacking!")
+        addCommand("Just type anything in the terminal window!")
+      }
+      else if (aboutTarget === "terminal") {
+        addCommand("About Terminal", "#7cff8a");
+        addCommand("This is the app you're using right now.")
+        addCommand("This is just a basic terminal.")
+        addCommand("Type 'help' to see all available commands. (also don't type 'arc' (secret))")
+      }
+      else if (aboutTarget === "paint") {
+        addCommand("About Paint", "#7cff8a");
+        addCommand("You can paint anything you want!")
+        addCommand("You can change color and size, and also use the eraser or clear the whole canvas.")
+        addCommand("After you're done, just press the Download button!")
+      }
+      else if (aboutTarget === "arcbrowser") {
+        addCommand("About arcBrowser", "#7cff8a");
+        addCommand("You can browse all websites that allow being in an iframe.")
+        addCommand("Just type in the URL (like 'wikipedia.org') and press load!")
+        addCommand("You can even have arcOS in arcOS!")
+      }
+      else if (aboutTarget === "calculator") {
+        addCommand("About Calculator", "#7cff8a");
+        addCommand("This is just a basic calculator.")
+        addCommand("Use the buttons or just type your numbers in the textarea and press solve!")
+      }
+      else if (aboutTarget === "pong") {
+        addCommand("About Pong", "#7cff8a");
+        addCommand("You can play pong.")
+        addCommand("Use your mouse to move. It's that simple!")
+        addCommand("You can pause by minimizing the app. Reset by closing it.")
+      }
+      else if (aboutTarget === "camera") {
+        addCommand("About Camera", "#7cff8a");
+        addCommand("Take pictures inside arcOS.")
+        addCommand("Press the Take Photo button or apply filters.")
+        addCommand("Then you will see the photo for a few seconds and then your download will start.")
+      }
+      else if (aboutTarget === "pacman") {
+        addCommand("About Pacman game", "#7cff8a");
+        addCommand("Pacman like game where you try to eat all the pacmans.")
+        addCommand("Also everyone can see the best score if you get it!")
+        addCommand("I made this a while back in a coding class.")
+      }
+      else if (aboutTarget === "recorder") {
+        addCommand("About Recorder", "#7cff8a");
+        addCommand("Record audio in arcOS.")
+        addCommand("After recording, press 'Download Audio' to download it.")
+      }
+      else if (aboutTarget === "proggallery") {
+        addCommand("About progress Gallery", "#7cff8a");
+        addCommand("View pictures of my progresss.")
+        addCommand("Select the progress you want to see photos of.")
+      }
+      else if (aboutTarget === "about") {
+        addCommand("About About", "#7cff8a");
+        addCommand("You can see info about the apps in arcOS!")
+      }
+      else {
+        addCommand("No app named '" + aboutTarget + "' found.");
+        addCommand("Type 'about' for general info, or 'help' for available commands.");
+      }
+    }
+ 
+     else if (mainCommand === "install" && parts.length > 1) {
+      var installTarget = parts.slice(1).join(" ").toLowerCase();
+ 
+      if (installTarget === "notepad") {
+        installApp('notepad', true);
+      }
+      else if (installTarget === "weather") {
+        installApp('weather', true);
+      }
+      else if (installTarget === "clock") {
+        installApp('clock', true);
+      }
+      else if (installTarget === "arcmusic") {
+        installApp('spotify', true);
+      }
+      else if (installTarget === "arcvid") {
+        installApp('youtube', true);
+      }
+      else if (installTarget === "hackcmd") {
+        installApp('cterminal', true);
+      }
+      else if (installTarget === "paint") {
+        installApp('paint', true);
+      }
+      else if (installTarget === "arcbrowser") {
+        installApp('browser', true);
+      }
+      else if (installTarget === "calculator") {
+        installApp('calculator', true);
+      }
+      else if (installTarget === "pong") {
+        installApp('pong', true);
+      }
+      else if (installTarget === "camera") {
+        installApp('camera', true);
+      }
+      else if (installTarget === "pacman") {
+        installApp('pacman', true);
+      }
+      else if (installTarget === "recorder") {
+        installApp('recorder', true);
+      }
+      else if (installTarget === "proggallery") {
+        installApp('prog', true);
+      }
+ 
+      else if (installTarget === "about") {
+        installApp('info', true);
+      }
+      else {
+        addCommand("No app named '" + installTarget + "' found.");
+        addCommand("Maybe use the App Store to find it?");
+      }
+    }
+    else if (mainCommand === "install") {
+        addCommand("Usage 'install'", "#7cff8a");
+        addCommand("'install appname' (all lowercase, no spaces)")
+      }
+ 
+    else if (mainCommand === "usage" && parts.length > 1) {
+      var usageTarget = parts.slice(1).join(" ").toLowerCase();
+ 
+      if (usageTarget === "about") {
+        addCommand("Usage 'about'", "#7cff8a");
+        addCommand("'about' for arcOS info, 'about appname' for app info (no spaces, all lowercase).")
+      }
+      else if (usageTarget === "usage") {
+        addCommand("Usage 'usage'", "#7cff8a");
+        addCommand("'usage command'")
+      }
+      else if (usageTarget === "print") {
+        addCommand("Usage 'print'", "#7cff8a");
+        addCommand(`'print "some words"'`)
+      }
+      else if (usageTarget === "time") {
+        addCommand("Usage 'time'", "#7cff8a");
+        addCommand("'time'")
+      }
+      else if (usageTarget === "help") {
+        addCommand("Usage 'help'", "#7cff8a");
+        addCommand("'help'")
+      }
+      else if (usageTarget === "clear") {
+        addCommand("Usage 'clear'", "#7cff8a");
+        addCommand("'clear'")
+      }
+      else if (usageTarget === "apps") {
+        addCommand("Usage 'apps'", "#7cff8a");
+        addCommand("'apps'")
+      }
+      else if (usageTarget === "delete") {
+        addCommand("Usage 'delete'", "#7cff8a");
+        addCommand("'delete system32'")
+      }
+      else if (usageTarget === "install") {
+        addCommand("Usage 'install'", "#7cff8a");
+        addCommand("'install appname' (all lowercase, no spaces)")
+      }
+      else if (usageTarget === "shutdown") {
+        addCommand("Usage 'shutdown'", "#7cff8a");
+        addCommand("'shutdown'")
+      }
+      else if (usageTarget === "reboot") {
+        addCommand("Usage 'reboot'", "#7cff8a");
+        addCommand("'reboot'")
+      }
+      else if (usageTarget === "color") {
+    addCommand("Usage 'color'", "#7cff8a");
+    addCommand("'color 0A'");
+    addCommand("First character = background color");
+    addCommand("Second character = text color");
+}
+      else {
+        addCommand("Usage 'usage'", "#7cff8a");
+        addCommand("'usage command'")
+      }
+    }
+ 
+    else if (mainCommand === "usage"){
+      addCommand("Usage 'usage'", "#7cff8a");
+      addCommand("'usage command'")
+    }
+ 
+  else if (mainCommand === "about") {
+ 
+        var blura = localStorage.getItem(STORAGE_BLUR);
+        var wallpa = localStorage.getItem(STORAGE_BG);
+        var transa = localStorage.getItem(STORAGE_TRANSPARENT);
+        var bgcolora = localStorage.getItem(STORAGE_BGCOLOR);
+        if (blura === null) {
+            blura = "0";
+        }
+ 
+        if (transa === null) {
+            transa = "0";
+        }
+ 
+        if (bgcolora === null) {
+            bgcolora = "120";
+        }
+ 
+        if (wallpa === null) {
+            wallpa = "Default";
+        } else {
+            wallpa = "Custom";
+        }
+ 
+ 
+addCommand("================================", "#7cff8a");
+addCommand("          arcOS", "#7cff8a");
+addCommand("================================", "#7cff8a");
+addCommand("User: arc");
+addCommand("Blur: " + blura + "px");
+addCommand("Transparency: " + transa + "%");
+addCommand("App BG Color: " + bgcolora);
+addCommand("Wallpaper: " + wallpa);
+addCommand("================================", "#7cff8a");
+addCommand("         About arcOS", "#7cff8a");
+addCommand("================================", "#7cff8a");
+addCommand("arcOS is a WebOS");
+addCommand("Made by @vinayak-gamerzz");
+addCommand("Languages: HTML, CSS, JS");
+addCommand("================================", "#7cff8a");
+addCommand("");
+    }
+        else if (mainCommand === "arc") {
+      for (var arcLine = 0; arcLine < 52; arcLine++) {
+        addCommand("arc");
+      }
+    }
+ 
+    else {
+ 
+        addCommand(
+            "Command not found: " + mainCommand
+        );
+ 
+        addCommand(
+            "Type 'help' for available commands."
+        );
+    }
+}
