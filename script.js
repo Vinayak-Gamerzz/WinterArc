@@ -2808,3 +2808,117 @@ function showAppInfo(windowNamed){
   }
  
 }
+
+
+let mediaRecorder;
+let audioChunks = [];
+let timerInterval;
+let secondsElapsed = 0;
+ 
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const rdownloadLink = document.getElementById("rdownloadLink");
+const timerElement = document.getElementById("timer");
+ 
+let audioStream = null;
+let selectedMicrophoneId = null;
+ 
+const microphoneSelect = document.getElementById("microphone-select");
+ 
+async function refreshMicrophoneList() {
+  if (!navigator.mediaDevices?.enumerateDevices) return;
+ 
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const microphones = devices.filter(
+    device => device.kind === "audioinput"
+  );
+ 
+  microphoneSelect.innerHTML = "";
+ 
+  microphones.forEach((device, index) => {
+    const option = document.createElement("option");
+    option.value = device.deviceId;
+    option.textContent = device.label || `Microphone ${index + 1}`;
+    microphoneSelect.appendChild(option);
+  });
+ 
+  if (selectedMicrophoneId) {
+    microphoneSelect.value = selectedMicrophoneId;
+  } else if (microphones.length) {
+    selectedMicrophoneId = microphones[0].deviceId;
+    microphoneSelect.value = selectedMicrophoneId;
+  }
+}
+ 
+microphoneSelect.addEventListener("change", () => {
+  selectedMicrophoneId = microphoneSelect.value;
+});
+ 
+refreshMicrophoneList();
+ 
+function startTimer() {
+  secondsElapsed = 0;
+  timerElement.textContent = "00:00";
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    timerElement.textContent = new Date(secondsElapsed * 1000).toISOString().substr(14, 5);
+  }, 1000);
+}
+ 
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+ 
+function getAudioFilename() {
+  const now = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const datePart = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  const timePart = `${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+  return `arcos_recording_${datePart}_${timePart}.webm`;
+}
+ 
+startBtn.addEventListener("click", async () => {
+  rdownloadLink.style.display = "none";
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: selectedMicrophoneId ? { deviceId: { exact: selectedMicrophoneId } } : true 
+    });
+ 
+audioStream = stream;
+await refreshMicrophoneList();
+    mediaRecorder = new MediaRecorder(stream);
+    audioStream = stream;
+    audioChunks = [];
+ 
+    mediaRecorder.ondataavailable = (event) => {
+      audioChunks.push(event.data);
+    };
+ 
+    mediaRecorder.onstop = () => {
+      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      rdownloadLink.href = audioUrl;
+      rdownloadLink.download = getAudioFilename();
+      rdownloadLink.style.display = "block";
+      stopTimer();
+      stream.getTracks().forEach(function(track) {
+      track.stop();
+      audioStream = null;
+    });
+    };
+ 
+    mediaRecorder.start();
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    startTimer();
+  } catch (error) {
+    alert("Microphone access is required for recording.");
+  }
+});
+
+stopBtn.addEventListener("click", () => {
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.stop();
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+  }
+})
