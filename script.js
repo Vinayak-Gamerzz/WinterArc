@@ -1890,3 +1890,89 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+var cmdInput = document.querySelector("#cmdInput");
+var cmdOutput = document.querySelector("#cmdOutput");
+var cmdContent = cmdOutput.closest(".cmdContent");
+var cmdPrompt = document.querySelector(".cmdPrompt");
+ 
+function addCommand(text, color) {
+    var line = document.createElement("div");
+    line.textContent = text;
+    if (color) {
+        line.style.color = color;
+    }
+    cmdOutput.appendChild(line);
+    cmdContent.scrollTop = cmdContent.scrollHeight;
+}
+ 
+const cmdColors = {
+    "0": "#000000",
+    "1": "#000080",
+    "2": "#008000",
+    "3": "#008080",
+    "4": "#800000",
+    "5": "#800080",
+    "6": "#808000",
+    "7": "#c0c0c0",
+    "8": "#808080",
+    "9": "#0000ff",
+    "A": "#00ff00",
+    "B": "#00ffff",
+    "C": "#ff0000",
+    "D": "#ff00ff",
+    "E": "#ffff00",
+    "F": "#ffffff"
+};
+ 
+let cmdBackgroundColor = "#08080c";
+let cmdTextColor = "#eeeeee";
+ 
+var commandHistory = [];
+var historyIndex = -1;
+ 
+cmdInput.addEventListener("keydown", function (e) {
+ 
+    if (e.key === "Enter") {
+ 
+        var command = cmdInput.value.trim();
+ 
+        if (command === "") {
+            return;
+        }
+ 
+        commandHistory.push(command);
+        historyIndex = commandHistory.length;
+ 
+        addCommand("arc@arcOS:~$ " + command , "#7cff8a");
+ 
+        runCommand(command);
+
+        cmdInput.value = "";
+    }
+ 
+    if (e.key === "ArrowUp") {
+ 
+        if (historyIndex > 0) {
+            historyIndex--;
+            cmdInput.value = commandHistory[historyIndex];
+        }
+ 
+        e.preventDefault();
+    }
+ 
+    if (e.key === "ArrowDown") {
+ 
+        if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            cmdInput.value = commandHistory[historyIndex];
+        } else {
+            historyIndex = commandHistory.length;
+            cmdInput.value = "";
+        }
+ 
+        e.preventDefault();
+    }
+ 
+});
