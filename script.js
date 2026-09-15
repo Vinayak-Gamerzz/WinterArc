@@ -1106,8 +1106,8 @@ const codeSnippets = {
     'struct task_struct *task = get_current();',
     'sudo ./neural_overwrite --target=internal --protocol=raw --stealth=99',
     'echo "injecting_payload" | nc -u 192.168.0.1 -p 443 --brute-force --silent',
-    './bin/ghost_scan --port=8080 --detect-vulnerabilities --exfiltrate-data --no-log',
-    'ssh root@ghost_net --key-exchange=curve25519 --cipher=aes-256-gcm --bypass-firewall',
+    './bin/pacman_scan --port=8080 --detect-vulnerabilities --exfiltrate-data --no-log',
+    'ssh root@pacman_net --key-exchange=curve25519 --cipher=aes-256-gcm --bypass-firewall',
     'curl -X POST -H "Content-Type: application/json" -d \'{"command":"overwrite"}\' http://localhost:3000/api/execute',
     'python3 exploit.py --target=internal --payload=stealth --protocol=raw --silent',
     'nc -lvp 4444 -e /bin/bash',
@@ -1662,3 +1662,148 @@ async function fetchNowPlaying() {
  
     fetchNowPlaying();
     setInterval(fetchNowPlaying, 60000);
+
+    
+setupMinimize("#notepad", "#notepadminimize", "TeXtpad");
+setupMinimize("#clock", "#clockminimize", "Clock");
+setupMinimize("#weather", "#weatherminimize", "Weather");
+setupMinimize("#spotify", "#spotifyminimize", "arcMusic");
+setupMinimize("#youtube", "#youtubeminimize", "arcVid");
+setupMinimize("#terminal", "#terminalminimize", "Terminal");
+setupMinimize("#cterminal", "#cterminalminimize", "HackCMD");
+setupMinimize("#paint", "#paintminimize", "Paint");
+setupMinimize("#browser", "#browserminimize", "arcBrowser");
+setupMinimize("#calculator", "#calculatorminimize", "Calculator");
+setupMinimize("#pong", "#pongminimize", "Pong");
+setupMinimize("#camera", "#cameraminimize", "Camera");
+setupMinimize("#pacman", "#pacmanminimize", "Pacman game");
+setupMinimize("#info", "#infominimize", "Info");
+setupMinimize("#recorder", "#recorderminimize", "Recorder");
+setupMinimize("#prog", "#progminimize", "progress Gallery");
+setupMinimize("#apps", "#appsminimize", "App Store");
+setupMinimize("#welcome", "#welcomeminimize", "Welcome");
+ 
+function minimizeWindow(windowElement) {
+    if (!windowElement) return;
+    void windowElement.offsetWidth;
+    windowElement.classList.add("closing");
+    setTimeout(function () {
+        windowElement.style.display = "none";
+        windowElement.classList.remove("closing");
+    }, 250);
+}
+ 
+function changeTrackMinimize() {
+  const taskbarButton = document.querySelector("#task-spotify");
+  if (!taskbarButton || !trackminimize) {
+    return;
+  }
+  const title = trackminimize.textContent.trim();
+  if (title) {
+    taskbarButton.textContent = title;
+  }
+}
+ 
+var openApps = document.querySelector("#openApps");
+function addTaskbarApp(windowElement, name) {
+    if (windowElement.id === "settings") {
+      return;
+    } else if (windowElement.id === "calendar"){
+      return;
+    }
+ 
+      else if(document.querySelector("#task-" + windowElement.id)) {
+        return;
+    }
+ 
+    var button = document.createElement("button");
+ 
+    button.id = "task-" + windowElement.id;
+    button.className = "openApp";
+    button.innerHTML = name;
+    button.addEventListener("click", function () {
+        if (windowElement.style.display === "none") {
+            openWindow(windowElement);
+ 
+            if(windowElement.id === "pong"){
+              startPong();
+            }
+ 
+            handleWindowTap(windowElement);
+        } else {
+            minimizeWindow(windowElement);
+            if(windowElement.id === "camera"){
+              stopCamera();
+            }
+            if(windowElement.id === "spotify"){
+            if (windowElement.id === "spotify") {
+              changeTrackMinimize();
+}}}
+    });
+    openApps.appendChild(button);
+}
+ 
+ 
+addTaskbarApp(welcomeScreen, "Welcome");
+ 
+function removeTaskbarApp(windowElement) {
+    var button = document.querySelector("#task-" + windowElement.id);
+    if (button) {
+        button.remove();
+    }
+}
+ 
+function setupMinimize(windowId, buttonId, appName) {
+    var windowElement = document.querySelector(windowId);
+    var minimizeButton = document.querySelector(buttonId);
+ 
+    if (!windowElement || !minimizeButton) {
+        return;
+    }
+ 
+    minimizeButton.addEventListener("click", function () {
+        minimizeWindow(windowElement);
+        if(windowElement.id === "pong"){
+              stopPong();
+            }
+        if(windowElement.id === "camera"){
+              stopCamera();
+            }
+        if(windowElement.id === "spotify"){
+          
+          if(audio.paused === false){
+          changeTrackMinimize();
+          
+          
+            }
+}});
+}
+ 
+function openWindow(element, appName) {
+  if (element) {
+    element.style.display = "flex";
+    biggestIndex++;
+    element.style.zIndex = biggestIndex;
+    topBar.style.zIndex = biggestIndex + 1;
+    element.classList.remove("closing");
+    void element.offsetWidth;
+    element.classList.add("opening");
+    addTaskbarApp(element, appName);
+ 
+    var minTop = element.offsetHeight / 2;
+    var minLeft = element.offsetWidth / 2;
+    var maxTop = window.innerHeight - element.offsetHeight / 2;
+    var maxLeft = window.innerWidth - element.offsetWidth / 2;
+    element.style.top = Math.max(minTop, Math.min(element.offsetTop, maxTop)) + "px";
+    element.style.left = Math.max(minLeft, Math.min(element.offsetLeft, maxLeft)) + "px";
+ 
+    if (element.id === "camera") {
+      startCamera();
+    }
+    if (element.id === "spotify"){
+      removeTaskbarApp(spotifyScreen);
+      addTaskbarApp(spotifyScreen, "arcMusic");
+
+    }
+  }
+}
