@@ -37,4 +37,4 @@ so, if i'll write whole code ahgain from scratch it will take 2 days but horizon
 
 I got extension of 1 day so tmrw i will need to submit but im gonna do it today cause tommrrow is my exam of biology and i wana study
 
-so till now i have edited my old code according to what i wanted rn we have 11 apps, like camera, recorder, notepad, gallery, terminal, hacking terminal, about, ghost game, ping pong game, calculator, browser, spotify, video, clock, weather these are the 11 apps
+so till now i have edited my old code according to what i wanted rn we have 11 apps, like camera, recorder, notepad, gallery, terminal, hacking terminal, about, Pacman, ping pong game, calculator, browser, spotify, video, clock, weather these are the 11 apps

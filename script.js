@@ -523,7 +523,7 @@ notepadScreenClose.addEventListener("click", () => closeWindow(notepadScreen));
 
 if (notepadIcon) {
   notepadIcon.addEventListener("click", () => {
-    handleIconTap(notepadIcon, notepadScreen, "TeXtpad");
+    handleIconTap(notepadIcon, notepadScreen, "NotePad");
   });
 }
 
@@ -709,23 +709,23 @@ if (appsIcon) {
   });
 }
 
-  dragElement(document.querySelector("#ghost"))
+  dragElement(document.querySelector("#pacman"))
 
-var ghostScreen = document.querySelector("#ghost")
-var ghostIcon = document.querySelector("#ghosticon")
-const ghostWindow = document.getElementById('ghostG');
-var ghostScreenClose = document.querySelector("#ghostclose")
+var pacmanScreen = document.querySelector("#pacman")
+var pacmanIcon = document.querySelector("#pacmanIcon")
+const pacmanWindow = document.getElementById('pacmanG');
+var pacmanScreenClose = document.querySelector("#pacmanclose")
 
-ghostScreenClose.addEventListener("click", () => {
-  closeWindow(ghostScreen);
-  ghostWindow.src = 'about:blank';
+pacmanScreenClose.addEventListener("click", () => {
+  closeWindow(pacmanScreen);
+  pacmanWindow.src = 'about:blank';
 });
   
 
-if (ghostIcon) {
-  ghostIcon.addEventListener("click", () => {
-    ghostWindow.src = 'https://suklaasukkulayt.github.io/ghost-game/';
-    handleIconTap(ghostIcon, ghostScreen, "Ghost game");
+if (pacmanIcon) {
+  pacmanIcon.addEventListener("click", () => {
+    pacmanWindow.src = 'https://pac-man-jet-six.vercel.app/Pacman.html';
+    handleIconTap(pacmanIcon, pacmanScreen, "Pacman");
   });
 }
 
@@ -814,3 +814,123 @@ if (pongIcon) {
     }
   });
 }
+
+var settingsScreen = document.querySelector("#settings")
+var settingsIcon = document.querySelector("#settingsicon")
+
+
+if (settingsIcon) {
+  settingsIcon.addEventListener("click", () => {
+    handleIconTap(settingsIcon, settingsScreen);
+  });
+}
+
+var biggestIndex = 1;
+var topBar = document.querySelector("#top")
+
+function handleWindowTap(element) {
+  biggestIndex++;
+  element.style.zIndex = biggestIndex;
+  topBar.style.zIndex = biggestIndex + 1;  
+  settingsScreen.style.zIndex = biggestIndex;
+  calendarScreen.style.zIndex = biggestIndex;
+}
+
+function addWindowTapHandling(element) {
+  if (!element) {
+    return;
+  }
+
+  if (element !== settingsScreen) {
+    element.addEventListener("mousedown", () => handleWindowTap(element));
+  }
+}
+
+addWindowTapHandling(welcomeScreen);
+addWindowTapHandling(notepadScreen);
+addWindowTapHandling(weatherScreen);
+addWindowTapHandling(clockScreen);
+addWindowTapHandling(spotifyScreen);
+addWindowTapHandling(youtubeScreen);
+addWindowTapHandling(cterminalScreen);
+addWindowTapHandling(terminalScreen);
+addWindowTapHandling(paintScreen);
+addWindowTapHandling(settingsScreen);
+addWindowTapHandling(browserScreen);
+addWindowTapHandling(calculatorScreen);
+addWindowTapHandling(pongScreen);
+addWindowTapHandling(cameraScreen);
+addWindowTapHandling(pacmanScreen);
+addWindowTapHandling(infoScreen);
+addWindowTapHandling(recorderScreen);
+addWindowTapHandling(progScreen);
+addWindowTapHandling(appsScreen);
+
+
+var content = [
+  {
+    title: "Notepad is so good!",
+    date: "- nobody",
+    content: `
+        <h1 class="ubuntu-regular" style="margin: 2px; color: rgb(243, 219, 5)">NotePad</h1>
+        <textarea style="width: 256px; height: 128px; resize: auto;" id="textarea" autofocus spellcheck="true"></textarea>
+        <p style="margin: 0px;">Note saves to your browser's local storage.</p>
+      `
+  }
+
+];
+
+
+function attachNotePadEditor() {
+  const textarea = document.getElementById('textarea');
+  if (!textarea) {
+    return;
+  }
+
+  const savedText = localStorage.getItem('myTextareaContent');
+  if (savedText !== null) {
+    textarea.value = savedText;
+  }
+
+  textarea.oninput = function() {
+    localStorage.setItem('myTextareaContent', textarea.value);
+  };
+}
+
+function setNotePadContent(index) {
+  var notepadContent = document.querySelector("#notepadContent");
+  if (!notepadContent || !content[index]) {
+    return;
+  }
+
+  notepadContent.innerHTML = content[index].content;
+  attachNotePadEditor();
+}
+
+function addToBottomBar(index) {
+  var bottomBar = document.querySelector("#bottomBar");
+  if (!bottomBar || !content[index]) {
+    return;
+  }
+
+  var note = content[index];
+  var newDiv = document.createElement("div");
+  newDiv.style.cssText = "background-color: rgb(231, 25, 25); width: 220px; padding: 10px; border-radius: 8px;";
+  newDiv.innerHTML = `
+    <p style="margin: 0px;">${note.title}</p>
+    <p style="font-size: 12px; margin: 0px;">${note.date}</p>
+  `;
+  newDiv.addEventListener("click", function() {
+    setNotePadContent(index);
+  });
+
+  bottomBar.appendChild(newDiv);
+}
+
+setNotePadContent(0);
+
+for (let i = 0; i < content.length; i++) {
+  addToBottomBar(i);
+}
+
+
