@@ -1807,3 +1807,86 @@ function openWindow(element, appName) {
     }
   }
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const desktop = document.getElementById("desktop");
+  const selectionBox = document.getElementById("selection-box");
+ 
+  let isSelecting = false;
+  let startX = 0;
+  let startY = 0;
+ 
+  desktop.addEventListener("mousedown", (e) => {
+   if (
+  e.target.closest(".desktop-icon") ||
+  e.target.closest(".welcome") ||
+  e.target.closest("#top")
+) {
+  return;
+}
+ 
+    const desktopRect = desktop.getBoundingClientRect();
+    
+    startX = e.clientX - desktopRect.left;
+    startY = e.clientY - desktopRect.top;
+ 
+    isSelecting = true;
+ 
+    selectionBox.style.left = `${startX}px`;
+    selectionBox.style.top = `${startY}px`;
+    selectionBox.style.width = '0px';
+    selectionBox.style.height = '0px';
+    selectionBox.style.display = 'block';
+ 
+    document.querySelectorAll(".desktop-icon").forEach(icon => {
+      icon.classList.remove("selected");
+    });
+  });
+ 
+  document.addEventListener("mousemove", (e) => {
+    if (!isSelecting) return;
+ 
+    const desktopRect = desktop.getBoundingClientRect();
+    const currentX = Math.max(0, Math.min(e.clientX - desktopRect.left, desktopRect.width));
+    const currentY = Math.max(0, Math.min(e.clientY - desktopRect.top, desktopRect.height));
+ 
+    const left = Math.min(startX, currentX);
+    const top = Math.min(startY, currentY);
+    const width = Math.abs(currentX - startX);
+    const height = Math.abs(currentY - startY);
+ 
+    selectionBox.style.left = `${left}px`;
+    selectionBox.style.top = `${top}px`;
+    selectionBox.style.width = `${width}px`;
+    selectionBox.style.height = `${height}px`;
+ 
+    const boxRect = selectionBox.getBoundingClientRect();
+    const icons = document.querySelectorAll(".desktop-icon");
+ 
+    icons.forEach(icon => {
+      const iconRect = icon.getBoundingClientRect();
+ 
+      const isOverlapping = !(
+        boxRect.right < iconRect.left ||
+        boxRect.left > iconRect.right ||
+        boxRect.bottom < iconRect.top ||
+        boxRect.top > iconRect.bottom
+      );
+ 
+      if (isOverlapping) {
+        icon.classList.add("selected");
+      } else {
+        icon.classList.remove("selected");
+      }
+    });
+  });
+ 
+ 
+  document.addEventListener("mouseup", () => {
+    if (isSelecting) {
+      isSelecting = false;
+      selectionBox.style.display = 'none';
+    }
+  });
+});
