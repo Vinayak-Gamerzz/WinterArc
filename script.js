@@ -934,3 +934,708 @@ for (let i = 0; i < content.length; i++) {
 }
 
 
+function weatherCodeToText(code) {
+  const weatherCodes = {
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Rime fog",
+    51: "Light drizzle",
+    53: "Moderate drizzle",
+    55: "Dense drizzle",
+    61: "Rain",
+    63: "Moderate rain",
+    65: "Heavy rain",
+    71: "Snow",
+    95: "Thunderstorm"
+  };
+
+  return weatherCodes[code] || "Unknown";
+}
+
+function weatherCodeToEmoji(code) {
+  const weatherIcons = {
+    0: "☀️",
+    1: "🌤️",
+    2: "⛅",
+    3: "☁️",
+    45: "🌫️",
+    48: "🌫️",
+    51: "🌦️",
+    53: "☔",
+    55: "☔",
+    61: "🌧️",
+    63: "🌧️",
+    65: "🌧️",
+    71: "🌨️",
+    95: "⛈️"
+  };
+
+  return weatherIcons[code] || "🌍";
+}
+
+async function getLocationName(lat, lon) {
+  const providers = [
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`,
+    `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&zoom=10&accept-language=en`
+  ];
+
+  for (const url of providers) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        continue;
+      }
+
+      const data = await response.json();
+      const city = data.city || data.locality || data.address?.city || data.address?.town || data.address?.village || data.address?.suburb || "";
+      const region = data.principalSubdivision || data.address?.state || data.address?.county || "";
+      const country = data.countryName || data.address?.country || "";
+      const label = [city, region, country].filter(Boolean).join(", ");
+
+      if (label) {
+        return label;
+      }
+    } catch (error) {
+      console.warn("Could not resolve location name with provider", url, error);
+    }
+  }
+
+  return `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+}
+
+async function showWeather(lat, lon) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const temp = data.current.temperature_2m;
+    const code = data.current.weather_code;
+    const desc = weatherCodeToText(code);
+    const icon = weatherCodeToEmoji(code);
+    const locationName = await getLocationName(lat, lon);
+
+    const weatherIcon = document.querySelector("#weather-icon");
+
+    if (weatherIcon) {
+      weatherIcon.textContent = icon;
+    }
+
+    document.querySelector("#weathercontent").innerHTML = `
+      <p><strong>Location:</strong> ${locationName || "Your location"}</p>
+      <p><strong>Temperature:</strong> ${temp}°C</p>
+      <p><strong>Condition:</strong> ${desc}</p>
+    `;
+  } catch {
+    document.querySelector("#weathercontent").innerHTML =
+      "<p>Weather could not be loaded.</p>";
+  }
+}
+
+function getUserWeather() {
+  if (!navigator.geolocation) {
+    document.querySelector("#weathercontent").innerHTML =
+      "<p>Geolocation is not supported by this browser.</p>";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      showWeather(position.coords.latitude, position.coords.longitude);
+    },
+    () => {
+      document.querySelector("#weathercontent").innerHTML =
+        "<p>Location access was denied.</p>";
+    }
+  );
+}
+
+getUserWeather();
+
+const hourHand = document.querySelector("#hour-hand");
+const minuteHand = document.querySelector("#minute-hand");
+const secondHand = document.querySelector("#second-hand");
+const date = document.querySelector("#date");
+const month = document.querySelector("#month");
+function setRotation(hand, rotation) {
+ hand.style.setProperty('--rotation', rotation);
+}
+function setClock() {
+ const currentDate = new Date();
+ const seconds = currentDate.getSeconds();
+ const minutes = currentDate.getMinutes();
+ const hours = currentDate.getHours();
+ const milliseconds = currentDate.getMilliseconds();
+const secondsRotation = (seconds / 60) * 360 + (milliseconds / 1000) * 6;
+ const minutesRotation = ((minutes + seconds / 60) / 60) * 360;
+ const hoursRotation = ((hours + minutes / 60) / 12) * 360;
+setRotation(secondHand, secondsRotation);
+ setRotation(minuteHand, minutesRotation);
+ setRotation(hourHand, hoursRotation);
+date.textContent = currentDate.getDate();
+ month.textContent = currentDate.toLocaleString('default', { month: 'short' });
+}
+setInterval(setClock, 10);
+setInterval(getUserWeather, 10 * 60 * 1000);
+
+
+const codeOutput = document.getElementById('codeOutput');
+const chunkSize = 5;
+let currentSnippet = '';
+let currentSnippetIndex = 0;
+
+function isTerminalTopmost() {
+  return cterminalScreen && Number(cterminalScreen.style.zIndex || 0) === biggestIndex;
+}
+
+const codeSnippets = {
+  kernel: [
+    'void init_kernel(void) {',
+    '  printk(KERN_INFO "Initializing kernel module...");',
+    '  setup_interrupts();',
+    '  return 0;',
+    '}',
+    'struct task_struct *task = get_current();',
+    'sudo ./neural_overwrite --target=internal --protocol=raw --stealth=99',
+    'echo "injecting_payload" | nc -u 192.168.0.1 -p 443 --brute-force --silent',
+    './bin/ghost_scan --port=8080 --detect-vulnerabilities --exfiltrate-data --no-log',
+    'ssh root@ghost_net --key-exchange=curve25519 --cipher=aes-256-gcm --bypass-firewall',
+    'curl -X POST -H "Content-Type: application/json" -d \'{"command":"overwrite"}\' http://localhost:3000/api/execute',
+    'python3 exploit.py --target=internal --payload=stealth --protocol=raw --silent',
+    'nc -lvp 4444 -e /bin/bash',
+    'echo "payload_injected" | nc -u 192.168.0.1 -p 443',
+    'xxd -r -p /dev/zero.bin | sed s/00/FF/g | ./mem_corrupt --address=0x4F2A --force',
+    'cat /etc/shadow | ./hash_cracker --algorithm=sha512 --mode=rainbow --threads=16',
+    'dd if=/dev/urandom of=/tmp/rootkit.iso bs=1024 count=666 --no-sync --quiet',
+    'iptables -A INPUT -p tcp --dport 22 -j DROP',
+    'echo "kernel_panic" | nc -u 192.168.0.1 -p 443',
+    'hexdump -C memory_dump.bin | grep "0xDEADBEEF" | ./patch_binary --offset=0x1000',
+    './sql_injector --target=mainframe --payload=DROP_TABLE --unsafe-mode --auto-worm',
+    'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock --privileged evil_container',
+    'grep -r "password" /var/www/html --include="*.php" --recursive --ignore-case | ./dump_db'
+  ]
+};
+let currentStyle = 'kernel';
+
+function addCodeSnippet() {
+  if (!isTerminalTopmost()) {
+    return;
+  }
+
+  const snippets = codeSnippets[currentStyle];
+
+  if (!currentSnippet || currentSnippetIndex >= currentSnippet.length) {
+    const randomSnippet = snippets[Math.floor(Math.random() * snippets.length)];
+    currentSnippet = randomSnippet + '\n';
+    currentSnippetIndex = 0;
+  }
+
+  const nextChunk = currentSnippet.slice(currentSnippetIndex, currentSnippetIndex + chunkSize);
+  if (!nextChunk) {
+    return;
+  }
+
+  codeOutput.value += nextChunk;
+  currentSnippetIndex += chunkSize;
+  codeOutput.scrollTop = codeOutput.scrollHeight;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!isTerminalTopmost()) {
+    return;
+  }
+
+  e.preventDefault();
+  addCodeSnippet();
+});
+
+if (isTerminalTopmost()) {
+  codeOutput.focus();
+}
+
+
+const API_KEY = 'AIzaSyAHCbUf3EHTFg1L84i3Hu2T4L1tzz968n8';
+let player = null;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '390',
+        width: '640',
+        videoId: '', 
+        playerVars: {
+            'playsinline': 1,
+            'autoplay': 1
+        },
+        events: {
+            'onReady': resizeYouTubePlayer
+        }
+    });
+}
+
+function resizeYouTubePlayer() {
+    if (!player || typeof player.setSize !== "function") return;
+    var container = document.getElementById("youtube-player");
+    if (!container) return;
+    var wrapper = container.parentElement;
+    var width = wrapper.clientWidth;
+    var height = Math.round(width * 9 / 16);
+    player.setSize(width, height);
+}
+
+async function searchYouTube() {
+    const query = document.getElementById('searchInput').value;
+    if (!query) return;
+
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = 'Searching...';
+
+    try {
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${encodeURIComponent(query)}&type=video,playlist&key=${API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        resultsDiv.innerHTML = '';
+
+        if (!data.items || data.items.length === 0) {
+            resultsDiv.innerHTML = 'No results.';
+            return;
+        }else{
+          data.items.length = 5;
+        }
+
+        data.items.forEach(item => {
+            const isPlaylist = item.id.kind === 'youtube#playlist';
+            const id = isPlaylist ? item.id.playlistId : item.id.videoId;
+            const title = item.snippet.title;
+            const thumbnail = item.snippet.thumbnails.default.url;
+
+            const div = document.createElement('div');
+            div.className = 'result-item';
+            
+            const temp = document.createElement('div');
+            temp.innerHTML = title;
+            
+            div.innerHTML = `
+                <img src="${thumbnail}" alt="thumbnail">
+                <div class="info">
+                    <span class="badge ${isPlaylist ? 'playlist' : 'video'}">
+                        ${isPlaylist ? 'Playlist' : 'Video'}
+                    </span>
+                    <span>${temp.innerText}</span>
+                </div>
+            `;
+            
+            div.onclick = () => {
+                if (isPlaylist) {
+                    player.loadPlaylist({list: id});
+                } else {
+                    player.loadVideoById(id);
+                }
+                document.getElementById('player-container').scrollIntoView({ behavior: 'smooth' });
+            };
+
+            resultsDiv.appendChild(div);
+        });
+
+    } catch (error) {
+        console.error(error);
+        resultsDiv.innerHTML = 'Error searching.';
+    }
+}
+
+
+
+
+const paintCanvas =
+	document.getElementById('pcanvas');
+const paintCtx =
+	paintCanvas.getContext('2d');
+
+const brushSize =
+	document.getElementById('brush-size');
+const colorPicker =
+	document.getElementById('color-picker');
+const clearCanvas =
+	document.getElementById('clear-canvas');
+let isDrawing = false;
+
+paintCanvas.width =
+	window.innerWidth - 40;
+paintCanvas.height =
+	window.innerHeight * 0.85;
+paintCtx.lineWidth = 5;
+paintCtx.lineCap = 'round';
+paintCtx.strokeStyle = 'black';
+
+function startPosition(e) {
+	isDrawing = true;
+	draw(e);
+}
+
+function endPosition() {
+	isDrawing = false;
+	paintCtx.beginPath();
+}
+
+function getCanvasPoint(e) {
+	const rect = paintCanvas.getBoundingClientRect();
+	const x = ((e.clientX - rect.left) / rect.width) * paintCanvas.width;
+	const y = ((e.clientY - rect.top) / rect.height) * paintCanvas.height;
+	return { x, y };
+}
+
+function draw(e) {
+	if (!isDrawing) return;
+	const { x, y } = getCanvasPoint(e);
+	paintCtx.strokeStyle =
+		colorPicker.value; 
+	paintCtx.lineWidth =
+		brushSize.value; 
+	paintCtx.lineTo(x, y);
+	paintCtx.stroke();
+	paintCtx.beginPath();
+	paintCtx.moveTo(x, y);
+}
+
+paintCanvas
+	.addEventListener('mousedown', startPosition);
+paintCanvas
+	.addEventListener('mouseup', endPosition);
+paintCanvas
+	.addEventListener('mousemove', draw);
+clearCanvas
+	.addEventListener('click', () => {
+		paintCtx.clearRect(
+			0, 0, paintCanvas.width,
+			paintCanvas.height
+		);
+	});
+
+brushSize.addEventListener('input', () => {
+	paintCtx.lineWidth =
+		brushSize.value;
+	updateBrushSizeLabel(brushSize.value);
+});
+
+function updateBrushSizeLabel(size) {
+	const brushSizeLabel =
+		document.getElementById('brush-size-label');
+	if (brushSizeLabel) {
+		brushSizeLabel.textContent =
+			`Brush Size: ${size}`;
+	}
+}
+
+const penButton =
+	document.getElementById('pen');
+const eraserButton =
+	document.getElementById('eraser');
+
+function activatePen() {
+	paintCtx.globalCompositeOperation =
+		'source-over';
+	paintCtx.strokeStyle =
+		colorPicker.value;
+}
+
+function activateEraser() {
+	paintCtx.globalCompositeOperation =
+		'destination-out';
+	paintCtx.strokeStyle =
+		'rgba(0, 0, 0, 0)';
+}
+
+penButton
+	.addEventListener('click', () => {
+	activatePen();
+});
+
+eraserButton
+	.addEventListener('click', () => {
+	activateEraser();
+});
+
+
+
+
+var link = document.getElementById('downloadLink');
+  link.addEventListener('click', function() {
+this.href = paintCanvas.toDataURL('image/png');
+}, false);
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const urlInput = document.getElementById('url-input');
+  const loadBtn = document.getElementById('load-btn');
+  const browserWindow = document.getElementById('browser-window');
+
+  const loadPage = () => {
+    let url = urlInput.value.trim();
+    
+    if (url === "") return;
+
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://' + url;
+    }
+
+    browserWindow.src = url;
+  };
+
+  loadBtn.addEventListener('click', loadPage);
+
+  urlInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      loadPage();
+    }
+  });
+});
+
+
+
+		function dis(val) {
+			document.getElementById("result").value += val
+		}
+
+		function myFunction(event) {
+			if (event.key == '0' || event.key == '1'
+				|| event.key == '2' || event.key == '3'
+				|| event.key == '4' || event.key == '5'
+				|| event.key == '6' || event.key == '7'
+				|| event.key == '8' || event.key == '9'
+				|| event.key == '+' || event.key == '-'
+				|| event.key == '*' || event.key == ':')
+				document.getElementById("result").value += event.key;
+		}
+
+		let cal = document.getElementById("calcu");
+		cal.onkeyup = function (event) {
+			if (event.keyCode === 13) {
+				console.log("Enter");
+				let x = document.getElementById("result").value
+				console.log(x);
+				solve();
+			}
+		}
+
+		function solve() {
+			let x = document.getElementById("result").value
+			let y = math.evaluate(x)
+			document.getElementById("result").value = y
+		}
+
+		function clr() {
+			document.getElementById("result").value = ""
+		}
+
+
+
+
+    const isLeapYear = (year) => {
+  return (
+    (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
+    (year % 100 === 0 && year % 400 === 0)
+  );
+};
+const getFebDays = (year) => {
+  return isLeapYear(year) ? 29 : 28;
+};
+let calendar = document.querySelector('.calendar');
+const month_names = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+let month_picker = document.querySelector('#month-picker');
+const dayTextFormate = document.querySelector('.day-text-formate');
+const timeFormate = document.querySelector('.date-time-value');
+
+month_picker.onclick = () => {
+  month_list.classList.remove('hideonce');
+  month_list.classList.remove('hide');
+  month_list.classList.add('show');
+  dayTextFormate.classList.remove('showtime');
+  dayTextFormate.classList.add('hidetime');
+  timeFormate.classList.remove('showtime');
+  timeFormate.classList.add('hideTime');
+};
+
+const generateCalendar = (month, year) => {
+  let calendar_days = document.querySelector('.calendar-days');
+  calendar_days.innerHTML = '';
+  let calendar_header_year = document.querySelector('#year');
+  let days_of_month = [
+      31,
+      getFebDays(year),
+      31,
+      30,
+      31,
+      30,
+      31,
+      31,
+      30,
+      31,
+      30,
+      31,
+    ];
+
+  let currentDate = new Date();
+
+  month_picker.innerHTML = month_names[month];
+
+  calendar_header_year.innerHTML = year;
+
+  let first_day = new Date(year, month);
+
+
+  for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
+
+    let day = document.createElement('div');
+
+    if (i >= first_day.getDay()) {
+      day.innerHTML = i - first_day.getDay() + 1;
+
+      if (i - first_day.getDay() + 1 === currentDate.getDate() &&
+        year === currentDate.getFullYear() &&
+        month === currentDate.getMonth()
+      ) {
+        day.classList.add('current-date');
+      }
+    }
+    calendar_days.appendChild(day);
+  }
+};
+
+let month_list = calendar.querySelector('.month-list');
+month_names.forEach((e, index) => {
+  let month = document.createElement('div');
+  month.innerHTML = `<div>${e}</div>`;
+
+  month_list.append(month);
+  month.onclick = () => {
+    currentMonth.value = index;
+    generateCalendar(currentMonth.value, currentYear.value);
+    month_list.classList.replace('show', 'hide');
+    dayTextFormate.classList.remove('hideTime');
+    dayTextFormate.classList.add('showtime');
+    timeFormate.classList.remove('hideTime');
+    timeFormate.classList.add('showtime');
+  };
+});
+
+(function() {
+  month_list.classList.add('hideonce');
+})();
+document.querySelector('#pre-year').onclick = () => {
+  --currentYear.value;
+  generateCalendar(currentMonth.value, currentYear.value);
+};
+document.querySelector('#next-year').onclick = () => {
+  ++currentYear.value;
+  generateCalendar(currentMonth.value, currentYear.value);
+};
+
+let currentDate = new Date();
+let currentMonth = { value: currentDate.getMonth() };
+let currentYear = { value: currentDate.getFullYear() };
+generateCalendar(currentMonth.value, currentYear.value);
+
+const todayShowTime = document.querySelector('.date-time-value');
+const todayShowDate = document.querySelector('.day-text-formate');
+
+const currshowDate = new Date();
+const showCurrentDateOption = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  weekday: 'long',
+};
+const currentDateFormate = new Intl.DateTimeFormat(
+  'en-US',
+  showCurrentDateOption
+).format(currshowDate);
+todayShowDate.textContent = currentDateFormate;
+setInterval(() => {
+  const timer = new Date();
+  const option = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
+  const formateTimer = new Intl.DateTimeFormat('en-us', option).format(timer);
+  let time = `${`${timer.getHours()}`.padStart(
+      2,
+      '0'
+    )}:${`${timer.getMinutes()}`.padStart(
+      2,
+      '0'
+    )}: ${`${timer.getSeconds()}`.padStart(2, '0')}`;
+  todayShowTime.textContent = formateTimer;
+}, 1000);
+
+
+
+
+let pongcanvas = document.getElementById('pongcanvas'), ctx = document.getElementById('pongcanvas').getContext('2d'), paddles = [0, 0], ball = [0, 0, -0.016, 0], score = [0, 0], cursor = 0, reactionSpeed = 6, reactionDistance = -0.5, pongInterval = null;
+pongcanvas.addEventListener('mousemove', e => {
+    const rect = pongcanvas.getBoundingClientRect();
+    cursor = (e.clientY - rect.top) / rect.height * 2 - 1;
+});
+ctx.textAlign = 'center', ctx.font = '50px "Press Start 2P", Arial, sans-serif', ctx.fillStyle = 'white';
+
+function startPong() {
+    if (pongInterval !== null) return;
+    pongInterval = setInterval(() => {
+        if (Math.abs(ball[0]) >= 1) return (() => { score[ball[0] < 0 ? 1 : 0]++, ball = [0, 0, ball[0] < 0 ? -0.016 : 0.016, 0], reactionDistance = -0.5, reactionSpeed = 6 })();
+        ctx.clearRect(0, 0, 500, 500);
+        if (Math.abs(ball[1]) >= 1) ball[3] = -ball[3];
+        ball[0] += ball[2], ball[1] += ball[3], paddles[0] = cursor;
+        if (ball[0] > reactionDistance && ball[2] > 0) paddles[1] += ball[1] > paddles[1] + 10/250 ? reactionSpeed/250 : ball[1] < paddles[1] - 10/250 ? -reactionSpeed/250 : 0;
+        if (Math.abs(paddles[0]) > 225/250) paddles[0] = paddles[0] / Math.abs(paddles[0]) * 225/250;
+        if (Math.abs(paddles[1]) > 225/250) paddles[1] = paddles[1] / Math.abs(paddles[1]) * 225/250;
+        ctx.fillRect(20, paddles[0] * 250 + 225, 10, 50);
+        ctx.fillRect(470, paddles[1] * 250 + 225, 10, 50);
+        ctx.fillRect(ball[0] * 250 + 245, ball[1] * 250 + 245, 10, 10);
+        ctx.fillText(score[0] + ' : ' + score[1], 250, 100);
+        if ((ball[0] > -220/250 && ball[0] + ball[2] <= -220/250 && Math.abs(paddles[0] - ball[1] - ball[3] * (-220/250 - ball[0]) / ball[2]) <= 30/250) ||
+           (ball[0] < 220/250 && ball[0] + ball[2] >= 220/250 && Math.abs(paddles[1] - ball[1] - ball[3] * (220/250 - ball[0]) / ball[2]) <= 30/250)) {
+            let alpha = (ball[0] < 0 ? 1 : -1) * (7/16 * (Math.atan(ball[3] / -ball[2]) + Math.PI / 2) + 0.004375 * Math.PI * (ball[1] - paddles[ball[0] < 0 ? 0 : 1]) * 500 + 27/64 * Math.PI - Math.atan(ball[3] / -ball[2]) + Math.PI * 3/8);
+            let x = ball[2] * Math.cos(alpha) - ball[3] * Math.sin(alpha), y = ball[2] * Math.sin(alpha) + ball[3] * Math.cos(alpha);
+        ball[2] = x * 1.02, ball[3] = y * 1.02, reactionSpeed = Math.random() * 4.5 + 1.7, reactionDistance = Math.random() * 0.7 - 1;
+        }
+    }, 1000/60);
+}
+
+function stopPong() {
+    if (pongInterval !== null) {
+        clearInterval(pongInterval);
+        pongInterval = null;
+    }
+}
+
+function resetPong() {
+    paddles = [0, 0];
+    ball = [0, 0, -0.016, 0];
+    score = [0, 0];
+    cursor = 0;
+    reactionSpeed = 6;
+    reactionDistance = -0.5;
+    ctx.clearRect(0, 0, 500, 500);
+}
